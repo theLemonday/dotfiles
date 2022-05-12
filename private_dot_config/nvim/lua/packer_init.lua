@@ -126,8 +126,17 @@ return require('packer').startup(function(use)
             'williamboman/nvim-lsp-installer'
         }
 
+        use {
+            'filipdutescu/renamer.nvim',
+            branch = 'master',
+            requires = { {'nvim-lua/plenary.nvim'} }
+        }
+
         -- golang support
         use 'ray-x/go.nvim'
+
+        -- rust
+        use {'simrat39/rust-tools.nvim'}
 
         -- cmake
         use 'cdelledonne/vim-cmake'

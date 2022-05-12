@@ -1,9 +1,6 @@
 local o = vim.o
-local wo = vim.wo
-local bo = vim.bo
 local g = vim.g
 local cmd = vim.cmd
-local util = require('utils.util')
 
 -- general setting
 o.mouse = 'a' -- mouse support in all mode
@@ -72,16 +69,16 @@ o.autoread = true -- re read the file if not modified in vim
 o.history = 1000 -- undo limit
 
 
---	          _                       _                         
---	         | |                     | |                        
---	 ___ ___ | | ___  _ __   ___  ___| |__   ___ _ __ ___   ___ 
+--	          _                       _
+--	         | |                     | |
+--	 ___ ___ | | ___  _ __   ___  ___| |__   ___ _ __ ___   ___
 --	/ __/ _ \| |/ _ \| '__| / __|/ __| '_ \ / _ \ '_ ` _ \ / _ \
 --	 (_| (_) | | (_) | |    \__ \ (__| | | |  __/ | | | | |  __/
 --	\___\___/|_|\___/|_|    |___/\___|_| |_|\___|_| |_| |_|\___|
---colorscheme	
+--colorscheme
 
 --o.background = 'dark'
 -- cmd "colorscheme dracula"
 --cmd "hi Normal guibg=NONE ctermbg=NONE" -- transparent background
---o.guifont="Hack Nerd Font 11"
+o.guifont="Roboto Mono Medium Nerd Font Complete 13"
 --cmd "autocmd BufEnter * :NvimTreeOpen"
