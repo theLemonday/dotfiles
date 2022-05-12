@@ -1,0 +1,2 @@
+Run kitty with neovim config session, ~/.config/rofi/custom_command/kitty/kitty_session.sh nvim_config
+Temp, kitty --session ~/.config/kitty/session/nvim_config.conf

@@ -1,0 +1,9 @@
+Neovim tweak, kitty --directory ~/.config/nvim/lua
+Chinese Learning, kitty -o font_family=NotoSansSC-Light -o font_size=24 -d ~/Documents/Chinese
+Cpp development, kitty --session ~/.config/kitty/session/cpp_dev.conf
+Golang development, kitty --session ~/.config/kitty/session/golang_dev.conf
+Java development, kitty --session ~/.config/kitty/session/java_dev.conf
+Rust development, kitty --directory ~/Dev/Rust
+Sdl development, kitty --session ~/.config/kitty/session/sdl_dev.conf
+Aseprite, ~/aseprite/build/bin/aseprite
+Kitty, kitty

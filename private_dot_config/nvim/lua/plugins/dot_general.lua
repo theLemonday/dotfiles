@@ -1,0 +1,7 @@
+require'plugins.startup'
+require'plugins.startup'
+require'plugins.bufferline'
+require'plugins.coq'
+require'plugins.color'
+require'plugins.lsp_config'
+require'plugins.indent_blankline'
