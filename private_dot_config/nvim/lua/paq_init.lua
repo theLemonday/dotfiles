@@ -9,7 +9,7 @@ PKGS =  {
     'goolord/alpha-nvim';
     'kyazdani42/nvim-web-devicons';
     
-    -- Show indent 
+    -- Show indent
     'lukas-reineke/indent-blankline.nvim';
 
     -- parenthesis
@@ -19,7 +19,7 @@ PKGS =  {
     'windwp/nvim-autopairs';
 
     -- notification plugin
-    'rcarriga/nvim-notify';
+    'rcarriga/nvim-notify'
       
     -- tpope package
     'tpope/vim-commentary';

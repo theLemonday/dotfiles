@@ -8,6 +8,7 @@
 -- load setting file
 
 require('core.settings')
+require('core.key_maps')
 -- require('paq_init')
 require('packer_init')
 require('plugins.general')

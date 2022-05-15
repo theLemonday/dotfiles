@@ -1,0 +1,177 @@
+
+
+times in msec
+ clock   self+sourced   self:  sourced script
+ clock   elapsed:              other lines
+
+000.013  000.013: --- NVIM STARTING ---
+000.297  000.284: locale set
+000.612  000.315: inits 1
+000.625  000.013: window checked
+000.629  000.004: parsing arguments
+003.340  002.711: expanding arguments
+003.389  000.049: inits 2
+003.830  000.442: init highlight
+003.832  000.002: waiting for UI
+005.068  001.236: done waiting for UI
+005.088  000.020: init screen for UI
+005.123  000.034: init default mappings
+005.166  000.043: init default autocommands
+006.760  000.065  000.065: sourcing /usr/share/nvim/runtime/ftplugin.vim
+007.019  000.036  000.036: sourcing /usr/share/nvim/runtime/indent.vim
+051.289  005.151  005.151: sourcing /home/thearchitecturer/.local/share/nvim/site/pack/packer/start/dracula.nvim/colors/dracula.lua
+145.507  138.399  133.248: sourcing /home/thearchitecturer/.config/nvim/init.lua
+145.524  001.859: sourcing vimrc file(s)
+145.695  000.035  000.035: sourcing /home/thearchitecturer/.local/share/nvim/site/pack/packer/start/filetype.nvim/filetype.vim
+146.004  000.050  000.050: sourcing /usr/share/nvim/runtime/filetype.lua
+146.046  000.018  000.018: sourcing /usr/share/nvim/runtime/filetype.vim
+146.491  000.105  000.105: sourcing /usr/share/nvim/runtime/syntax/synload.vim
+146.585  000.419  000.314: sourcing /usr/share/nvim/runtime/syntax/syntax.vim
+148.175  000.181  000.181: sourcing /usr/share/nvim/runtime/plugin/gzip.vim
+148.208  000.012  000.012: sourcing /usr/share/nvim/runtime/plugin/health.vim
+148.272  000.047  000.047: sourcing /usr/share/nvim/runtime/plugin/man.vim
+148.917  000.267  000.267: sourcing /usr/share/nvim/runtime/pack/dist/opt/matchit/plugin/matchit.vim
+149.043  000.753  000.485: sourcing /usr/share/nvim/runtime/plugin/matchit.vim
+149.231  000.170  000.170: sourcing /usr/share/nvim/runtime/plugin/matchparen.vim
+149.631  000.379  000.379: sourcing /usr/share/nvim/runtime/plugin/netrwPlugin.vim
+149.834  000.011  000.011: sourcing /home/thearchitecturer/.local/share/nvim/rplugin.vim
+149.842  000.180  000.168: sourcing /usr/share/nvim/runtime/plugin/rplugin.vim
+149.935  000.069  000.069: sourcing /usr/share/nvim/runtime/plugin/shada.vim
+149.991  000.029  000.029: sourcing /usr/share/nvim/runtime/plugin/spellfile.vim
+150.148  000.134  000.134: sourcing /usr/share/nvim/runtime/plugin/tarPlugin.vim
+150.268  000.087  000.087: sourcing /usr/share/nvim/runtime/plugin/tohtml.vim
+150.313  000.022  000.022: sourcing /usr/share/nvim/runtime/plugin/tutor.vim
+150.510  000.175  000.175: sourcing /usr/share/nvim/runtime/plugin/zipPlugin.vim
+162.389  011.780  011.780: sourcing /home/thearchitecturer/.config/nvim/plugin/packer_compiled.lua
+162.694  002.629: loading rtp plugins
+163.592  000.241  000.241: sourcing /home/thearchitecturer/.local/share/nvim/site/pack/packer/start/LuaSnip/plugin/luasnip.vim
+164.117  000.371  000.371: sourcing /home/thearchitecturer/.local/share/nvim/site/pack/packer/start/auto-session/plugin/auto-session.vim
+164.533  000.039  000.039: sourcing /home/thearchitecturer/.local/share/nvim/site/pack/packer/start/formatter.nvim/plugin/formatter.vim
+164.693  000.036  000.036: sourcing /home/thearchitecturer/.local/share/nvim/site/pack/packer/start/go.nvim/plugin/go.vim
+165.158  000.318  000.318: sourcing /home/thearchitecturer/.local/share/nvim/site/pack/packer/start/indent-blankline.nvim/plugin/indent_blankline.vim
+165.926  000.524  000.524: sourcing /home/thearchitecturer/.local/share/nvim/site/pack/packer/start/nvim-cmp/plugin/cmp.lua
+166.071  000.046  000.046: sourcing /home/thearchitecturer/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua/plugin/colorizer.vim
+166.316  000.116  000.116: sourcing /home/thearchitecturer/.local/share/nvim/site/pack/packer/start/nvim-lsp-installer/plugin/nvim-lsp-installer.vim
+166.754  000.295  000.295: sourcing /home/thearchitecturer/.local/share/nvim/site/pack/packer/start/nvim-lspconfig/plugin/lspconfig.vim
+166.972  000.055  000.055: sourcing /home/thearchitecturer/.local/share/nvim/site/pack/packer/start/nvim-nonicons/plugin/nvim-nonicons.vim
+167.178  000.057  000.057: sourcing /home/thearchitecturer/.local/share/nvim/site/pack/packer/start/nvim-transparent/plugin/transparent.vim
+168.145  000.781  000.781: sourcing /home/thearchitecturer/.local/share/nvim/site/pack/packer/start/nvim-treesitter/plugin/nvim-treesitter.lua
+168.300  000.051  000.051: sourcing /home/thearchitecturer/.local/share/nvim/site/pack/packer/start/nvim-web-devicons/plugin/nvim-web-devicons.vim
+168.524  000.046  000.046: sourcing /home/thearchitecturer/.local/share/nvim/site/pack/packer/start/plenary.nvim/plugin/plenary.vim
+168.665  000.020  000.020: sourcing /home/thearchitecturer/.local/share/nvim/site/pack/packer/start/rainbow/plugin/rainbow_main.vim
+168.843  000.034  000.034: sourcing /home/thearchitecturer/.local/share/nvim/site/pack/packer/start/renamer.nvim/plugin/renamer.vim
+169.045  000.022  000.022: sourcing /home/thearchitecturer/.local/share/nvim/site/pack/packer/start/rust-tools.nvim/plugin/rust-tools.vim
+169.509  000.256  000.256: sourcing /home/thearchitecturer/.local/share/nvim/site/pack/packer/start/telescope.nvim/plugin/telescope.lua
+169.662  000.065  000.065: sourcing /home/thearchitecturer/.local/share/nvim/site/pack/packer/start/toggleterm.nvim/plugin/toggleterm.vim
+170.099  000.056  000.056: sourcing /home/thearchitecturer/.local/share/nvim/site/pack/packer/start/vim-cmake/autoload/cmake/const.vim
+170.512  000.081  000.081: sourcing /home/thearchitecturer/.local/share/nvim/site/pack/packer/start/vim-cmake/autoload/cmake/logger.vim
+170.708  000.900  000.763: sourcing /home/thearchitecturer/.local/share/nvim/site/pack/packer/start/vim-cmake/plugin/cmake.vim
+171.273  000.402  000.402: sourcing /home/thearchitecturer/.local/share/nvim/site/pack/packer/start/vim-surround/plugin/surround.vim
+171.521  004.152: loading packages
+172.157  000.246  000.246: sourcing /home/thearchitecturer/.local/share/nvim/site/pack/packer/start/Comment.nvim/after/plugin/Comment.lua
+172.494  000.254  000.254: sourcing /home/thearchitecturer/.local/share/nvim/site/pack/packer/start/cmp-buffer/after/plugin/cmp_buffer.lua
+172.677  000.101  000.101: sourcing /home/thearchitecturer/.local/share/nvim/site/pack/packer/start/cmp-calc/after/plugin/cmp_calc.lua
+172.927  000.170  000.170: sourcing /home/thearchitecturer/.local/share/nvim/site/pack/packer/start/cmp-cmdline/after/plugin/cmp_cmdline.lua
+173.069  000.054  000.054: sourcing /home/thearchitecturer/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp/after/plugin/cmp_nvim_lsp.lua
+173.254  000.107  000.107: sourcing /home/thearchitecturer/.local/share/nvim/site/pack/packer/start/cmp-nvim-lua/after/plugin/cmp_nvim_lua.lua
+173.467  000.133  000.133: sourcing /home/thearchitecturer/.local/share/nvim/site/pack/packer/start/cmp-path/after/plugin/cmp_path.lua
+173.698  000.152  000.152: sourcing /home/thearchitecturer/.local/share/nvim/site/pack/packer/start/cmp_luasnip/after/plugin/cmp_luasnip.lua
+173.704  000.965: loading after plugins
+173.722  000.019: inits 3
+175.883  002.161: reading ShaDa
+176.405  000.521: opening buffers
+176.634  000.229: BufEnter autocommands
+176.638  000.004: editing files in windows
+198.999  000.158  000.158: sourcing /usr/share/nvim/runtime/ftplugin/lua.vim
+201.230  000.069  000.069: sourcing /usr/share/nvim/runtime/indent/lua.vim
+204.029  000.805  000.805: sourcing /usr/share/nvim/runtime/syntax/lua.vim
+215.991  026.644  025.613: sourcing /home/thearchitecturer/.local/share/nvim/sessions/%home%thearchitecturer%.config%nvim%lua.vim
+217.926  014.643: VimEnter autocommands
+217.938  000.013: UIEnter autocommands
+217.941  000.002: before starting main loop
+226.243  008.302: first screen update
+226.251  000.009: --- NVIM STARTED ---
+
+
+times in msec
+ clock   self+sourced   self:  sourced script
+ clock   elapsed:              other lines
+
+000.012  000.012: --- NVIM STARTING ---
+000.365  000.353: locale set
+000.769  000.404: inits 1
+000.785  000.016: window checked
+000.790  000.005: parsing arguments
+004.976  004.186: expanding arguments
+005.030  000.054: inits 2
+005.912  000.882: init highlight
+005.919  000.007: waiting for UI
+008.152  002.233: done waiting for UI
+008.173  000.021: init screen for UI
+008.202  000.028: init default mappings
+008.263  000.061: init default autocommands
+010.103  000.091  000.091: sourcing /usr/share/nvim/runtime/ftplugin.vim
+010.411  000.054  000.054: sourcing /usr/share/nvim/runtime/indent.vim
+052.256  003.685  003.685: sourcing /home/thearchitecturer/.local/share/nvim/site/pack/packer/start/dracula.nvim/colors/dracula.lua
+154.012  143.512  139.827: sourcing /home/thearchitecturer/.config/nvim/init.lua
+154.043  002.123: sourcing vimrc file(s)
+154.338  000.081  000.081: sourcing /home/thearchitecturer/.local/share/nvim/site/pack/packer/start/filetype.nvim/filetype.vim
+154.769  000.076  000.076: sourcing /usr/share/nvim/runtime/filetype.lua
+154.815  000.021  000.021: sourcing /usr/share/nvim/runtime/filetype.vim
+155.226  000.122  000.122: sourcing /usr/share/nvim/runtime/syntax/synload.vim
+155.338  000.447  000.325: sourcing /usr/share/nvim/runtime/syntax/syntax.vim
+156.821  000.196  000.196: sourcing /usr/share/nvim/runtime/plugin/gzip.vim
+156.857  000.013  000.013: sourcing /usr/share/nvim/runtime/plugin/health.vim
+156.925  000.050  000.050: sourcing /usr/share/nvim/runtime/plugin/man.vim
+157.571  000.252  000.252: sourcing /usr/share/nvim/runtime/pack/dist/opt/matchit/plugin/matchit.vim
+157.699  000.755  000.503: sourcing /usr/share/nvim/runtime/plugin/matchit.vim
+157.889  000.170  000.170: sourcing /usr/share/nvim/runtime/plugin/matchparen.vim
+158.324  000.415  000.415: sourcing /usr/share/nvim/runtime/plugin/netrwPlugin.vim
+158.552  000.013  000.013: sourcing /home/thearchitecturer/.local/share/nvim/rplugin.vim
+158.561  000.189  000.176: sourcing /usr/share/nvim/runtime/plugin/rplugin.vim
+158.664  000.076  000.076: sourcing /usr/share/nvim/runtime/plugin/shada.vim
+158.725  000.033  000.033: sourcing /usr/share/nvim/runtime/plugin/spellfile.vim
+158.874  000.126  000.126: sourcing /usr/share/nvim/runtime/plugin/tarPlugin.vim
+158.995  000.089  000.089: sourcing /usr/share/nvim/runtime/plugin/tohtml.vim
+159.044  000.023  000.023: sourcing /usr/share/nvim/runtime/plugin/tutor.vim
+159.239  000.172  000.172: sourcing /usr/share/nvim/runtime/plugin/zipPlugin.vim
+173.742  014.397  014.397: sourcing /home/thearchitecturer/.config/nvim/plugin/packer_compiled.lua
+174.030  002.657: loading rtp plugins
+176.918  002.250  002.250: sourcing /home/thearchitecturer/.local/share/nvim/site/pack/packer/start/LuaSnip/plugin/luasnip.vim
+177.439  000.322  000.322: sourcing /home/thearchitecturer/.local/share/nvim/site/pack/packer/start/auto-session/plugin/auto-session.vim
+177.611  000.009  000.009: sourcing /home/thearchitecturer/.local/share/nvim/site/pack/packer/start/coq.artifacts/plugin/coq.artifacts.vim
+177.743  000.010  000.010: sourcing /home/thearchitecturer/.local/share/nvim/site/pack/packer/start/coq.thirdparty/plugin/coq_3p.vim
+177.879  000.023  000.023: sourcing /home/thearchitecturer/.local/share/nvim/site/pack/packer/start/coq_nvim/plugin/coq.vim
+178.092  000.040  000.040: sourcing /home/thearchitecturer/.local/share/nvim/site/pack/packer/start/formatter.nvim/plugin/formatter.vim
+178.279  000.040  000.040: sourcing /home/thearchitecturer/.local/share/nvim/site/pack/packer/start/go.nvim/plugin/go.vim
+178.784  000.355  000.355: sourcing /home/thearchitecturer/.local/share/nvim/site/pack/packer/start/indent-blankline.nvim/plugin/indent_blankline.vim
+179.047  000.046  000.046: sourcing /home/thearchitecturer/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua/plugin/colorizer.vim
+179.295  000.125  000.125: sourcing /home/thearchitecturer/.local/share/nvim/site/pack/packer/start/nvim-lsp-installer/plugin/nvim-lsp-installer.vim
+179.524  000.092  000.092: sourcing /home/thearchitecturer/.local/share/nvim/site/pack/packer/start/nvim-lspconfig/plugin/lspconfig.vim
+179.724  000.050  000.050: sourcing /home/thearchitecturer/.local/share/nvim/site/pack/packer/start/nvim-nonicons/plugin/nvim-nonicons.vim
+179.929  000.058  000.058: sourcing /home/thearchitecturer/.local/share/nvim/site/pack/packer/start/nvim-transparent/plugin/transparent.vim
+180.801  000.687  000.687: sourcing /home/thearchitecturer/.local/share/nvim/site/pack/packer/start/nvim-treesitter/plugin/nvim-treesitter.lua
+180.986  000.058  000.058: sourcing /home/thearchitecturer/.local/share/nvim/site/pack/packer/start/nvim-web-devicons/plugin/nvim-web-devicons.vim
+181.242  000.052  000.052: sourcing /home/thearchitecturer/.local/share/nvim/site/pack/packer/start/plenary.nvim/plugin/plenary.vim
+181.396  000.022  000.022: sourcing /home/thearchitecturer/.local/share/nvim/site/pack/packer/start/rainbow/plugin/rainbow_main.vim
+181.575  000.033  000.033: sourcing /home/thearchitecturer/.local/share/nvim/site/pack/packer/start/renamer.nvim/plugin/renamer.vim
+181.717  000.023  000.023: sourcing /home/thearchitecturer/.local/share/nvim/site/pack/packer/start/rust-tools.nvim/plugin/rust-tools.vim
+182.275  000.350  000.350: sourcing /home/thearchitecturer/.local/share/nvim/site/pack/packer/start/telescope.nvim/plugin/telescope.lua
+182.448  000.073  000.073: sourcing /home/thearchitecturer/.local/share/nvim/site/pack/packer/start/toggleterm.nvim/plugin/toggleterm.vim
+182.880  000.061  000.061: sourcing /home/thearchitecturer/.local/share/nvim/site/pack/packer/start/vim-cmake/autoload/cmake/const.vim
+183.281  000.082  000.082: sourcing /home/thearchitecturer/.local/share/nvim/site/pack/packer/start/vim-cmake/autoload/cmake/logger.vim
+183.491  000.894  000.750: sourcing /home/thearchitecturer/.local/share/nvim/site/pack/packer/start/vim-cmake/plugin/cmake.vim
+184.070  000.409  000.409: sourcing /home/thearchitecturer/.local/share/nvim/site/pack/packer/start/vim-surround/plugin/surround.vim
+184.327  004.275: loading packages
+184.698  000.254  000.254: sourcing /home/thearchitecturer/.local/share/nvim/site/pack/packer/start/Comment.nvim/after/plugin/Comment.lua
+184.706  000.125: loading after plugins
+184.726  000.020: inits 3
+187.002  002.276: reading ShaDa
+187.985  000.983: opening buffers
+188.348  000.363: BufEnter autocommands
+188.354  000.006: editing files in windows
+190.145  001.791: VimEnter autocommands
+190.172  000.026: UIEnter autocommands
+190.176  000.005: before starting main loop
+191.495  001.319: first screen update
+191.502  000.007: --- NVIM STARTED ---

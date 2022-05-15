@@ -84,50 +84,45 @@ _G.packer_plugins = {
     path = "/home/thearchitecturer/.local/share/nvim/site/pack/packer/start/alpha-nvim",
     url = "https://github.com/goolord/alpha-nvim"
   },
+  ["auto-session"] = {
+    loaded = true,
+    path = "/home/thearchitecturer/.local/share/nvim/site/pack/packer/start/auto-session",
+    url = "https://github.com/rmagatti/auto-session"
+  },
   ["bufferline.nvim"] = {
     loaded = true,
     path = "/home/thearchitecturer/.local/share/nvim/site/pack/packer/start/bufferline.nvim",
     url = "https://github.com/akinsho/bufferline.nvim"
   },
-  ["cmp-buffer"] = {
+  ["coq.artifacts"] = {
     loaded = true,
-    path = "/home/thearchitecturer/.local/share/nvim/site/pack/packer/start/cmp-buffer",
-    url = "https://github.com/hrsh7th/cmp-buffer"
+    path = "/home/thearchitecturer/.local/share/nvim/site/pack/packer/start/coq.artifacts",
+    url = "https://github.com/ms-jpq/coq.artifacts"
   },
-  ["cmp-calc"] = {
+  ["coq.thirdparty"] = {
     loaded = true,
-    path = "/home/thearchitecturer/.local/share/nvim/site/pack/packer/start/cmp-calc",
-    url = "https://github.com/hrsh7th/cmp-calc"
+    path = "/home/thearchitecturer/.local/share/nvim/site/pack/packer/start/coq.thirdparty",
+    url = "https://github.com/ms-jpq/coq.thirdparty"
   },
-  ["cmp-cmdline"] = {
+  coq_nvim = {
     loaded = true,
-    path = "/home/thearchitecturer/.local/share/nvim/site/pack/packer/start/cmp-cmdline",
-    url = "https://github.com/hrsh7th/cmp-cmdline"
+    path = "/home/thearchitecturer/.local/share/nvim/site/pack/packer/start/coq_nvim",
+    url = "https://github.com/ms-jpq/coq_nvim"
   },
-  ["cmp-nvim-lsp"] = {
+  ["dracula.nvim"] = {
     loaded = true,
-    path = "/home/thearchitecturer/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
-    url = "https://github.com/hrsh7th/cmp-nvim-lsp"
-  },
-  ["cmp-nvim-lua"] = {
-    loaded = true,
-    path = "/home/thearchitecturer/.local/share/nvim/site/pack/packer/start/cmp-nvim-lua",
-    url = "https://github.com/hrsh7th/cmp-nvim-lua"
-  },
-  ["cmp-path"] = {
-    loaded = true,
-    path = "/home/thearchitecturer/.local/share/nvim/site/pack/packer/start/cmp-path",
-    url = "https://github.com/hrsh7th/cmp-path"
-  },
-  cmp_luasnip = {
-    loaded = true,
-    path = "/home/thearchitecturer/.local/share/nvim/site/pack/packer/start/cmp_luasnip",
-    url = "https://github.com/saadparwaiz1/cmp_luasnip"
+    path = "/home/thearchitecturer/.local/share/nvim/site/pack/packer/start/dracula.nvim",
+    url = "https://github.com/Mofiqul/dracula.nvim"
   },
   ["filetype.nvim"] = {
     loaded = true,
     path = "/home/thearchitecturer/.local/share/nvim/site/pack/packer/start/filetype.nvim",
     url = "https://github.com/nathom/filetype.nvim"
+  },
+  ["formatter.nvim"] = {
+    loaded = true,
+    path = "/home/thearchitecturer/.local/share/nvim/site/pack/packer/start/formatter.nvim",
+    url = "https://github.com/mhartington/formatter.nvim"
   },
   ["go.nvim"] = {
     loaded = true,
@@ -145,25 +140,20 @@ _G.packer_plugins = {
     path = "/home/thearchitecturer/.local/share/nvim/site/pack/packer/start/indent-blankline.nvim",
     url = "https://github.com/lukas-reineke/indent-blankline.nvim"
   },
+  ["lsp_signature.nvim"] = {
+    loaded = true,
+    path = "/home/thearchitecturer/.local/share/nvim/site/pack/packer/start/lsp_signature.nvim",
+    url = "https://github.com/ray-x/lsp_signature.nvim"
+  },
   ["lualine.nvim"] = {
     loaded = true,
     path = "/home/thearchitecturer/.local/share/nvim/site/pack/packer/start/lualine.nvim",
     url = "https://github.com/nvim-lualine/lualine.nvim"
   },
-  ["neovim-session-manager"] = {
-    loaded = true,
-    path = "/home/thearchitecturer/.local/share/nvim/site/pack/packer/start/neovim-session-manager",
-    url = "https://github.com/Shatur/neovim-session-manager"
-  },
   ["nvim-autopairs"] = {
     loaded = true,
     path = "/home/thearchitecturer/.local/share/nvim/site/pack/packer/start/nvim-autopairs",
     url = "https://github.com/windwp/nvim-autopairs"
-  },
-  ["nvim-cmp"] = {
-    loaded = true,
-    path = "/home/thearchitecturer/.local/share/nvim/site/pack/packer/start/nvim-cmp",
-    url = "https://github.com/hrsh7th/nvim-cmp"
   },
   ["nvim-colorizer.lua"] = {
     loaded = true,
@@ -186,10 +176,21 @@ _G.packer_plugins = {
     path = "/home/thearchitecturer/.local/share/nvim/site/pack/packer/start/nvim-neoclip.lua",
     url = "https://github.com/AckslD/nvim-neoclip.lua"
   },
+  ["nvim-nonicons"] = {
+    loaded = true,
+    path = "/home/thearchitecturer/.local/share/nvim/site/pack/packer/start/nvim-nonicons",
+    url = "https://github.com/yamatsum/nvim-nonicons"
+  },
   ["nvim-notify"] = {
+    config = { "\27LJ\2\n2\0\0\4\0\3\0\0066\0\0\0006\1\2\0'\3\1\0B\1\2\2=\1\1\0K\0\1\0\frequire\vnotify\bvim\0" },
     loaded = true,
     path = "/home/thearchitecturer/.local/share/nvim/site/pack/packer/start/nvim-notify",
     url = "https://github.com/rcarriga/nvim-notify"
+  },
+  ["nvim-transparent"] = {
+    loaded = true,
+    path = "/home/thearchitecturer/.local/share/nvim/site/pack/packer/start/nvim-transparent",
+    url = "https://github.com/xiyaowong/nvim-transparent"
   },
   ["nvim-tree.lua"] = {
     loaded = true,
@@ -210,11 +211,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/thearchitecturer/.local/share/nvim/site/pack/packer/start/onedark.nvim",
     url = "https://github.com/navarasu/onedark.nvim"
-  },
-  ["paq-nvim"] = {
-    loaded = true,
-    path = "/home/thearchitecturer/.local/share/nvim/site/pack/packer/start/paq-nvim",
-    url = "https://github.com/savq/paq-nvim"
   },
   ["plenary.nvim"] = {
     loaded = true,
@@ -268,12 +264,10 @@ _G.packer_plugins = {
     path = "/home/thearchitecturer/.local/share/nvim/site/pack/packer/start/toggleterm.nvim",
     url = "https://github.com/akinsho/toggleterm.nvim"
   },
-  vim = {
-    after_files = { "/home/thearchitecturer/.local/share/nvim/site/pack/packer/opt/vim/after/plugin/dracula.vim" },
-    loaded = false,
-    needs_bufread = false,
-    path = "/home/thearchitecturer/.local/share/nvim/site/pack/packer/opt/vim",
-    url = "https://github.com/dracula/vim"
+  ["tokyonight.nvim"] = {
+    loaded = true,
+    path = "/home/thearchitecturer/.local/share/nvim/site/pack/packer/start/tokyonight.nvim",
+    url = "https://github.com/folke/tokyonight.nvim"
   },
   ["vim-cmake"] = {
     loaded = true,
@@ -327,6 +321,10 @@ if not vim.g.packer_custom_loader_enabled then
   vim.g.packer_custom_loader_enabled = true
 end
 
+-- Config for: nvim-notify
+time([[Config for nvim-notify]], true)
+try_loadstring("\27LJ\2\n2\0\0\4\0\3\0\0066\0\0\0006\1\2\0'\3\1\0B\1\2\2=\1\1\0K\0\1\0\frequire\vnotify\bvim\0", "config", "nvim-notify")
+time([[Config for nvim-notify]], false)
 -- Config for: impatient.nvim
 time([[Config for impatient.nvim]], true)
 require('impatient')

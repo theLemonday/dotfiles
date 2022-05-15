@@ -1,6 +1,6 @@
 local M = {}
 
-M.set_fn = function(opts)
+M.setup_fn = function(opts)
     opts.settings = {
         checkOnSave = {
             command = 'clippy'

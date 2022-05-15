@@ -1,5 +1,14 @@
-local map = vim.api.nvim_set_keymap
-local util = require'utils.util'
+local keymap = vim.keymap.set
+local ns = {
+    noremap = true,
+    silent = true
+}
 
 vim.g.mapleader = ' '
--- util.map('t', '<Esc>', '<C-\\><C-n>', {noremap = true})
+keymap('t', '<Esc>', '<C-\\><C-n>', {noremap = true})
+keymap('n', 'H', '^', ns)
+keymap('n', 'L', '$', ns)
+keymap('n', '<C-h>', '<cmd>wincmd h<cr>', ns)
+keymap('n', '<C-j>', '<cmd>wincmd j<cr>', ns)
+keymap('n', '<C-k>', '<cmd>wincmd k<cr>', ns)
+keymap('n', '<C-l>', '<cmd>wincmd l<cr>', ns)

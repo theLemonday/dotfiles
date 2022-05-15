@@ -97,6 +97,8 @@ plugins=(git)
 
 # export MANPATH="/usr/local/man:$MANPATH"
 export PATH="$HOME/bin:$PATH"
+export EDITOR='nvim'
+export LS_COLORS="$(vivid generate molokai)"
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -116,7 +118,9 @@ export PATH="$HOME/bin:$PATH"
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 #
+setxkbmap -option caps:swapescape
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 alias config='/usr/bin/git --git-dir=/home/thearchitecturer/.cfg/ --work-tree=/home/thearchitecturer'
 alias aseprite='~/aseprite/build/bin/aseprite'
+alias exa='exa --icons'

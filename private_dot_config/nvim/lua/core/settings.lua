@@ -8,9 +8,9 @@ o.signcolumn = 'no' -- left sign column
 o.termguicolors = true -- 24 bit color support
 g.mapleader = ' '
 g.do_filetype_lua = 1
-vim.opt.completeopt = { "menu", "menuone", "noselect" }
-o.backupdir = "/home/thearchitecturer/.config/nvim/backup"
-cmd("autocmd BufWinEnter,WinEnter term://* startinsert") -- Start by enter enter insert mode
+vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
+o.backupdir = '/home/thearchitecturer/.config/nvim/backup'
+cmd 'autocmd BufWinEnter,WinEnter term://* startinsert' -- Start by enter enter insert mode
 -- For Window [[autocmd BufWritePost,FileWritePost * silent ! attrib +h <afile>~]]
 -- cmd [[autocmd BufWritePost,FileWritePost * silent ! mv <afile>~ .<afile>]]
 
@@ -21,7 +21,7 @@ o.smartindent = true
 -- tab
 o.expandtab = true
 o.shiftwidth = 4 -- tab = 4 spaces
-o.tabstop=4
+o.tabstop = 4
 
 -- wrap
 o.wrap = true -- enable wrap line
@@ -38,8 +38,8 @@ o.syntax = 'enable' -- enable syntax
 --number
 o.number = true
 o.relativenumber = true
-cmd ("autocmd InsertEnter * :set norelativenumber")
-cmd ("autocmd InsertLeave * :set relativenumber")
+cmd 'autocmd InsertEnter * :set norelativenumber'
+cmd 'autocmd InsertLeave * :set relativenumber'
 
 -- command
 o.showcmd = true
@@ -57,7 +57,8 @@ o.cursorline = true -- hi current cursor line
 o.title = false -- display window title
 o.hidden = true -- hidden the buffer when abandon
 g.t_Co = '256' -- set color range 256
-o.guifont =  "Hack-Regular 12"
+o.guifont = 'Hack-Regular 12'
+cmd [[hi Normal guibg=#0a0a0a]]
 
 -- backup files
 o.swapfile = false
@@ -67,7 +68,6 @@ o.writebackup = false
 -- load files
 o.autoread = true -- re read the file if not modified in vim
 o.history = 1000 -- undo limit
-
 
 --	          _                       _
 --	         | |                     | |
@@ -80,5 +80,12 @@ o.history = 1000 -- undo limit
 --o.background = 'dark'
 -- cmd "colorscheme dracula"
 --cmd "hi Normal guibg=NONE ctermbg=NONE" -- transparent background
-o.guifont="Roboto Mono Medium Nerd Font Complete 13"
+-- o.guifont="Roboto Mono Medium Nerd Font Complete 13"
 --cmd "autocmd BufEnter * :NvimTreeOpen"
+--restore_cursor = {
+--   { 'BufRead', '*', [[call setpos(".", getpos("'\""))]] },
+--},
+--require('utils.util').create_augroup(restore_cursor)
+vim.cmd [[ autocmd BufRead * autocmd FileType <buffer> ++once
+  \ if &ft !~# 'commit\|rebase' && line("'\"") > 1 && line("'\"") <= line("$") | exe 'normal! g`"' | endif
+]]

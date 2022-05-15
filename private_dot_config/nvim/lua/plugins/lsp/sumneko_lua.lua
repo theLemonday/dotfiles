@@ -1,10 +1,10 @@
 local M = {}
 
 local runtime_path = vim.split(package.path, ';')
-table.insert(runtime_path, "lua/?.lua")
-table.insert(runtime_path, "lua/?/init.lua")
+table.insert(runtime_path, 'lua/?.lua')
+table.insert(runtime_path, 'lua/?/init.lua')
 
-M.setup_fn = function (opts)
+M.setup_fn = function(opts)
     opts.settings = {
         Lua = {
             runtime = {
@@ -15,11 +15,11 @@ M.setup_fn = function (opts)
             },
             diagnostics = {
                 -- Get the language server to recognize the `vim` global
-                globals = {'vim'},
+                globals = { 'vim' },
             },
             workspace = {
                 -- Make the server aware of Neovim runtime files
-                library = vim.api.nvim_get_runtime_file("", true),
+                library = vim.api.nvim_get_runtime_file('', true),
             },
             -- Do not send telemetry data containing a randomized but unique identifier
             telemetry = {
