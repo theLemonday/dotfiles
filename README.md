@@ -1,7 +1,7 @@
-# theLemonday Dotfiles
+# theLemonday dotfiles
 
 # Setup on new machine
 Install chezmoi
-'''bash
+'''sh
 sh -c "$(curl -fsLS chezmoi.io/get)"
 '''
