@@ -22,9 +22,6 @@ return require('packer').startup(function(use)
     --faster loading time
     use { 'lewis6991/impatient.nvim', config = [[require('impatient')]] }
 
-    -- pqg itself
-    -- use 'savq/paq-nvim';
-
     -- greeting window
     -- use {
     --     'goolord/alpha-nvim',
@@ -59,6 +56,7 @@ return require('packer').startup(function(use)
     -- comment
     use { 'numToStr/Comment.nvim' }
 
+    use 'christoomey/vim-system-copy'
     use 'tpope/vim-repeat'
     use 'tpope/vim-surround'
     use { 'rmagatti/auto-session' }

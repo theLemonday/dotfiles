@@ -12,6 +12,7 @@ require'plugins.startup'
 require'plugins.statusline'
 require'plugins.telescope'
 require'plugins.terminal'
+require'plugins.discrete'
 require'plugins.lsp_config'
 
 local icons = require "nvim-nonicons"

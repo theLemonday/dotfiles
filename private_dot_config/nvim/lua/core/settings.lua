@@ -69,6 +69,8 @@ o.writebackup = false
 o.autoread = true -- re read the file if not modified in vim
 o.history = 1000 -- undo limit
 
+-- provider
+g.loaded_node_provider = 0
 --	          _                       _
 --	         | |                     | |
 --	 ___ ___ | | ___  _ __   ___  ___| |__   ___ _ __ ___   ___

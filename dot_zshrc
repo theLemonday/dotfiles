@@ -121,6 +121,7 @@ export LS_COLORS="$(vivid generate molokai)"
 setxkbmap -option caps:swapescape
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
-alias config='/usr/bin/git --git-dir=/home/thearchitecturer/.cfg/ --work-tree=/home/thearchitecturer'
+# alias config='/usr/bin/git --git-dir=/home/thearchitecturer/.cfg/ --work-tree=/home/thearchitecturer'
 alias aseprite='~/aseprite/build/bin/aseprite'
 alias exa='exa --icons'
+alias chea='chezmoi edit --apply '
