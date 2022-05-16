@@ -14,7 +14,7 @@ keymap.set('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', map_opts
 -- list of servers
 local servers = {
     'sumneko_lua',
-    'gopls',
+    -- 'gopls',
     'clangd',
     'cmake',
     'rust_analyzer',

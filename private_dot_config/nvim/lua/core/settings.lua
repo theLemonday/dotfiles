@@ -9,7 +9,7 @@ o.termguicolors = true -- 24 bit color support
 g.mapleader = ' '
 g.do_filetype_lua = 1
 vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
-o.backupdir = fn.stdpath('data') .. 'backup'
+o.backupdir = vim.fn.stdpath('data') .. 'backup'
 cmd 'autocmd BufWinEnter,WinEnter term://* startinsert' -- Start by enter enter insert mode
 -- For Window [[autocmd BufWritePost,FileWritePost * silent ! attrib +h <afile>~]]
 -- cmd [[autocmd BufWritePost,FileWritePost * silent ! mv <afile>~ .<afile>]]

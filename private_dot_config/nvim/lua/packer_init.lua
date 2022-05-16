@@ -102,14 +102,14 @@ return require('packer').startup(function(use)
             require('neoclip').setup()
         end,
     }
-    -- use {
-    --     'nvim-telescope/telescope-fzf-native.nvim',
-    --     run = 'make'
-    -- }
+
+    use {
+        'nvim-telescope/telescope-fzf-native.nvim',
+        run = 'make',
+    }
 
     -- color
     use { 'lifepillar/vim-gruvbox8', opt = true }
-    -- use {'dracula/vim', opt = true};
     use 'navarasu/onedark.nvim'
     use 'norcalli/nvim-colorizer.lua'
     use 'xiyaowong/nvim-transparent'
@@ -121,6 +121,7 @@ return require('packer').startup(function(use)
 
     -- statusline
     use 'nvim-lualine/lualine.nvim'
+
     -- completion
     -- coq
     use { 'ms-jpq/coq_nvim', branch = 'coq' }
@@ -137,7 +138,7 @@ return require('packer').startup(function(use)
     -- use 'hrsh7th/cmp-calc'
 
     -- luasnip
-    use 'L3MON4D3/LuaSnip'
+    -- use 'L3MON4D3/LuaSnip'
     -- use 'saadparwaiz1/cmp_luasnip'
 
     -- lsp configuration
@@ -153,10 +154,11 @@ return require('packer').startup(function(use)
     }
 
     -- golang support
-    use 'ray-x/go.nvim'
+    -- use 'ray-x/go.nvim'
 
     -- signature
     use 'ray-x/lsp_signature.nvim'
+
     -- rust
     use 'simrat39/rust-tools.nvim'
 
@@ -165,8 +167,15 @@ return require('packer').startup(function(use)
 
     -- format
     use 'mhartington/formatter.nvim'
+
     -- terminal
     use { 'akinsho/toggleterm.nvim' }
+
+    -- ctags
+    use { 'preservim/tagbar' }
+
+    -- multi cursor
+    use { 'mg979/vim-visual-multi', branch = 'master' }
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
