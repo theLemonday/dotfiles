@@ -5,26 +5,26 @@ local map_opts = {
     silent = true,
 }
 
-require("bufferline").setup{
+require('bufferline').setup {
     options = {
         mode = 'tabs',
         offsets = {
             {
-                filetype = "NvimTree",
-                text = "File Explorer",
+                filetype = 'NvimTree',
+                text = 'File Explorer',
                 highlight = 'directory',
-                text_align = "center"
-            }
+                text_align = 'center',
+            },
         },
         numbers = 'ordinal',
-        show_close_icon = false;
-        show_buffer_close_icons = false;
-        separator_style = "slant",
-    }
+        show_close_icon = false,
+        show_buffer_close_icons = false,
+        separator_style = 'slant',
+    },
 }
 
-keymap.set("", "[b", "<cmd>BufferLineCycleNext<CR>", map_opts)
-keymap.set("", "]b", "<cmd>BufferLineCyclePrev<CR>", map_opts)
+keymap.set('', '[b', '<cmd>BufferLineCycleNext<CR>', map_opts)
+keymap.set('', ']b', '<cmd>BufferLineCyclePrev<CR>', map_opts)
 
 keymap.set('n', '<M-1>', '<Cmd>BufferLineGoToBuffer 1<CR>', map_opts)
 keymap.set('n', '<M-2>', '<Cmd>BufferLineGoToBuffer 2<CR>', map_opts)

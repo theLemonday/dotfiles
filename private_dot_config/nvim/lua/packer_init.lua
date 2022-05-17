@@ -54,12 +54,12 @@ return require('packer').startup(function(use)
 
     -- tpope package
     -- comment
-    use { 'numToStr/Comment.nvim' }
+    use 'numToStr/Comment.nvim'
 
     use 'christoomey/vim-system-copy'
     use 'tpope/vim-repeat'
     use 'tpope/vim-surround'
-    use { 'rmagatti/auto-session' }
+    use 'rmagatti/auto-session'
 
     -- highlight
     use {
@@ -89,7 +89,7 @@ return require('packer').startup(function(use)
     }
     -- telescope extensions
     use 'nvim-telescope/telescope-media-files.nvim'
-    use { 'nvim-telescope/telescope-ui-select.nvim' }
+    use 'nvim-telescope/telescope-ui-select.nvim'
 
     -- clipboard
     use {
@@ -169,13 +169,25 @@ return require('packer').startup(function(use)
     use 'mhartington/formatter.nvim'
 
     -- terminal
-    use { 'akinsho/toggleterm.nvim' }
+    use 'akinsho/toggleterm.nvim'
 
     -- ctags
-    use { 'preservim/tagbar' }
+    use 'preservim/tagbar'
 
     -- multi cursor
     use { 'mg979/vim-visual-multi', branch = 'master' }
+
+    -- writing
+    use 'nvim-orgmode/orgmode'
+    use {
+        'akinsho/org-bullets.nvim',
+        config = function()
+            require('org-bullets').setup {
+                symbols = { '◉', '○', '✸', '✿' },
+            }
+        end,
+    }
+    use 'dhruvasagar/vim-table-mode'
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins

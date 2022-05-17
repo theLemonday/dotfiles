@@ -197,6 +197,17 @@ _G.packer_plugins = {
     path = "/home/lemonday/.local/share/nvim/site/pack/packer/start/onedark.nvim",
     url = "https://github.com/navarasu/onedark.nvim"
   },
+  ["org-bullets.nvim"] = {
+    config = { "\27LJ\2\2d\0\0\3\0\6\0\t6\0\0\0'\1\1\0B\0\2\0029\0\2\0005\1\4\0005\2\3\0=\2\5\1B\0\2\1K\0\1\0\fsymbols\1\0\0\1\5\0\0\b◉\b○\b✸\b✿\nsetup\16org-bullets\frequire\0" },
+    loaded = true,
+    path = "/home/lemonday/.local/share/nvim/site/pack/packer/start/org-bullets.nvim",
+    url = "https://github.com/akinsho/org-bullets.nvim"
+  },
+  orgmode = {
+    loaded = true,
+    path = "/home/lemonday/.local/share/nvim/site/pack/packer/start/orgmode",
+    url = "https://github.com/nvim-orgmode/orgmode"
+  },
   ["plenary.nvim"] = {
     loaded = true,
     path = "/home/lemonday/.local/share/nvim/site/pack/packer/start/plenary.nvim",
@@ -290,6 +301,11 @@ _G.packer_plugins = {
     path = "/home/lemonday/.local/share/nvim/site/pack/packer/start/vim-system-copy",
     url = "https://github.com/christoomey/vim-system-copy"
   },
+  ["vim-table-mode"] = {
+    loaded = true,
+    path = "/home/lemonday/.local/share/nvim/site/pack/packer/start/vim-table-mode",
+    url = "https://github.com/dhruvasagar/vim-table-mode"
+  },
   ["vim-visual-multi"] = {
     loaded = true,
     path = "/home/lemonday/.local/share/nvim/site/pack/packer/start/vim-visual-multi",
@@ -326,6 +342,10 @@ if not vim.g.packer_custom_loader_enabled then
   vim.g.packer_custom_loader_enabled = true
 end
 
+-- Config for: org-bullets.nvim
+time([[Config for org-bullets.nvim]], true)
+try_loadstring("\27LJ\2\2d\0\0\3\0\6\0\t6\0\0\0'\1\1\0B\0\2\0029\0\2\0005\1\4\0005\2\3\0=\2\5\1B\0\2\1K\0\1\0\fsymbols\1\0\0\1\5\0\0\b◉\b○\b✸\b✿\nsetup\16org-bullets\frequire\0", "config", "org-bullets.nvim")
+time([[Config for org-bullets.nvim]], false)
 -- Config for: nvim-notify
 time([[Config for nvim-notify]], true)
 try_loadstring("\27LJ\2\0022\0\0\3\0\3\0\0066\0\0\0006\1\2\0'\2\1\0B\1\2\2=\1\1\0K\0\1\0\frequire\vnotify\bvim\0", "config", "nvim-notify")

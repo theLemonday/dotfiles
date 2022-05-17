@@ -1,6 +1,9 @@
+-- Load custom tree-sitter grammar for org filetype
+require('orgmode').setup_ts_grammar()
+
 require('nvim-treesitter.configs').setup {
     -- A list of parser names, or "all"
-    ensure_installed = { 'cpp', 'c', 'json', 'lua', 'go', 'rust' },
+    ensure_installed = { 'cpp', 'c', 'json', 'lua', 'go', 'rust', 'org' },
 
     -- Install parsers synchronously (only applied to `ensure_installed`)
     sync_install = false,
@@ -16,12 +19,12 @@ require('nvim-treesitter.configs').setup {
         -- disable highlighting for the `tex` filetype, you need to include `latex` in this list as this is
         -- the name of the parser)
         -- list of language that will be disabled
-        disable = {},
+        disable = { 'org' },
 
         -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
         -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
         -- Using this option may slow down your editor, and you may see some duplicate highlights.
         -- Instead of true it can also be a list of languages
-        additional_vim_regex_highlighting = false,
+        additional_vim_regex_highlighting = { 'org' }, -- Required since TS highlighter doesn't support all syntax features (conceal)
     },
 }
