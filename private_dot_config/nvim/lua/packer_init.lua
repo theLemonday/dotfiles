@@ -22,24 +22,20 @@ return require('packer').startup(function(use)
     --faster loading time
     use { 'lewis6991/impatient.nvim', config = [[require('impatient')]] }
 
-    -- greeting window
-    -- use {
-    --     'goolord/alpha-nvim',
-    --     requires = { 'kyazdani42/nvim-web-devicons' },
-    --     config = require('plugins.alpha').alpha_load_fn(),
-    -- }
-
     -- icon
     use {
-        'yamatsum/nvim-nonicons',
-        requires = { 'kyazdani42/nvim-web-devicons' },
+        'kyazdani42/nvim-web-devicons',
+        requires = {
+            { 'akinsho/bufferline.nvim', tag = '*' },
+            { 'kyazdani42/nvim-tree.lua', tag = 'nightly' },
+        },
     }
+
+    -- statusline
+    use 'nvim-lualine/lualine.nvim'
 
     -- Show indent
     use 'lukas-reineke/indent-blankline.nvim'
-
-    -- parenthesis
-    use 'luochen1990/rainbow'
 
     -- Auto pair
     use 'windwp/nvim-autopairs'
@@ -65,13 +61,13 @@ return require('packer').startup(function(use)
     use {
         'nvim-treesitter/nvim-treesitter',
         run = ':TSUpdate',
+        requires = {
+            'beauwilliams/focus.nvim',
+            'p00f/nvim-ts-rainbow', -- parentheses rainbow
+            'JoosepAlviste/nvim-ts-context-commentstring',
+            'SmiteshP/nvim-gps',
+        },
     }
-
-    -- file explorer
-    use 'kyazdani42/nvim-tree.lua'
-
-    -- file type
-    use 'nathom/filetype.nvim'
 
     -- refactor
     use {
@@ -82,69 +78,41 @@ return require('packer').startup(function(use)
         },
     }
 
-    -- searching
-    use {
+    use { -- telescope
         'nvim-telescope/telescope.nvim',
-        requires = { { 'nvim-lua/plenary.nvim' } },
-    }
-    -- telescope extensions
-    use 'nvim-telescope/telescope-media-files.nvim'
-    use 'nvim-telescope/telescope-ui-select.nvim'
-
-    -- clipboard
-    use {
-        'AckslD/nvim-neoclip.lua',
         requires = {
-            { 'tami5/sqlite.lua', module = 'sqlite' },
-            { 'nvim-telescope/telescope.nvim' },
+            'nvim-lua/plenary.nvim',
+            'nvim-telescope/telescope-media-files.nvim',
+            'nvim-telescope/telescope-ui-select.nvim',
+            { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
         },
-        config = function()
-            require('neoclip').setup()
-        end,
     }
 
-    use {
-        'nvim-telescope/telescope-fzf-native.nvim',
-        run = 'make',
+    use { -- color
+        'lifepillar/vim-gruvbox8',
+        'navarasu/onedark.nvim',
+        'norcalli/nvim-colorizer.lua',
+        'xiyaowong/nvim-transparent',
+        'folke/tokyonight.nvim',
+        'Mofiqul/dracula.nvim',
     }
 
-    -- color
-    use { 'lifepillar/vim-gruvbox8', opt = true }
-    use 'navarasu/onedark.nvim'
-    use 'norcalli/nvim-colorizer.lua'
-    use 'xiyaowong/nvim-transparent'
-    use 'folke/tokyonight.nvim'
-    use 'Mofiqul/dracula.nvim'
-
-    -- buffer line
-    use { 'akinsho/bufferline.nvim', tag = '*', requires = 'kyazdani42/nvim-web-devicons' }
-
-    -- statusline
-    use 'nvim-lualine/lualine.nvim'
-
-    -- completion
-    -- coq
-    use { 'ms-jpq/coq_nvim', branch = 'coq' }
-    use { 'ms-jpq/coq.artifacts', branch = 'artifacts' }
-    use { 'ms-jpq/coq.thirdparty', branch = '3p' }
-    --
-    -- cmp
-    -- use 'hrsh7th/cmp-nvim-lsp'
-    -- use 'hrsh7th/cmp-buffer'
-    -- use 'hrsh7th/cmp-path'
-    -- use 'hrsh7th/cmp-cmdline'
-    -- use 'hrsh7th/nvim-cmp'
-    -- use 'hrsh7th/cmp-nvim-lua'
-    -- use 'hrsh7th/cmp-calc'
-
-    -- luasnip
-    -- use 'L3MON4D3/LuaSnip'
-    -- use 'saadparwaiz1/cmp_luasnip'
+    use { -- coq
+        'ms-jpq/coq_nvim',
+        branch = 'coq',
+        requires = {
+            { 'ms-jpq/coq.artifacts', branch = 'artifacts' },
+            { 'ms-jpq/coq.thirdparty', branch = '3p' },
+        },
+    }
 
     -- lsp configuration
     use {
         'neovim/nvim-lspconfig', -- Collection of configurations for the built-in LSP client
-        'williamboman/nvim-lsp-installer',
+        requires = {
+            'williamboman/nvim-lsp-installer', -- auto install lsp
+            'kosayoda/nvim-lightbulb',
+        },
     }
 
     use {
@@ -163,7 +131,7 @@ return require('packer').startup(function(use)
     use 'simrat39/rust-tools.nvim'
 
     -- cmake
-    use 'cdelledonne/vim-cmake'
+    -- use 'cdelledonne/vim-cmake'
 
     -- format
     use 'mhartington/formatter.nvim'
@@ -188,6 +156,15 @@ return require('packer').startup(function(use)
         end,
     }
     use 'dhruvasagar/vim-table-mode'
+
+    use { -- language utils
+        'iamcco/markdown-preview.nvim',
+        run = 'cd app && npm install',
+        setup = function()
+            vim.g.mkdp_filetypes = { 'markdown' }
+        end,
+        ft = { 'markdown' },
+    }
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins

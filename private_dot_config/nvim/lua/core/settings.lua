@@ -9,7 +9,7 @@ o.termguicolors = true -- 24 bit color support
 g.mapleader = ' '
 g.do_filetype_lua = 1
 vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
-o.backupdir = vim.fn.stdpath('data') .. 'backup'
+o.backupdir = vim.fn.stdpath 'data' .. '/backup'
 cmd 'autocmd BufWinEnter,WinEnter term://* startinsert' -- Start by enter enter insert mode
 -- For Window [[autocmd BufWritePost,FileWritePost * silent ! attrib +h <afile>~]]
 -- cmd [[autocmd BufWritePost,FileWritePost * silent ! mv <afile>~ .<afile>]]
@@ -57,7 +57,7 @@ o.cursorline = true -- hi current cursor line
 o.title = false -- display window title
 o.hidden = true -- hidden the buffer when abandon
 g.t_Co = '256' -- set color range 256
-o.guifont = 'Hack-Regular 12'
+-- o.guifont = 'Hack-Regular 12'
 cmd [[hi Normal guibg=#0a0a0a]]
 
 -- backup files
@@ -71,6 +71,9 @@ o.history = 1000 -- undo limit
 
 -- provider
 g.loaded_node_provider = 0
+g.loaded_perl_provider = 0
+g.loaded_ruby_provider = 0
+
 --	          _                       _
 --	         | |                     | |
 --	 ___ ___ | | ___  _ __   ___  ___| |__   ___ _ __ ___   ___
@@ -91,3 +94,6 @@ g.loaded_node_provider = 0
 vim.cmd [[ autocmd BufRead * autocmd FileType <buffer> ++once
   \ if &ft !~# 'commit\|rebase' && line("'\"") > 1 && line("'\"") <= line("$") | exe 'normal! g`"' | endif
 ]]
+
+vim.cmd [[highlight Normal guibg=NONE ctermbg=NONE]]
+vim.cmd [[highlight NonText guibg=NONE ctermbg=NONE]]

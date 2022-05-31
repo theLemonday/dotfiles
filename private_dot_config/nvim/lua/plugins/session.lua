@@ -21,3 +21,8 @@
 --         require('nvim-tree').toggle(false, true)
 --     end,
 -- })
+require('auto-session').setup {
+    log_level = 'info',
+}
+
+vim.o.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal'

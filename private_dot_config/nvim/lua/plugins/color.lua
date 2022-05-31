@@ -42,3 +42,4 @@ require('onedark').setup {
     exclude = {
     } -- table: groups you don't want to clear
 })
+

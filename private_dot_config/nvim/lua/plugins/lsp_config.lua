@@ -6,6 +6,7 @@ local map_opts = {
     noremap = true,
     silent = true,
 }
+
 keymap.set('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', map_opts)
 keymap.set('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', map_opts)
 keymap.set('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', map_opts)
@@ -14,15 +15,18 @@ keymap.set('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', map_opts
 -- list of servers
 local servers = {
     'sumneko_lua',
-    -- 'gopls',
+    'gopls',
+    'dockerls',
     'clangd',
     'cmake',
     'rust_analyzer',
+    'vuels',
+    'eslint',
+    'html',
 }
 
 lsp_installer.setup {
     ensure_installed = servers,
-    -- automatic_installation = true, -- automatically detect which servers to install (based on which servers are set up via lspconfig)
 }
 
 local function on_attach(_, bufnr)
@@ -53,39 +57,32 @@ vim.g.coq_settings = {
     display = {
         icons = {
             mode = 'long',
-            mappings = {
-                Text = '',
-                Method = '',
-                Function = '',
-                Constructor = '',
-                Field = '',
-                Variable = '',
-                Class = 'ﴯ',
-                Interface = '',
-                Module = '',
-                Property = 'ﰠ',
-                Unit = '',
-                Value = '',
-                Enum = '',
-                Keyword = '',
-                Snippet = '',
-                Color = '',
-                File = '',
-                Reference = '',
-                Folder = '',
-                EnumMember = '',
-                Constant = '',
-                Struct = '',
-                Event = '',
-                Operator = '',
-                TypeParameter = '',
-            },
+            mappings = require('symbols').icons_set,
         },
         pum = {
             fast_close = false,
         },
     },
+    keymap = {
+        recommended = false,
+        jump_to_mark = '<C-j>',
+        eval_snips = '<tab>',
+        pre_select = true,
+    },
 }
+
+local coq_map_opts = { expr = true, noremap = true }
+keymap.set('i', '<esc>', [[pumvisible() ? "<c-e><esc>" : "<esc>"]], { expr = true, noremap = true })
+keymap.set('i', '<c-c>', [[pumvisible() ? "<c-e><c-c>" : "<c-c>"]], { expr = true, noremap = true })
+keymap.set('i', '<bs>', [[pumvisible() ? "\<C-e><BS>"  : "\<BS>"]], coq_map_opts)
+keymap.set(
+    'i',
+    '<CR>',
+    [[pumvisible() ? (complete_info().selected == -1 ? "\<C-e><CR>" : "\<C-y>") : "\<CR>"]],
+    coq_map_opts
+)
+keymap.set('i', '<tab>', [[pumvisible() ? "<c-n>" : "<tab>"]], { expr = true, noremap = true })
+keymap.set('i', '<s-tab>', [[pumvisible() ? "<c-p>" : "<bs>"]], { expr = true, noremap = true })
 
 local coq = require 'coq'
 for _, lsp in ipairs(servers) do
@@ -105,5 +102,19 @@ require 'coq_3p' {
 
 -- lsp signature
 require('lsp_signature').setup {
-    floating_window = false,
+    bind = true,
+    handler_opts = {
+        border = 'none', -- double, rounded, single, shadow, none
+    },
+    floating_window = true,
+    floating_window_above_cur_line = true,
+    doc_lines = 0,
 }
+
+require('nvim-lightbulb').setup { autocmd = { enabled = true } }
+
+--vim.g.vista.renderer.enable_icon = 1
+--vim.g.vista#renderer
+-- vim.cmd[[let g:vista#renderer#enable_icon = 1]]
+
+return M

@@ -23,8 +23,8 @@ require('bufferline').setup {
     },
 }
 
-keymap.set('', '[b', '<cmd>BufferLineCycleNext<CR>', map_opts)
-keymap.set('', ']b', '<cmd>BufferLineCyclePrev<CR>', map_opts)
+keymap.set('', ']b', '<cmd>BufferLineCycleNext<CR>', map_opts)
+keymap.set('', '[b', '<cmd>BufferLineCyclePrev<CR>', map_opts)
 
 keymap.set('n', '<M-1>', '<Cmd>BufferLineGoToBuffer 1<CR>', map_opts)
 keymap.set('n', '<M-2>', '<Cmd>BufferLineGoToBuffer 2<CR>', map_opts)
