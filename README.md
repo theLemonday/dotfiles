@@ -81,9 +81,12 @@ nvm install --lts
 ```
 
 ## Powerline && Nerd font setup
-Fira code nerd font
+Make font dir
 ```sh
 mkdir -p ~/.local/share/fonts
+```
+Fira code nerd font
+```sh
 z ~/.local/share/fonts
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/FiraCode.zip
 unzip FiraCode.zip
