@@ -14,7 +14,7 @@ Clone dotfiles by chezmoi
 chezmoi init --apply https://github.com/theLemonday/dotfiles
 ```
 
-## Fedora setup
+## Fedora 36 setup
 Package install
 - clang
 - zsh
@@ -23,7 +23,26 @@ Package install
 - dconf-editor
 
 ```sh
-sudo dnf install clang zsh sqlite go dconf-editor fira-code-fonts
+sudo dnf install clang zsh sqlite go dconf-editor fira-code-fonts python3-pip
+```
+
+Install ibus-bamboo
+```sh
+# add repo
+dnf config-manager --add-repo https://download.opensuse.org/repositories/home:lamlng/Fedora_36/home:lamlng.repo
+# install bamboo
+dnf install ibus-bamboo
+```
+
+Install pynvim for neovim
+```sh
+python3 -m pip install pynvim
+```
+
+### Using fedora
+All fedora repo are under /etc/yum.repos.d/ so to see all repo use command
+```sh
+exa /etc/yum.repos.d/
 ```
 
 ## Rust setup
@@ -33,17 +52,22 @@ Install rust script
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
 
-Install rust tool crate
+## Terminal tools
 - xplr
 - stylua
 - exa
 - vivid
 - ripgrep
+- **Tokei** is a program that displays statistics about your code. Tokei will show the number of files, total lines within those files and code, comments, and blanks grouped by language.
+- **bat** is cat(1) clone with syntax highlighting and Git integration.
 
 ```sh
 cargo install --locked --force xplr
 
 cargo install stylua exa vivid ripgrep
+
+# fedora install
+dnf install fd-find tokei bat
 ```
 
 ## Nvm && npm
@@ -57,3 +81,12 @@ nvm install --lts
 ```
 
 ## Powerline && Nerd font setup
+Fira code nerd font
+```sh
+mkdir -p ~/.local/share/fonts
+z ~/.local/share/fonts
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/FiraCode.zip
+unzip FiraCode.zip
+rm FiraCode.zip
+fc-cache -fv
+```

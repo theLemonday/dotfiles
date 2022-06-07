@@ -46,9 +46,6 @@ keymap.set('n', '<leader>j', ':FocusSplitDown<CR>', { silent = true })
 keymap.set('n', '<leader>k', ':FocusSplitUp<CR>', { silent = true })
 keymap.set('n', '<leader>l', ':FocusSplitRight<CR>', { silent = true })
 
-vim.g.mkdp_auto_start = 1
-vim.g.mkdp_refresh_slow = 1
-
 vim.notify = require 'notify'
 require('notify').setup {
     background_colour = '#000000',

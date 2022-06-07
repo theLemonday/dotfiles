@@ -1,6 +1,16 @@
 local fn = vim.fn
+
+local function conf(name)
+    return require(string.format('plugins.%s', name))
+end
+
+local packer_group = vim.api.nvim_create_augroup('Packer', { clear = true })
+vim.api.nvim_create_autocmd(
+    'BufWritePost',
+    { command = 'source <afile> | PackerCompile', group = packer_group, pattern = 'init.lua' }
+)
+
 local install_path = fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
-local packer_bootstrap
 if fn.empty(fn.glob(install_path)) > 0 then
     packer_bootstrap = fn.system {
         'git',
@@ -12,15 +22,11 @@ if fn.empty(fn.glob(install_path)) > 0 then
     }
 end
 
-local packer_group = vim.api.nvim_create_augroup('Packer', { clear = true })
-vim.api.nvim_create_autocmd(
-    'BufWritePost',
-    { command = 'source <afile> | PackerCompile', group = packer_group, pattern = 'init.lua' }
-)
-
 return require('packer').startup(function(use)
     --faster loading time
     use { 'lewis6991/impatient.nvim', config = [[require('impatient')]] }
+
+    use 'wbthomason/packer.nvim'
 
     -- icon
     use {
@@ -37,9 +43,6 @@ return require('packer').startup(function(use)
     -- Show indent
     use 'lukas-reineke/indent-blankline.nvim'
 
-    -- Auto pair
-    use 'windwp/nvim-autopairs'
-
     -- notification plugin
     use {
         'rcarriga/nvim-notify',
@@ -48,14 +51,16 @@ return require('packer').startup(function(use)
         end,
     }
 
-    -- tpope package
-    -- comment
-    use 'numToStr/Comment.nvim'
+    use { -- Comment
+        'numToStr/Comment.nvim',
+        'LudoPinelli/comment-box.nvim',
+    }
 
     use 'christoomey/vim-system-copy'
     use 'tpope/vim-repeat'
     use 'tpope/vim-surround'
     use 'rmagatti/auto-session'
+    use 'jiangmiao/auto-pairs'
 
     -- highlight
     use {
@@ -127,8 +132,10 @@ return require('packer').startup(function(use)
     -- signature
     use 'ray-x/lsp_signature.nvim'
 
-    -- rust
-    use 'simrat39/rust-tools.nvim'
+    use { -- Rust
+        'simrat39/rust-tools.nvim',
+        ft = 'rust',
+    }
 
     -- cmake
     -- use 'cdelledonne/vim-cmake'
@@ -145,31 +152,38 @@ return require('packer').startup(function(use)
     -- multi cursor
     use { 'mg979/vim-visual-multi', branch = 'master' }
 
-    -- writing
-    use 'nvim-orgmode/orgmode'
-    use {
-        'akinsho/org-bullets.nvim',
-        config = function()
-            require('org-bullets').setup {
-                symbols = { '◉', '○', '✸', '✿' },
-            }
-        end,
+    use { -- oRG mode
+        'nvim-orgmode/orgmode',
+        {
+            'akinsho/org-bullets.nvim',
+            config = function()
+                require('org-bullets').setup {
+                    symbols = { '◉', '○', '✸', '✿' },
+                }
+            end,
+            ft = 'org',
+        },
+        'dhruvasagar/vim-table-mode',
     }
-    use 'dhruvasagar/vim-table-mode'
 
     use { -- language utils
         'iamcco/markdown-preview.nvim',
         run = 'cd app && npm install',
-        setup = function()
-            vim.g.mkdp_filetypes = { 'markdown' }
-        end,
-        ft = { 'markdown' },
+        config = conf 'mkdp',
+        ft = 'markdown',
+    }
+
+    use { -- utilities
+        {
+            'lewis6991/gitsigns.nvim',
+            tag = 'release',
+            config = conf 'gitsigns',
+        },
     }
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
     if packer_bootstrap then
         require('packer').sync()
-        vim.cmd 'autocmd User PaqDoneInstall quit'
     end
 end)
