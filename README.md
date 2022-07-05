@@ -34,11 +34,6 @@ dnf config-manager --add-repo https://download.opensuse.org/repositories/home:la
 dnf install ibus-bamboo
 ```
 
-Install pynvim for neovim
-```sh
-python3 -m pip install pynvim
-```
-
 ### Using fedora
 All fedora repo are under /etc/yum.repos.d/ so to see all repo use command
 ```sh
@@ -52,6 +47,22 @@ Install rust script
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
 
+## Python-base tool setup
+```sh
+# Install pynvim for neovim
+python3 -m pip install --user pynvim virtualenv virtualenvwrapper
+```
+
+## Shell setup
+Require zsh installed
+```sh
+# change zsh default shell
+chsh -s $(which zsh)
+
+# install starship shell
+curl -sS https://starship.rs/install.sh | sh
+```
+
 ## Terminal tools
 - xplr
 - stylua
@@ -60,11 +71,15 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 - ripgrep
 - **Tokei** is a program that displays statistics about your code. Tokei will show the number of files, total lines within those files and code, comments, and blanks grouped by language.
 - **bat** is cat(1) clone with syntax highlighting and Git integration.
+- zoxide is a smarter cd command, inspired by z and autojump.
 
 ```sh
 cargo install --locked --force xplr
 
 cargo install stylua exa vivid ripgrep
+
+#zoxide
+curl -sS https://webinstall.dev/zoxide | bash
 
 # fedora install
 dnf install fd-find tokei bat

@@ -23,10 +23,10 @@ if fn.empty(fn.glob(install_path)) > 0 then
 end
 
 return require('packer').startup(function(use)
+    use 'wbthomason/packer.nvim'
+
     --faster loading time
     use { 'lewis6991/impatient.nvim', config = [[require('impatient')]] }
-
-    use 'wbthomason/packer.nvim'
 
     -- icon
     use {
@@ -84,13 +84,13 @@ return require('packer').startup(function(use)
     }
 
     use { -- telescope
-        'nvim-telescope/telescope.nvim',
-        requires = {
-            'nvim-lua/plenary.nvim',
-            'nvim-telescope/telescope-media-files.nvim',
-            'nvim-telescope/telescope-ui-select.nvim',
-            { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
+        {
+            'nvim-telescope/telescope.nvim',
+            requires = 'nvim-lua/plenary.nvim',
         },
+        'nvim-telescope/telescope-media-files.nvim',
+        'nvim-telescope/telescope-ui-select.nvim',
+        { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
     }
 
     use { -- color
@@ -140,8 +140,11 @@ return require('packer').startup(function(use)
     -- cmake
     -- use 'cdelledonne/vim-cmake'
 
-    -- format
     use 'mhartington/formatter.nvim'
+    --use { -- format
+        --'jose-elias-alvarez/null-ls.nvim',
+        --require = 'nvim-lua/plenary.nvim',
+    --}
 
     -- terminal
     use 'akinsho/toggleterm.nvim'

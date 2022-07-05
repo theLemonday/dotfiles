@@ -15,7 +15,8 @@ keymap.set('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', map_opts
 -- list of servers
 local servers = {
     'sumneko_lua',
-    'gopls',
+    -- 'gopls',
+    'pyright',
     'dockerls',
     'clangd',
     'cmake',
@@ -106,7 +107,7 @@ require('lsp_signature').setup {
     handler_opts = {
         border = 'none', -- double, rounded, single, shadow, none
     },
-    floating_window = true,
+    floating_window = false,
     floating_window_above_cur_line = true,
     doc_lines = 0,
 }

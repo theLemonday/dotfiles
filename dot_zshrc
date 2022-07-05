@@ -22,7 +22,12 @@ znap eval iterm2 'curl -fsSL https://iterm2.com/shell_integration/zsh'
 znap function _pyenv pyenvn 'eval "$( pyenv init - --no-rehash )"'
 compctl -K    _pyenv pyenv
 
-plugins=(git)
+export PATH=$HOME/.local/bin:$PATH
+
+plugins=(
+    git
+    virtualenvwrapper
+    )
 
 # User configuration
 HISTFILE=~/.zsh_history
@@ -54,6 +59,14 @@ alias aseprite='~/aseprite/build/bin/aseprite'
 alias exa='exa --icons'
 alias chea='chezmoi edit --apply '
 alias nvim_config='z ~/.config/nvim/lua'
+
+#          ╭──────────────────────────────────────────────────────────╮
+#          │                     virtualenvwrapper                    │
+#          ╰──────────────────────────────────────────────────────────╯
+export VIRTUALENVWRAPPER_PYTHON=$(which python3)
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/Devel
+source $HOME/.local/bin/virtualenvwrapper.sh
 
 #          ╭──────────────────────────────────────────────────────────╮
 #          │                    additional plugins                    │
