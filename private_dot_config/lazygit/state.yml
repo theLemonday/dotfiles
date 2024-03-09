@@ -1,7 +1,7 @@
 lastupdatecheck: 0
 recentrepos:
-- /home/lemio/setup-new-machine
 - /home/lemio/.local/share/chezmoi
+- /home/lemio/setup-new-machine
 startuppopupversion: 5
 customcommandshistory: []
 hidecommandlog: false

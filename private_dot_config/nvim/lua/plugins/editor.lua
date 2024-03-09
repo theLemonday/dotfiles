@@ -1,11 +1,29 @@
+local Util = require("lazyvim.util")
+local lazyterm = function()
+    Util.terminal(nil, { cwd = Util.root() })
+end
+
 return {
     {
         "folke/which-key.nvim",
-        opts = function(_, opts)
-            opts["<leader>s"] = nil
-            table.insert(opts.defaults, { ["<leader>t"] = { name = "+telescope" } })
-            table.insert(opts.defaults, { ["<leader>tn"] = { name = "+noice" } })
-        end,
+        opts = {
+            defaults = {
+                ["<leader>s"] = nil,
+                ["<leader>tn"] = { name = "+noice" },
+                ["<leader>t"] = { name = "+telescope/terminal" },
+                ["<leader>tg"] = {
+                    function()
+                        Util.terminal("lazygit")
+                    end,
+                    "Lazygit",
+                },
+            },
+        },
+        -- } function(_, opts)
+        -- opts
+        -- table.insert(opts.defaults, {  })
+        -- table.insert(opts.defaults, {  })
+        -- end,
     },
     {
         "echasnovski/mini.surround",
