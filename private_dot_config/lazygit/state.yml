@@ -1,0 +1,9 @@
+lastupdatecheck: 0
+recentrepos:
+- /home/lemonday/.local/share/chezmoi
+- /home/lemonday/setup_new_machine
+startuppopupversion: 5
+customcommandshistory:
+- q
+hidecommandlog: false
+ignorewhitespaceindiffview: false

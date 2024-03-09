@@ -1,0 +1,1 @@
+local filetype = vim.filetype
