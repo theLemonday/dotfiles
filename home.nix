@@ -1,15 +1,8 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 let
   myPython = pkgs.python311;
 
   # Convert the names to Nix package expressions
-  # pythonPackages = builtins.map (name: pkgs.python311Packages.${name}) [
-  #   "pip"
-  #   "virtualenv"
-  #   "numpy"
-  #   "pandas"
-  #   "requests"
-  # ];
   pythonWithPkgs = myPython.withPackages (pythonPkgs: with pythonPkgs; [
     # This list contains tools for Python development.
     # You can also add other tools, like black.
@@ -23,6 +16,10 @@ let
     virtualenvwrapper
     wheel
   ]);
+
+  directories = [
+    "$HOME/.pnpm-global"
+  ];
 in
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -64,9 +61,6 @@ in
     pythonWithPkgs
 
     pkgs.shfmt
-    # pkgs.python311Packages.pip
-    # pkgs.python311Packages.virtualenv
-    # pkgs.python311Packages.ipython
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
@@ -80,6 +74,13 @@ in
     #   echo "Hello, ${config.home.username}!"
     # '')
   ];
+
+  home.activation.createDirs = lib.mkAfter ''
+    # Use builtins.map to create directories
+    ${lib.concatStringsSep "\n" (builtins.map (dir: ''
+      mkdir -p ${dir}
+    '') directories)}
+  '';
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
@@ -147,6 +148,9 @@ in
     #histSize = 10000;
     #histFile = "${config.xdg.dataHome}/zsh/history";
     initExtra = ''
+      export PNPM_HOME=$HOME/.pnpm-global
+      export PATH=$HOME/go/bin:$PATH
+      export PATH=$HOME/.pnpm-global:$PATH
     '';
   };
 
@@ -303,7 +307,7 @@ in
       {
         plugin = tmuxPlugins.catppuccin;
         extraConfig = ''
-                  set -g @catppuccin_window_left_separator "█"
+          set -g @catppuccin_window_left_separator "█"
           set -g @catppuccin_window_right_separator "█ "
           set -g @catppuccin_window_number_position "right"
           set -g @catppuccin_window_middle_separator "  █"
