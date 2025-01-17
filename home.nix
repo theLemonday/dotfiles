@@ -1,22 +1,5 @@
-{ config, pkgs, lib, ... }:
+{ pkgs, lib, inputs, ... }:
 let
-  myPython = pkgs.python311;
-
-  # Convert the names to Nix package expressions
-  pythonWithPkgs = myPython.withPackages (pythonPkgs: with pythonPkgs; [
-    # This list contains tools for Python development.
-    # You can also add other tools, like black.
-    #
-    # Note that even if you add Python packages here like PyTorch or Tensorflow,
-    # they will be reinstalled when running `pip -r requirements.txt` because
-    # virtualenv is used below in the shellHook.
-    ipython
-    pip
-    setuptools
-    virtualenvwrapper
-    wheel
-  ]);
-
   directories = [
     "$HOME/.pnpm-global"
   ];
@@ -34,7 +17,7 @@ in
   # You should not change this value, even if you update Home Manager. If you do
   # want to update the value, then make sure to first check the Home Manager
   # release notes.
-  home.stateVersion = "23.11"; # Please read the comment before changing.
+  home.stateVersion = "24.11"; # Please read the comment before changing.
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
@@ -42,6 +25,7 @@ in
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
+    pkgs.ani-cli
 
     # Rust programming language packages
     pkgs.cargo
@@ -50,17 +34,41 @@ in
     pkgs.tealdeer
 
     pkgs.lazydocker
-    pkgs.neovim
     pkgs.gnumake
     pkgs.nodejs
     pkgs.gcc
-    pkgs.ripgrep
     pkgs.nodejs.pkgs.pnpm
     pkgs.unzip
 
-    pythonWithPkgs
-
     pkgs.shfmt
+    pkgs.jq
+
+    pkgs.libgen-cli
+    pkgs.luajitPackages.luarocks
+
+    pkgs.ansible
+
+    # database
+
+    pkgs.delve
+    pkgs.just
+    pkgs.imagemagick
+
+    pkgs.awscli2
+    pkgs.opentofu
+    pkgs.ffmpeg_7-full
+
+    pkgs.zellij
+
+    pkgs.pulumi
+    pkgs.pulumiPackages.pulumi-language-go
+
+    pkgs.prettierd
+    pkgs.templ
+
+    pkgs.lua5_1
+
+    pkgs.hey
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
@@ -114,216 +122,42 @@ in
   #  /etc/profiles/per-user/lemonday/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-    # EDITOR = "emacs";
+    PNPM_HOME = "$HOME/.pnpm-global";
+    VAGRANT_WSL_ENABLE_WINDOWS_ACCESS = "1";
+    EDITOR = "nvim";
+    FLYCTL_INSTALL = "/home/lemonday/.fly";
+  };
+
+  home.sessionPath = [
+    "$HOME/go/bin"
+    "$HOME/.cargo/bin"
+    "$HOME/.pnpm-global"
+    "$HOME/.local/share/nvim/mason/bin"
+    "$FLYCTL_INSTALL/bin"
+  ];
+
+  home.shellAliases = {
+    ls = "eza";
+    ll = "ls -l";
+
+    update = "sudo nixos-rebuild switch";
+    lzd = "lazydocker";
+    lzg = "lazygit";
+    n = "nvim";
+    nf = "nvim $(fzf)";
+    pnpx = "pnpm dlx";
+    hm = "home-manager";
+    hms = "home-manager switch";
+    tf = "terraform";
   };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
-  programs.zsh = {
+  services.ssh-agent.enable = true;
+
+  programs.bun = {
     enable = true;
-    enableCompletion = true;
-    antidote = {
-      enable = true;
-      plugins = [
-        "zdharma-continuum/fast-syntax-highlighting"
-      ];
-    };
-    autosuggestion.enable = true;
-    #syntaxHighlighting.enable = true;
-
-    shellAliases = {
-      ls = "eza";
-      ll = "ls -l";
-
-      update = "sudo nixos-rebuild switch";
-      lzd = "lazydocker";
-      lzg = "lazygit";
-      n = "NVIM_APPNAME='nvim-kickstart' nvim";
-      nf = "NVIM_APPNAME='nvim-kickstart' nvim $(fzf)";
-      pnpx = "pnpm dlx";
-      hm = "home-manager";
-      hms = "home-manager switch";
-    };
-    #histSize = 10000;
-    #histFile = "${config.xdg.dataHome}/zsh/history";
-    initExtra = ''
-      export PNPM_HOME=$HOME/.pnpm-global
-      export PATH=$HOME/go/bin:$PATH
-      export PATH=$HOME/.pnpm-global:$PATH
-    '';
-  };
-
-  programs.starship = {
-    enable = true;
-    enableZshIntegration = true;
-
-    settings = {
-      add_newline = true;
-
-      # format = "$username$hostname$nix_shell";
-
-      username = {
-        style_user = "bright-white bold";
-        style_root = "bright-red bold";
-      };
-
-      hostname = {
-        style = "bright-green bold";
-        ssh_only = true;
-      };
-
-      nix_shell = {
-        symbol = "";
-        format = "[$symbol$name]($style) ";
-        style = "bright-purple bold";
-      };
-    };
-    # settings = {
-    #   add_newline = true;
-    #   format = "$shlvl$shell$username$hostname$nix_shell$git_branch$git_commit$git_state$git_status$directory$jobs$cmd_duration$character";
-    #   shlvl = {
-    #     disabled = false;
-    #     symbol = "ﰬ";
-    #     style = "bright-red bold";
-    #   };
-    #   shell = {
-    #     disabled = false;
-    #     format = "$indicator";
-    #     fish_indicator = "";
-    #     bash_indicator = "[BASH](bright-white) ";
-    #     zsh_indicator = "[ZSH](bright-white) ";
-    #   };
-    #   username = {
-    #     style_user = "bright-white bold";
-    #     style_root = "bright-red bold";
-    #   };
-    #   hostname = {
-    #     style = "bright-green bold";
-    #     ssh_only = true;
-    #   };
-    #   nix_shell = {
-    #     symbol = "";
-    #     format = "[$symbol$name]($style) ";
-    #     style = "bright-purple bold";
-    #   };
-    #   git_branch = {
-    #     only_attached = true;
-    #     format = "[$symbol$branch]($style) ";
-    #     symbol = "שׂ";
-    #     style = "bright-yellow bold";
-    #   };
-    #   git_commit = {
-    #     only_detached = true;
-    #     format = "[ﰖ$hash]($style) ";
-    #     style = "bright-yellow bold";
-    #   };
-    #   git_state = {
-    #     style = "bright-purple bold";
-    #   };
-    #   git_status = {
-    #     style = "bright-green bold";
-    #   };
-    #   directory = {
-    #     read_only = " ";
-    #     truncation_length = 0;
-    #   };
-    #   cmd_duration = {
-    #     format = "[$duration]($style) ";
-    #     style = "bright-blue";
-    #   };
-    #   jobs = {
-    #     style = "bright-green bold";
-    #   };
-    #   character = {
-    #     success_symbol = "[\\$](bright-green bold)";
-    #     error_symbol = "[\\$](bright-red bold)";
-    #   };
-    # };
-  };
-
-  programs.go = {
-    enable = true;
-  };
-
-  programs.fzf = {
-    enable = true;
-    enableZshIntegration = true;
-
-    tmux = {
-      enableShellIntegration = true;
-    };
-  };
-
-  programs.eza = {
-    enable = true;
-    enableZshIntegration = true;
-    icons = true;
-  };
-
-  programs.fd = {
-    enable = true;
-  };
-
-  programs.bat = {
-    enable = true;
-    config = {
-      style = "plain";
-      theme = "TwoDark";
-      italic-text = "always";
-      pager = "less -FR";
-      paging = "never";
-    };
-  };
-
-  programs.git = {
-    enable = true;
-    userName = "Lemonday";
-    userEmail = "nhathao090703@gmail.com";
-  };
-
-  programs.lazygit = {
-    enable = true;
-  };
-
-  programs.tmux = {
-    enable = true;
-
-    shell = "${pkgs.zsh}/bin/zsh";
-
-    terminal = "tmux-256color";
-
-    mouse = true;
-    keyMode = "vi";
-    customPaneNavigationAndResize = true;
-
-    prefix = "C-Space";
-
-    plugins = with pkgs;[
-      tmuxPlugins.vim-tmux-navigator
-      tmuxPlugins.sensible
-      tmuxPlugins.yank
-      tmuxPlugins.tmux-fzf
-      {
-        plugin = tmuxPlugins.catppuccin;
-        extraConfig = ''
-          set -g @catppuccin_window_left_separator "█"
-          set -g @catppuccin_window_right_separator "█ "
-          set -g @catppuccin_window_number_position "right"
-          set -g @catppuccin_window_middle_separator "  █"
-
-          set -g @catppuccin_window_default_fill "number"
-
-          set -g @catppuccin_window_current_fill "number"
-          set -g @catppuccin_window_current_text "#{pane_current_path}"
-
-          set -g @catppuccin_status_modules_right "application session date_time"
-          set -g @catppuccin_status_left_separator  ""
-          set -g @catppuccin_status_right_separator " "
-          set -g @catppuccin_status_fill "all"
-          set -g @catppuccin_status_connect_separator "yes"
-        '';
-      }
-    ];
+    enableGitIntegration = true;
   };
 }
