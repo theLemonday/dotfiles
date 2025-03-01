@@ -1,0 +1,2 @@
+[alias]
+daily = 'zk new --no-input "$ZK_NOTEBOOK_DIR/journal/daily"'

@@ -1,6 +1,25 @@
 { pkgs, ... }:
 {
-  home.packages = [ pkgs.ripgrep ];
+  home.packages = [
+    pkgs.ripgrep
+  ];
+
+  programs.yazi = {
+    enable = true;
+    enableFishIntegration = true;
+
+    # settings = {
+    #   manager = {
+    #     show_hidden = true;
+    #   };
+    # };
+
+    shellWrapperName = "yy";
+  };
+
+  programs.yt-dlp = {
+    enable = true;
+  };
 
   programs.fzf = {
     enable = true;

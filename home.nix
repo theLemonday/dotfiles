@@ -2,6 +2,7 @@
 let
   directories = [
     "$HOME/.pnpm-global"
+    "$HOME/.config/zk"
   ];
 in
 {
@@ -69,6 +70,7 @@ in
     pkgs.lua5_1
 
     pkgs.hey
+
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
@@ -126,6 +128,8 @@ in
     VAGRANT_WSL_ENABLE_WINDOWS_ACCESS = "1";
     EDITOR = "nvim";
     FLYCTL_INSTALL = "/home/lemonday/.fly";
+    ZK_NOTEBOOK_DIR = "$HOME/notes";
+    LD_LIBRARY_PATH = "$LD_LIBRARY_PATH:${pkgs.glib.out}/lib:${pkgs.stdenv.cc.cc.lib}/lib";
   };
 
   home.sessionPath = [

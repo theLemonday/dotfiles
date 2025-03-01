@@ -41,6 +41,7 @@
             nixpkgs.overlays = [
               inputs.templ.overlays.default
               inputs.neovim-nightly-overlay.overlays.default
+              inputs.yazi.overlays.default
             ];
           }
         ];
