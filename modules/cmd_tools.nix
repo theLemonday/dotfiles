@@ -35,7 +35,7 @@
     enable = true;
     # enableZshIntegration = true;
     enableFishIntegration = true;
-    icons = true;
+    icons = "auto";
   };
 
   programs.fd = {

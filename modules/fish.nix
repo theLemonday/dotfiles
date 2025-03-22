@@ -1,4 +1,27 @@
-{ pkgs, ... }: {
+{ pkgs, lib, ... }:
+let
+  kubecolorSetup = ''
+    # adds alias for "kubectl" to "kubecolor" with completions
+    function kubectl --wraps kubectl
+      command kubecolor $argv
+    end
+
+    # adds alias for "k" to "kubecolor" with completions
+    function k --wraps kubectl
+      command kubecolor $argv
+    end
+
+    # reuse "kubectl" completions on "kubecolor"
+    function kubecolor --wraps kubectl
+      command kubecolor $argv
+    end
+  '';
+
+  tideSetup = ''
+    tide configure --auto --style=Lean --prompt_colors='True color' --show_time=No --lean_prompt_height='Two lines' --prompt_connection=Solid --prompt_connection_andor_frame_color=Darkest --prompt_spacing=Sparse --icons='Few icons' --transient=Yes
+  '';
+in
+{
   home.packages = [
     pkgs.fishPlugins.fzf-fish
     pkgs.fishPlugins.autopair
@@ -8,34 +31,36 @@
 
   programs.fish = {
     enable = true;
-    shellInit = ''
-      tide configure --auto --style=Lean --prompt_colors='True color' --show_time=No --lean_prompt_height='Two lines' --prompt_connection=Solid --prompt_connection_andor_frame_color=Darkest --prompt_spacing=Sparse --icons='Few icons' --transient=Yes
+    shellInit = lib.strings.concatStrings [
+      tideSetup
+      ''
+        just --completions fish > ~/.config/fish/completions/just.fish
 
-      just --completions fish > ~/.config/fish/completions/just.fish
-
-      # Define the alias for bathelp
-      function bathelp
-          bat --plain --language=cmd-help $argv
-      end
-
-      # Define the help function
-      function help
-          set -o pipefail
-          # Execute the command passed as arguments with --help and pipe to bathelp
-          $argv --help 2>&1 | bathelp
-      end
-
-      # For every command end with "--help", apply bat color
-      function run
-        if contains -- "--help" $argv
-            eval "$argv 2>&1 | bat --language=help --style=plain"
-        else
-            eval $argv
+        # Define the alias for bathelp
+        function bathelp
+            bat --plain --language=cmd-help $argv
         end
-      end
 
-      export MANPAGER="sh -c 'sed -u -e \"s/\\x1B\[[0-9;]*m//g; s/.\\x08//g\" | bat -p -lman'"
-    '';
+        # Define the help function
+        function help
+            set -o pipefail
+            # Execute the command passed as arguments with --help and pipe to bathelp
+            $argv --help 2>&1 | bathelp
+        end
+
+        # For every command end with "--help", apply bat color
+        function run
+          if contains -- "--help" $argv
+              eval "$argv 2>&1 | bat --language=help --style=plain"
+          else
+              eval $argv
+          end
+        end
+
+        export MANPAGER="sh -c 'sed -u -e \"s/\\x1B\[[0-9;]*m//g; s/.\\x08//g\" | bat -p -lman'"
+      ''
+      kubecolorSetup
+    ];
     interactiveShellInit = ''
       # Based on https://gist.github.com/bastibe/c0950e463ffdfdfada7adf149ae77c6f
       # Changes:

@@ -3,13 +3,13 @@
 
   inputs = {
     # Specify the source of Home Manager and Nixpkgs.
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+    # neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
 
     tmux-sessionx = {
       url = "github:omerxx/tmux-sessionx";
@@ -40,7 +40,7 @@
           {
             nixpkgs.overlays = [
               inputs.templ.overlays.default
-              inputs.neovim-nightly-overlay.overlays.default
+              # inputs.neovim-nightly-overlay.overlays.default
               inputs.yazi.overlays.default
             ];
           }

@@ -61,8 +61,8 @@ in
 
     pkgs.zellij
 
-    pkgs.pulumi
-    pkgs.pulumiPackages.pulumi-language-go
+    # pkgs.pulumi
+    # pkgs.pulumiPackages.pulumi-language-go
 
     pkgs.prettierd
     pkgs.templ
@@ -71,6 +71,13 @@ in
 
     pkgs.hey
 
+    pkgs.storm
+    pkgs.maven
+    pkgs.jdk
+
+    # k8s
+    pkgs.talosctl
+    pkgs.kubecolor
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
@@ -144,6 +151,7 @@ in
     ls = "eza";
     ll = "ls -l";
 
+    k = "kubectl";
     update = "sudo nixos-rebuild switch";
     lzd = "lazydocker";
     lzg = "lazygit";

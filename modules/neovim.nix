@@ -6,7 +6,7 @@
   # nightly release
   programs.neovim = {
     enable = true;
-    package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
+    # package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
     extraLuaPackages = luaPkgs: with luaPkgs; [ xml2lua mimetypes ];
   };
 }
