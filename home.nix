@@ -137,7 +137,7 @@ in
     EDITOR = "nvim";
     FLYCTL_INSTALL = "/home/lemonday/.fly";
     ZK_NOTEBOOK_DIR = "$HOME/notes";
-    LD_LIBRARY_PATH = "$LD_LIBRARY_PATH:${pkgs.glib.out}/lib:${pkgs.stdenv.cc.cc.lib}/lib";
+    # LD_LIBRARY_PATH = "$LD_LIBRARY_PATH:${pkgs.glib.out}/lib:${pkgs.stdenv.cc.cc.lib}/lib";
   };
 
   home.sessionPath = [
@@ -160,7 +160,7 @@ in
     nf = "nvim $(fzf)";
     pnpx = "pnpm dlx";
     hm = "home-manager";
-    hms = "home-manager switch";
+    hms = "$HOME/.config/home-manager/update-home.fish";
     tf = "terraform";
   };
 
