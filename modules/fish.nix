@@ -82,6 +82,9 @@ in
             if test -e "$cwd/.venv/bin/activate.fish"
               source "$cwd/.venv/bin/activate.fish" &>/dev/null 
               return
+            else if test -e "$cwd/venv/bin/activate.fish"
+              source "$cwd/venv/bin/activate.fish" &>/dev/null 
+              return
             else
               set cwd (path dirname "$cwd")
             end
