@@ -13,7 +13,7 @@ if home-manager switch
     else
         # Commit changes
         git add .
-        set commit_msg "Updated (date)"
+        set commit_msg "Updated $(date)"
         git commit -m "$commit_msg"
         echo "🚀 Changes committed and pushed!"
     end
