@@ -103,6 +103,13 @@ in
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
   home.file = {
+    ".config/prettierd/.prettierrc".text = ''
+      {
+        "printWidth": 80,
+        "proseWrap": "always"
+      }
+    '';
+
     # # Building this configuration will create a copy of 'dotfiles/screenrc' in
     # # the Nix store. Activating the configuration will then make '~/.screenrc' a
     # # symlink to the Nix store copy.
@@ -138,6 +145,7 @@ in
     FLYCTL_INSTALL = "/home/lemonday/.fly";
     ZK_NOTEBOOK_DIR = "$HOME/notes";
     # LD_LIBRARY_PATH = "$LD_LIBRARY_PATH:${pkgs.glib.out}/lib:${pkgs.stdenv.cc.cc.lib}/lib";
+    PRETTIERD_DEFAULT_CONFIG = "$HOME/.config/prettierd/.prettierrc";
   };
 
   home.sessionPath = [
