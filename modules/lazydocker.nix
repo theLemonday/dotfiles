@@ -1,4 +1,4 @@
-{ pkgs }:
+{ pkgs, ... }:
 let
   version = "0.24.1";
 in
@@ -16,7 +16,7 @@ in
           hash = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
         };
 
-        vendorSha256 = "sha256-bM0lCyeZIwDdK+NXQknxA0NVGvEuIorIv5tLZn9/Of0=";
+        vendorHash = "sha256-cVjDdrxmGt+hj/WWP9B3BT739k9SSr4ryye5qWb3XNM=";
       })
   ];
 
