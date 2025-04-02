@@ -4,6 +4,7 @@ let
 in
 {
   home.packages = [
+    pkgs.docker-compose
     pkgs.lazydocker
     # (pkgs.buildGoModule
     #   rec {
