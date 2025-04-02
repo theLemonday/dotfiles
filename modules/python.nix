@@ -16,6 +16,7 @@ let
     virtualenvwrapper
     wheel
     pylatexenc
+    paramiko
   ]);
 in
 {
