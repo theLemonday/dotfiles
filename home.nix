@@ -23,6 +23,7 @@ in
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = [
+    pkgs.trash-cli
     pkgs.glibc
 
     pkgs.ani-cli
@@ -170,6 +171,12 @@ in
     hm = "home-manager";
     hms = "$HOME/.config/home-manager/update-home.fish";
     tf = "terraform";
+    tput = "trash-put";
+    tlist = "trash-list";
+    tempty = "trash-empty";
+    rm = ''
+      echo "This is not the command you are looking for."; false
+    '';
   };
 
   # Let Home Manager install and manage itself.
