@@ -26,6 +26,7 @@ in
     pkgs.x11_ssh_askpass
     pkgs.trash-cli
     pkgs.glibc
+    pkgs.nix-ld
 
     pkgs.ani-cli
 
@@ -189,4 +190,5 @@ in
     enable = true;
     enableGitIntegration = true;
   };
+
 }
