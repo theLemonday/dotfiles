@@ -149,35 +149,63 @@ in
     ZK_NOTEBOOK_DIR = "$HOME/notes";
     # LD_LIBRARY_PATH = "$LD_LIBRARY_PATH:${pkgs.glib.out}/lib:${pkgs.stdenv.cc.cc.lib}/lib";
     PRETTIERD_DEFAULT_CONFIG = "$HOME/.config/prettierd/.prettierrc";
+    NIX_LD_LIBRARY_PATH = "$NIX_LD_LIBRARY_PATH:${pkgs.stdenv.cc.cc.lib}/lib";
   };
 
   home.sessionPath = [
-    "$HOME/go/bin"
-    "$HOME/.cargo/bin"
-    "$HOME/.pnpm-global"
-    "$HOME/.local/share/nvim/mason/bin"
-    "$FLYCTL_INSTALL/bin"
+    "$HOME/go/bin "
+    "$HOME/.cargo/bin "
+    "$HOME/.pnpm-global "
+    "$HOME/.local/share/nvim/mason/bin "
+    "$FLYCTL_INSTALL/bin "
   ];
 
   home.shellAliases = {
-    ls = "eza";
-    ll = "ls -l";
+    ls = "
+      eza ";
+    ll = "
+      ls - l ";
 
-    k = "kubectl";
-    update = "sudo nixos-rebuild switch";
-    lzd = "lazydocker";
-    lzg = "lazygit";
-    n = "nvim";
-    nf = "nvim $(fzf)";
-    pnpx = "pnpm dlx";
-    hm = "home-manager";
-    hms = "$HOME/.config/home-manager/update-home.fish";
-    tf = "terraform";
-    tput = "trash-put";
-    tlist = "trash-list";
-    tempty = "trash-empty";
+    k = "
+      kubectl ";
+    update = "
+      sudo
+      nixos-rebuild
+      switch ";
+    lzd = "
+      lazydocker ";
+    lzg = "
+      lazygit ";
+    n = "
+      nvim ";
+    nf = "
+      nvim $
+      (fzf) ";
+    pnpx = "
+      pnpm
+      dlx ";
+    hm = "
+      home-manager ";
+    hms = "$HOME/.config/home-manager/update-home.fish ";
+    tf = "
+      terraform ";
+    tput = "
+      trash-put ";
+    tlist = "
+      trash-list ";
+    tempty = "
+      trash-empty ";
     rm = ''
-      echo "This is not the command you are looking for."; false
+        echo "
+      This
+      is
+      not
+      the
+      command
+      you
+      are
+      looking
+      for."; false
     '';
   };
 
@@ -192,3 +220,4 @@ in
   };
 
 }
+
