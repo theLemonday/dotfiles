@@ -147,9 +147,7 @@ in
     EDITOR = "nvim";
     FLYCTL_INSTALL = "/home/lemonday/.fly";
     ZK_NOTEBOOK_DIR = "$HOME/notes";
-    # LD_LIBRARY_PATH = "$LD_LIBRARY_PATH:${pkgs.glib.out}/lib:${pkgs.stdenv.cc.cc.lib}/lib";
     PRETTIERD_DEFAULT_CONFIG = "$HOME/.config/prettierd/.prettierrc";
-    NIX_LD_LIBRARY_PATH = "$NIX_LD_LIBRARY_PATH:${pkgs.stdenv.cc.cc.lib}/lib";
   };
 
   home.sessionPath = [
