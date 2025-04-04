@@ -160,52 +160,23 @@ in
   ];
 
   home.shellAliases = {
-    ls = "
-      eza ";
-    ll = "
-      ls - l ";
+    ls = "eza";
+    ll = "ls - l";
 
-    k = "
-      kubectl ";
-    update = "
-      sudo
-      nixos-rebuild
-      switch ";
-    lzd = "
-      lazydocker ";
-    lzg = "
-      lazygit ";
-    n = "
-      nvim ";
-    nf = "
-      nvim $
-      (fzf) ";
-    pnpx = "
-      pnpm
-      dlx ";
-    hm = "
-      home-manager ";
+    k = "kubectl";
+    update = "sudo nixos-rebuild switch";
+    lzd = "lazydocker";
+    lzg = "lazygit";
+    n = "nvim";
+    nf = "nvim $(fzf) ";
+    pnpx = "pnpm dlx";
+    hm = "home-manager";
     hms = "$HOME/.config/home-manager/update-home.fish ";
-    tf = "
-      terraform ";
-    tput = "
-      trash-put ";
-    tlist = "
-      trash-list ";
-    tempty = "
-      trash-empty ";
-    rm = ''
-        echo "
-      This
-      is
-      not
-      the
-      command
-      you
-      are
-      looking
-      for."; false
-    '';
+    tf = "terraform";
+    tput = "trash-put";
+    tlist = "trash-list";
+    tempty = "trash-empty";
+    rm = ''echo " This is not the command you are looking for."; false'';
   };
 
   # Let Home Manager install and manage itself.
