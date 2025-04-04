@@ -27,6 +27,7 @@ in
     pkgs.trash-cli
     pkgs.glibc
     pkgs.nix-ld
+    pkgs.cmake
 
     pkgs.ani-cli
 
