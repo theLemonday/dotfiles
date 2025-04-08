@@ -1,4 +1,4 @@
-#!/usr/bin/env fish
+#!/usr/bin/env /home/lemonday/.nix-profile/bin/fish
 
 # Run home-manager switch
 if home-manager switch

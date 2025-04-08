@@ -152,11 +152,13 @@ in
   };
 
   home.sessionPath = [
-    "$HOME/go/bin "
-    "$HOME/.cargo/bin "
-    "$HOME/.pnpm-global "
-    "$HOME/.local/share/nvim/mason/bin "
-    "$FLYCTL_INSTALL/bin "
+    "$HOME/go/bin"
+    "$HOME/.cargo/bin"
+    "$HOME/.pnpm-global"
+    "$HOME/.local/share/nvim/mason/bin"
+    "$FLYCTL_INSTALL/bin"
+    "$HOME/.nix-profile/bin"
+    "/nix/var/nix/profiles/default/bin"
   ];
 
   home.shellAliases = {
