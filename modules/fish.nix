@@ -22,10 +22,8 @@ let
   '';
 in
 {
-  home.packages = [
-    pkgs.fishPlugins.fzf-fish
-    pkgs.fishPlugins.autopair
-    pkgs.fishPlugins.z
+  home.packages = with pkgs.fishPlugins; [
+    tide
   ];
 
   programs.fish = {
@@ -66,7 +64,7 @@ in
       end
     '';
     shellInit = lib.strings.concatStrings [
-      # tideSetup
+      tideSetup
       ''
         just --completions fish > ~/.config/fish/completions/just.fish
 
@@ -95,11 +93,11 @@ in
       ''
       kubecolorSetup
     ];
-    plugins = [
-      {
-        name = "tide";
-        src = pkgs.fishPlugins.tide;
-      }
+    plugins = with pkgs.fishPlugins ;[
+      # fzf-fish
+      # autopair
+      # z
+      # tide.src
     ];
   };
 }

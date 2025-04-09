@@ -23,6 +23,7 @@ in
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = [
+    pkgs.fishPlugins.autopair
     pkgs.x11_ssh_askpass
     pkgs.trash-cli
     pkgs.glibc
@@ -114,6 +115,7 @@ in
       }
     '';
 
+    ".config/fish/conf.d/nix-env.fish".source = ./dotfiles/nix-env.fish;
     # # Building this configuration will create a copy of 'dotfiles/screenrc' in
     # # the Nix store. Activating the configuration will then make '~/.screenrc' a
     # # symlink to the Nix store copy.
@@ -158,7 +160,6 @@ in
     "$HOME/.local/share/nvim/mason/bin"
     "$FLYCTL_INSTALL/bin"
     "$HOME/.nix-profile/bin"
-    "/nix/var/nix/profiles/default/bin"
   ];
 
   home.shellAliases = {
