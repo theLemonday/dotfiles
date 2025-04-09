@@ -95,5 +95,11 @@ in
       ''
       kubecolorSetup
     ];
+    plugins = [
+      {
+        name = "tide";
+        src = pkgs.fishPlugins.tide;
+      }
+    ];
   };
 }
