@@ -74,7 +74,6 @@ in
 
     pkgs.hey
 
-    pkgs.storm
     pkgs.maven
     pkgs.jdk
 
