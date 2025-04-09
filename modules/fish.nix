@@ -62,6 +62,8 @@ in
           deactivate
         end
       end
+
+      nix-your-shell fish | source
     '';
     shellInit = lib.strings.concatStrings [
       tideSetup

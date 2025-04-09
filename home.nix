@@ -23,7 +23,8 @@ in
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = [
-    pkgs.fishPlugins.autopair
+    pkgs.nix-your-shell
+
     pkgs.x11_ssh_askpass
     pkgs.trash-cli
     pkgs.glibc

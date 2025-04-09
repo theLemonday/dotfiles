@@ -9,6 +9,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix-your-shell = {
+      url = "github:MercuryTechnologies/nix-your-shell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
 
     tmux-sessionx = {
@@ -42,6 +47,7 @@
               inputs.templ.overlays.default
               inputs.neovim-nightly-overlay.overlays.default
               inputs.yazi.overlays.default
+              inputs.nix-your-shell.overlays.default
             ];
           }
         ];

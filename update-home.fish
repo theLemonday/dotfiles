@@ -1,7 +1,7 @@
 #!/usr/bin/env /home/lemonday/.nix-profile/bin/fish
 
 # Run home-manager switch
-if home-manager switch --flake .#lemonday
+if home-manager switch
     echo "✅ Home Manager switch successful!"
 
     # Change to the Home Manager config directory (adjust if needed)
