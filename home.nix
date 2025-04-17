@@ -161,6 +161,7 @@ in
     "$HOME/.local/share/nvim/mason/bin"
     "$FLYCTL_INSTALL/bin"
     "$HOME/.nix-profile/bin"
+    "$HOME/.pulumi/bin"
   ];
 
   home.shellAliases = {
