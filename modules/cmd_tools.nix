@@ -1,9 +1,46 @@
 { pkgs, ... }:
+let
+  trash-cli = pkgs.trash-cli;
+in
 {
   home.packages = [
     pkgs.ripgrep
     pkgs.bind
+    trash-cli
   ];
+
+  home.shellAliases = {
+    tput = "trash-put";
+    tlist = "trash-list";
+    tempty = "trash-empty";
+    rm = ''echo " This is not the command you are looking for."; false'';
+  };
+
+  systemd.user.services.trashCleanup = {
+    Unit = {
+      Description = "Empty trash older than 60 days";
+    };
+    Service = {
+      Type = "oneshot";
+      ExecStart = "${trash-cli}/bin/trash-empty 60";
+    };
+    Install = {
+      WantedBy = [ "default.target" ];
+    };
+  };
+
+  systemd.user.timers.trashCleanup = {
+    Unit = {
+      Description = "Run trashCleanup daily";
+    };
+    Timer = {
+      OnCalendar = "daily";
+      Persistent = true;
+    };
+    Install = {
+      WantedBy = [ "timers.target" ];
+    };
+  };
 
   programs.yazi = {
     enable = true;

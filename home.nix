@@ -26,7 +26,6 @@ in
     pkgs.nix-your-shell
 
     pkgs.x11_ssh_askpass
-    pkgs.trash-cli
     pkgs.glibc
     pkgs.nix-ld
     pkgs.cmake
@@ -178,10 +177,6 @@ in
     hm = "home-manager";
     hms = "$HOME/.config/home-manager/update-home.fish ";
     tf = "terraform";
-    tput = "trash-put";
-    tlist = "trash-list";
-    tempty = "trash-empty";
-    rm = ''echo " This is not the command you are looking for."; false'';
   };
 
   # Let Home Manager install and manage itself.
