@@ -167,12 +167,12 @@ in
     ls = "eza";
     ll = "ls-l";
     k = "kubectl";
-    update = "sudonixos-rebuildswitch";
+    update = "sudo nixos-rebuild switch";
     lzd = "lazydocker";
     lzg = "lazygit";
     n = "nvim";
-    nf = "nvim$(fzf)";
-    pnpx = "pnpmdlx";
+    nf = "nvim $(fzf)";
+    pnpx = "pnpm dlx";
     hm = "home-manager";
     hms = "$HOME/.config/home-manager/update-home.fish";
     tf = "terraform";
