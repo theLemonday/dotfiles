@@ -1,4 +1,4 @@
-{ pkgs, lib, inputs, ... }:
+{ pkgs, lib, inputs, config, ... }:
 let
   directories = [
     "$HOME/.pnpm-global"
@@ -154,29 +154,44 @@ in
   };
 
   home.sessionPath = [
-    "$HOME/go/bin"
-    "$HOME/.cargo/bin"
-    "$HOME/.pnpm-global"
-    "$HOME/.local/share/nvim/mason/bin"
-    "$FLYCTL_INSTALL/bin"
-    "$HOME/.nix-profile/bin"
-    "$HOME/.pulumi/bin"
+    "$HOME/go/bin "
+    "$HOME/.cargo/bin "
+    "$HOME/.pnpm-global "
+    "$HOME/.local/share/nvim/mason/bin "
+    "$FLYCTL_INSTALL/bin "
+    "$HOME/.nix-profile/bin "
+    "$HOME/.pulumi/bin "
   ];
 
   home.shellAliases = {
-    ls = "eza";
-    ll = "ls - l";
+    ls = "
+      eza ";
+    ll = "
+      ls - l ";
 
-    k = "kubectl";
-    update = "sudo nixos-rebuild switch";
-    lzd = "lazydocker";
-    lzg = "lazygit";
-    n = "nvim";
-    nf = "nvim $(fzf) ";
-    pnpx = "pnpm dlx";
-    hm = "home-manager";
+    k = "
+      kubectl ";
+    update = "
+      sudo
+      nixos-rebuild
+      switch ";
+    lzd = "
+      lazydocker ";
+    lzg = "
+      lazygit ";
+    n = "
+      nvim ";
+    nf = "
+      nvim $
+      (fzf) ";
+    pnpx = "
+      pnpm
+      dlx ";
+    hm = "
+      home-manager ";
     hms = "$HOME/.config/home-manager/update-home.fish ";
-    tf = "terraform";
+    tf = "
+      terraform ";
   };
 
   # Let Home Manager install and manage itself.
@@ -190,4 +205,17 @@ in
   };
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
