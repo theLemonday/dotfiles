@@ -29,6 +29,10 @@ in
     tide
   ];
 
+  home.file = {
+    ".config/fish/conf.d/nix-env.fish".source = ../dotfiles/nix-env.fish;
+  };
+
   programs.fish = {
     enable = true;
     interactiveShellInit = ''

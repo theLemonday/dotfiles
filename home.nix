@@ -1,4 +1,4 @@
-{ pkgs, lib, inputs, config, ... }:
+{ pkgs, lib, ... }:
 let
   directories = [
     "$HOME/.pnpm-global"
@@ -32,21 +32,12 @@ in
 
     pkgs.ani-cli
 
-    # Rust programming language packages
-    pkgs.cargo
-    pkgs.rustc
-
     pkgs.tealdeer
 
     pkgs.lazydocker
     pkgs.gnumake
-    pkgs.nodejs
     pkgs.gcc
-    pkgs.nodejs.pkgs.pnpm
     pkgs.unzip
-
-    pkgs.shfmt
-    pkgs.jq
 
     pkgs.libgen-cli
     pkgs.luajitPackages.luarocks
@@ -55,7 +46,6 @@ in
 
     # database
 
-    pkgs.delve
     pkgs.just
     pkgs.imagemagick
 
@@ -63,27 +53,10 @@ in
     pkgs.opentofu
     pkgs.ffmpeg_7-full
 
-    pkgs.zellij
-
-    # pkgs.pulumi
-    # pkgs.pulumiPackages.pulumi-language-go
-
-    pkgs.prettierd
-    pkgs.templ
-
-    pkgs.lua5_1
 
     pkgs.hey
 
-    pkgs.maven
-    pkgs.jdk
-
-    # k8s
-    pkgs.talosctl
-    pkgs.kubecolor
-
     pkgs.openstackclient
-    pkgs.fishPlugins.tide
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
@@ -108,14 +81,6 @@ in
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
   home.file = {
-    ".config/prettierd/.prettierrc".text = ''
-      {
-        "printWidth": 80,
-        "proseWrap": "always"
-      }
-    '';
-
-    ".config/fish/conf.d/nix-env.fish".source = ./dotfiles/nix-env.fish;
     # # Building this configuration will create a copy of 'dotfiles/screenrc' in
     # # the Nix store. Activating the configuration will then make '~/.screenrc' a
     # # symlink to the Nix store copy.
@@ -145,22 +110,15 @@ in
   #  /etc/profiles/per-user/lemonday/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-    PNPM_HOME = "$HOME/.pnpm-global";
     VAGRANT_WSL_ENABLE_WINDOWS_ACCESS = "1";
     EDITOR = "nvim";
     FLYCTL_INSTALL = "/home/lemonday/.fly";
     ZK_NOTEBOOK_DIR = "$HOME/notes";
-    PRETTIERD_DEFAULT_CONFIG = "$HOME/.config/prettierd/.prettierrc";
   };
 
   home.sessionPath = [
-    "$HOME/go/bin "
-    "$HOME/.cargo/bin "
-    "$HOME/.pnpm-global "
-    "$HOME/.local/share/nvim/mason/bin "
-    "$FLYCTL_INSTALL/bin "
-    "$HOME/.nix-profile/bin "
-    "$HOME/.pulumi/bin "
+    "$HOME/.local/share/nvim/mason/bin"
+    "$FLYCTL_INSTALL/bin"
   ];
 
   home.shellAliases = {
@@ -182,12 +140,6 @@ in
   programs.home-manager.enable = true;
 
   services.ssh-agent.enable = true;
-
-  programs.bun = {
-    enable = true;
-    enableGitIntegration = true;
-  };
-
 }
 
 

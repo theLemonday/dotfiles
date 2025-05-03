@@ -1,7 +1,9 @@
 { pkgs, ... }:
 {
-  home.packages = [
-    pkgs.kubectl
+  home.packages = with pkgs;[
+    kubectl
+    kubecolor
+    talosctl
   ];
 
   programs.k9s = {

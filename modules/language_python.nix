@@ -17,6 +17,7 @@ let
     wheel
     pylatexenc
     paramiko
+    python-lsp-server
   ]);
 in
 {
