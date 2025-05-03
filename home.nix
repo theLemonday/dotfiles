@@ -117,7 +117,7 @@ in
   };
 
   home.sessionPath = [
-    "$HOME/.local/share/nvim/mason/bin"
+    # "$HOME/.local/share/nvim/mason/bin"
     "$FLYCTL_INSTALL/bin"
   ];
 
