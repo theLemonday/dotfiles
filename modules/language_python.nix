@@ -18,6 +18,10 @@ let
     pylatexenc
     paramiko
     python-lsp-server
+    python-lsp-ruff
+    pylsp-rope
+    mypy
+    debugpy
   ]);
 in
 {
