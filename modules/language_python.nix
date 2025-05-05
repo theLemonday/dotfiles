@@ -19,6 +19,7 @@ let
     paramiko
     python-lsp-server
     python-lsp-ruff
+    python-lsp-jsonrpc
     pylsp-rope
     mypy
     debugpy
