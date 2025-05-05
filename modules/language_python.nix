@@ -26,5 +26,5 @@ let
   ]);
 in
 {
-  home.packages = [ pythonWithPkgs ];
+  home.packages = [ pkgs.basedpyright pythonWithPkgs ];
 }
