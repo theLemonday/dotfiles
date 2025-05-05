@@ -22,6 +22,7 @@ let
     pylsp-rope
     mypy
     debugpy
+    ruff
   ]);
 in
 {
