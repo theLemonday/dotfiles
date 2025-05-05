@@ -20,10 +20,11 @@ let
     python-lsp-server
     python-lsp-ruff
     pylsp-rope
+    mypy
     debugpy
     ruff
   ]);
 in
 {
-  home.packages = [ pkgs.basedpyright pythonWithPkgs ];
+  home.packages = [ pythonWithPkgs ];
 }
