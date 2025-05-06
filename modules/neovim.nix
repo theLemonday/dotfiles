@@ -2,6 +2,7 @@
 {
   # stable release
   # home.packages = [ pkgs.neovim ];
+  home.packages = with pkgs;[ tree-sitter ];
 
   # nightly release
   programs.neovim = {
