@@ -1,13 +1,13 @@
 { pkgs, lib, ... }:
 let
   zkNotebookDir = "$/HOME/notes";
+
   directories = [
-    "$HOME/.pnpm-global"
-    "$HOME/.config/zk"
-    "$HOME/.custom-script"
+    "~/.pnpm-global"
+    "~/.config/zk"
+    "~/.custom-script"
     zkNotebookDir
   ];
-
 in
 {
   # Home Manager needs a bit of information about you and the paths it should
