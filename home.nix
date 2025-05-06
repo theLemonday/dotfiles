@@ -1,9 +1,11 @@
 { pkgs, lib, ... }:
 let
+  zkNotebookDir = "$/HOME/notes";
   directories = [
     "$HOME/.pnpm-global"
     "$HOME/.config/zk"
     "$HOME/.custom-script"
+    zkNotebookDir
   ];
 
 in
@@ -111,7 +113,7 @@ in
     VAGRANT_WSL_ENABLE_WINDOWS_ACCESS = "1";
     EDITOR = "nvim";
     FLYCTL_INSTALL = "/home/lemonday/.fly";
-    ZK_NOTEBOOK_DIR = "$HOME/notes";
+    ZK_NOTEBOOK_DIR = zkNotebookDir;
   };
 
   home.sessionPath = [
