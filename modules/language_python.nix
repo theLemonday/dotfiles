@@ -24,6 +24,7 @@ let
     mypy
     debugpy
     ruff
+    click
   ]);
 in
 {
