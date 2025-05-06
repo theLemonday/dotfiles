@@ -68,6 +68,7 @@ in
       enableShellIntegration = true;
     };
     defaultCommand = "fd --type f .";
+    defaultOptions = [ "--ansi" ];
   };
 
   programs.eza = {
