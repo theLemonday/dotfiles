@@ -2,7 +2,6 @@
 {
   home.packages = with pkgs; [
     jq
-    # nodePackages.vscode-json-languageserver
-    vscode-langservers-extracted
+    vscode-langservers-extracted # HTML/CSS/JSON/ESLint language servers
   ];
 }
