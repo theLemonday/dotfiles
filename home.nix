@@ -3,12 +3,11 @@ let
   directories = [
     "$HOME/.pnpm-global"
     "$HOME/.config/zk"
+    "$HOME/.custom-script"
   ];
 
   isWSL = builtins.pathExists "/proc/sys/fs/binfmt_misc/WSLInterop-late";
 
-  xdgOpenWSLPath =
-    if isWSL then toString ./scripts/xdg-open else "";
 in
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -96,6 +95,7 @@ in
     #   org.gradle.console=verbose
     #   org.gradle.daemon.idletimeout=3600000
     # '';
+    ".custom-script/xdg-open".source = ./scripts/xdg-open;
   };
 
   # Home Manager can also manage your environment variables through
@@ -124,7 +124,7 @@ in
   home.sessionPath = [
     # "$HOME/.local/share/nvim/mason/bin"
     "$FLYCTL_INSTALL/bin"
-    xdgOpenWSLPath
+    "$HOME/.custom-script"
   ];
 
   home.shellAliases = {
