@@ -1,6 +1,6 @@
-{ pkgs, lib, config, ... }:
+{ pkgs, lib, ... }:
 let
-  zkNotebookDir = "$/HOME/notes";
+  zkNotebookDir = "notes";
 
   directories = [
     ".pnpm-global"
