@@ -67,8 +67,7 @@ in
     tmux = {
       enableShellIntegration = true;
     };
-    defaultCommand = "fd --type f .";
-    defaultOptions = [ "--ansi" ];
+    defaultCommand = "fd --type f --color=always --exclude .git --ignore-file ~/.gitignore";
   };
 
   programs.eza = {
