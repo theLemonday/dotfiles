@@ -1,11 +1,11 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, config, ... }:
 let
   zkNotebookDir = "$/HOME/notes";
 
   directories = [
-    "~/.pnpm-global"
-    "~/.config/zk"
-    "~/.custom-script"
+    ".pnpm-global"
+    ".config/zk"
+    ".custom-script"
     zkNotebookDir
   ];
 in
@@ -73,7 +73,7 @@ in
   home.activation.createDirs = lib.mkAfter ''
     # Use builtins.map to create directories
     ${lib.concatStringsSep "\n" (builtins.map (dir: ''
-      mkdir -p ${dir}
+      mkdir -p /home/${config.home.username}/${dir}
     '') directories)}
   '';
 
