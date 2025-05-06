@@ -44,15 +44,10 @@ in
     pkgs.libgen-cli
     pkgs.luajitPackages.luarocks
 
-    pkgs.ansible
-
-    # database
-
     pkgs.just
     pkgs.imagemagick
 
     pkgs.awscli2
-    pkgs.opentofu
     pkgs.ffmpeg_7-full
 
 
