@@ -6,8 +6,6 @@ let
     "$HOME/.custom-script"
   ];
 
-  isWSL = builtins.pathExists "/proc/sys/fs/binfmt_misc/WSLInterop-late";
-
 in
 {
   # Home Manager needs a bit of information about you and the paths it should
