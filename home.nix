@@ -4,6 +4,11 @@ let
     "$HOME/.pnpm-global"
     "$HOME/.config/zk"
   ];
+
+  isWSL = builtins.pathExists "/proc/sys/fs/binfmt_misc/WSLInterop-late";
+
+  xdgOpenWSLPath =
+    if isWSL then toString ./scripts/xdg-open else "";
 in
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -119,6 +124,7 @@ in
   home.sessionPath = [
     # "$HOME/.local/share/nvim/mason/bin"
     "$FLYCTL_INSTALL/bin"
+    xdgOpenWSLPath
   ];
 
   home.shellAliases = {
