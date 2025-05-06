@@ -67,7 +67,7 @@ in
     tmux = {
       enableShellIntegration = true;
     };
-    defaultCommand = "fd -type f .";
+    defaultCommand = "fd --type f .";
   };
 
   programs.eza = {
