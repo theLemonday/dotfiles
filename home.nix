@@ -70,12 +70,19 @@ in
     # '')
   ];
 
-  home.activation.createDirs = lib.mkAfter ''
-    # Use builtins.map to create directories
-    ${lib.concatStringsSep "\n" (builtins.map (dir: ''
-      mkdir -p /home/${config.home.username}/${dir}
-    '') directories)}
-  '';
+  home.activation = {
+    init = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+      ${lib.concatStringsSep "\n" (builtins.map (dir: ''
+        mkdir -p ~/${dir}
+      '') directories)}
+    '';
+  };
+  # home.activation.createDirs = lib.mkAfter ''
+  #   # Use builtins.map to create directories
+  #   ${lib.concatStringsSep "\n" (builtins.map (dir: ''
+  #     mkdir -p /home/${config.home.username}/${dir}
+  #   '') directories)}
+  # '';
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
