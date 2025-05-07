@@ -98,6 +98,7 @@ in
     #   org.gradle.daemon.idletimeout=3600000
     # '';
     ".custom-script/xdg-open".source = ./scripts/xdg-open;
+    ".mdlrc".source = ./dotfiles/mdlrc;
   };
 
   # Home Manager can also manage your environment variables through

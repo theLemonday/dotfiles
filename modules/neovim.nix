@@ -15,6 +15,7 @@
         };
     });
     extraLuaPackages = luaPkgs: with luaPkgs; [ xml2lua mimetypes ];
-
+    viAlias = true;
+    vimAlias = true;
   };
 }
