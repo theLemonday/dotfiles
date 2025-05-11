@@ -16,7 +16,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+    # neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
 
     tmux-sessionx = {
       url = "github:omerxx/tmux-sessionx";
@@ -47,7 +47,7 @@
           {
             nixpkgs.overlays = [
               inputs.templ.overlays.default
-              inputs.neovim-nightly-overlay.overlays.default
+              # inputs.neovim-nightly-overlay.overlays.default
               inputs.yazi.overlays.default
               inputs.nix-your-shell.overlays.default
             ];
