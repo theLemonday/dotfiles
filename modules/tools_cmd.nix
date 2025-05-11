@@ -91,4 +91,8 @@ in
       paging = "never";
     };
   };
+
+  programs.cmus = {
+    enable = true;
+  };
 }
