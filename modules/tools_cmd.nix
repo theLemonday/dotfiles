@@ -95,4 +95,8 @@ in
   programs.cmus = {
     enable = true;
   };
+
+  programs.htop = {
+    enable = true;
+  };
 }
