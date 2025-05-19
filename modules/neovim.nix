@@ -18,4 +18,8 @@
     viAlias = true;
     vimAlias = true;
   };
+
+  home.sessionVariables = {
+    MANPAGER = "nvim +Man!";
+  };
 }
