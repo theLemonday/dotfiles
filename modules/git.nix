@@ -4,6 +4,10 @@
     userName = "Lemonday";
     userEmail = "nhathao090703@gmail.com";
 
+    extraConfig = {
+      init.defaultBranch = "main";
+    };
+
     # core = {
     #   pager = "delta";
     #   interactive = "delta --color-only";
