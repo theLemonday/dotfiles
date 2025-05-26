@@ -149,18 +149,13 @@ in
   programs.home-manager.enable = true;
 
   services.ssh-agent.enable = true;
+
+  # programs.kitty = {
+  #   enable = true;
+  # };
+  programs.direnv = {
+    enable = true;
+    enableBashIntegration = true; # see note on other shells below
+    nix-direnv.enable = true;
+  };
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

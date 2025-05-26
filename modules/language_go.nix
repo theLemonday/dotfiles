@@ -4,7 +4,7 @@
     go-tools
     go-task
     delve # debugger
-    # gopls
+    gopls
 
     # formatter
     # golines

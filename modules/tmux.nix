@@ -42,13 +42,13 @@
           set -g @catppuccin_status_connect_separator "yes"
         '';
       }
-      {
-        plugin = inputs.tmux-sessionx.packages.${pkgs.system}.default;
-        extraConfig = ''
-          set -g @sessionx-zoxide-mode 'on'
-          set -g @sessionx-tmuxinator-mode 'on'
-        '';
-      }
+      # {
+      #   plugin = inputs.tmux-sessionx.packages.${pkgs.system}.default;
+      #   extraConfig = ''
+      #     set -g @sessionx-zoxide-mode 'on'
+      #     set -g @sessionx-tmuxinator-mode 'on'
+      #   '';
+      # }
     ];
     extraConfig = ''
       # Undercurl support
