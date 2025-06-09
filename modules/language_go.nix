@@ -7,9 +7,9 @@
     gopls
 
     # formatter
-    # golines
-    # gofumpt
-    # goimports
+    gotools
+    golines
+    gofumpt
 
     # gopls
   ];
