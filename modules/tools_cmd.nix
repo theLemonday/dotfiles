@@ -5,6 +5,7 @@ in
 {
   home.packages = [
     pkgs.ripgrep
+    pkgs.cloc
     pkgs.bind
     trash-cli
   ];

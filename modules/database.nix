@@ -1,6 +1,14 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+let
+  go-migrate-mysql = pkgs.go-migrate.overrideAttrs (oldAttrs: {
+    tags = [ "mysql" ];
+  });
+in
+{
+
   home.packages = [
-    pkgs.go-migrate
+    go-migrate-mysql
+    # pkgs.go-migrate
     pkgs.postgresql
     pkgs.sqlc
     pkgs.sqlite
