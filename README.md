@@ -9,3 +9,8 @@ nix-channel --update
 nix-shell '<home-manager>' -A install
 nix run home-manager/master -- init --switch
 ```
+
+```bash
+nix flake --update
+nix run home-manager/master -- init --switch
+```

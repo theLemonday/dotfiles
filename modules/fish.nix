@@ -2,6 +2,16 @@
 let
   direnvSetup = ''direnv hook fish | source'';
 
+  exportFunctionSetup = ''
+      function export
+        for arg in $argv
+            set varname (string split "=" $arg)[1]
+            set varval (string split "=" $arg)[2]
+            set -x $varname $varval
+        end
+    end
+  '';
+
   kubecolorSetup = ''
     # adds alias for "kubectl" to "kubecolor" with completions
     function kubectl --wraps kubectl
@@ -104,6 +114,7 @@ in
           export MANPAGER="sh -c 'sed -u -e \"s/\\x1B\[[0-9;]*m//g; s/.\\x08//g\" | bat -p -lman'"
         ''
         kubecolorSetup
+        exportFunctionSetup
       ];
   };
 }

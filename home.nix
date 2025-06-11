@@ -1,10 +1,11 @@
-{ pkgs, lib, ... }:
+{ config, pkgs, lib, ... }:
 let
   zkNotebookDir = "notes";
 
   directories = [
     ".pnpm-global"
     ".config/zk"
+    ".config/mpd"
     ".custom-script"
     zkNotebookDir
   ];
@@ -26,42 +27,42 @@ in
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
-  home.packages = [
-    pkgs.nix-your-shell
+  home.packages = with pkgs;[
+    # Graphics
+    nixgl.nixGLIntel
 
-    pkgs.x11_ssh_askpass
-    pkgs.glibc
-    pkgs.nix-ld
-    pkgs.cmake
+    # pkgs.nix-your-shell
 
-    pkgs.ani-cli
+    x11_ssh_askpass
+    glibc
+    nix-ld
+    cmake
 
-    pkgs.tealdeer
+    ani-cli
 
-    pkgs.lazydocker
-    pkgs.gnumake
-    pkgs.gcc
-    pkgs.unzip
+    tealdeer
 
-    pkgs.libgen-cli
-    pkgs.luajitPackages.luarocks
+    lazydocker
+    gnumake
+    gcc
+    unzip
 
-    pkgs.just
-    pkgs.imagemagick
+    libgen-cli
+    luajitPackages.luarocks
 
-    pkgs.awscli2
-    pkgs.ffmpeg_7-full
+    just
+    imagemagick
 
+    awscli2
+    ffmpeg_7-full
 
-    pkgs.hey
+    # fonts
+    nerd-fonts.fira-code
+    nerd-fonts.jetbrains-mono
 
-    pkgs.openstackclient
-    # # It is sometimes useful to fine-tune packages, for example, by applying
-    # # overrides. You can do that directly here, just don't forget the
-    # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
-    # # fonts?
-    # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
+    hey
 
+    openstackclient
     # # You can also create simple shell scripts directly inside your
     # # configuration. For example, this adds a command 'my-hello' to your
     # # environment:
@@ -99,6 +100,10 @@ in
     # '';
     ".custom-script/xdg-open".source = ./scripts/xdg-open;
     ".markdownlint.json".source = ./dotfiles/markdownlint.json;
+    ".config/kitty/dark-theme.auto.conf".source = ./dotfiles/kitty/dark-theme.auto.conf;
+    ".config/kitty/light-theme.auto.conf".source = ./dotfiles/kitty/light-theme.auto.conf;
+    ".config/kitty/no-preference-theme.auto.conf".source = ./dotfiles/kitty/no-preference-theme.auto.conf;
+    # ".config/kitty/kitty.conf".source = config.lib.file.mkOutOfStoreSymlink /home/lemonday/.config/home-manager/dotfiles/kitty.conf;
   };
 
   # Home Manager can also manage your environment variables through
@@ -150,12 +155,24 @@ in
 
   services.ssh-agent.enable = true;
 
-  # programs.kitty = {
-  #   enable = true;
-  # };
   programs.direnv = {
     enable = true;
     enableBashIntegration = true; # see note on other shells below
     nix-direnv.enable = true;
+  };
+
+  fonts.fontconfig.enable = true;
+
+  xdg.userDirs = {
+    enable = true;
+
+    desktop = "${config.home.homeDirectory}/Desktop";
+    download = "${config.home.homeDirectory}/Downloads";
+    templates = "${config.home.homeDirectory}/Templates";
+    publicShare = "${config.home.homeDirectory}/Public";
+    documents = "${config.home.homeDirectory}/Documents";
+    music = "${config.home.homeDirectory}/Music";
+    pictures = "${config.home.homeDirectory}/Pictures";
+    videos = "${config.home.homeDirectory}/Videos";
   };
 }

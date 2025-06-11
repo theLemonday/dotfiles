@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ pkgs, ... }:
 {
   programs.tmux = {
     enable = true;
@@ -15,7 +15,7 @@
 
     prefix = "C-Space";
 
-    tmuxinator.enable = true;
+    tmuxp.enable = true;
 
     plugins = with pkgs;[
       tmuxPlugins.vim-tmux-navigator
@@ -25,37 +25,42 @@
       {
         plugin = tmuxPlugins.catppuccin;
         extraConfig = ''
-          set -g @catppuccin_window_left_separator "█"
-          set -g @catppuccin_window_right_separator "█ "
-          set -g @catppuccin_window_number_position "right"
-          set -g @catppuccin_window_middle_separator "  █"
+          # set -g @catppuccin_window_left_separator "█"
+          # set -g @catppuccin_window_right_separator "█ "
+          # set -g @catppuccin_window_number_position "right"
+          # set -g @catppuccin_window_middle_separator "  █"
+          #
+          # set -g @catppuccin_window_default_fill "number"
+          #
+          # set -g @catppuccin_window_current_fill "number"
+          # set -g @catppuccin_window_current_text "#{pane_current_path}"
+          #
+          # set -g @catppuccin_status_modules_right "application session date_time"
+          # set -g @catppuccin_status_left_separator  ""
+          # set -g @catppuccin_status_right_separator " "
+          # set -g @catppuccin_status_fill "all"
+          # set -g @catppuccin_status_connect_separator "yes"
+          # set -g status-right-length 100
 
-          set -g @catppuccin_window_default_fill "number"
-
-          set -g @catppuccin_window_current_fill "number"
-          set -g @catppuccin_window_current_text "#{pane_current_path}"
-
-          set -g @catppuccin_status_modules_right "application session date_time"
-          set -g @catppuccin_status_left_separator  ""
-          set -g @catppuccin_status_right_separator " "
-          set -g @catppuccin_status_fill "all"
-          set -g @catppuccin_status_connect_separator "yes"
+          set -g @catppuccin_flavor "mocha"
+          set -g @catppuccin_window_status_style "rounded"
+          set -g status-left-length 100
+          set -g status-left ""
+          set -g status-right "#{E:@catppuccin_status_application}"
+          set -agF status-right "#{E:@catppuccin_status_cpu}"
+          set -ag status-right "#{E:@catppuccin_status_session}"
+          set -ag status-right "#{E:@catppuccin_status_uptime}"
+          set -agF status-right "#{E:@catppuccin_status_battery}"
         '';
       }
-      # {
-      #   plugin = inputs.tmux-sessionx.packages.${pkgs.system}.default;
-      #   extraConfig = ''
-      #     set -g @sessionx-zoxide-mode 'on'
-      #     set -g @sessionx-tmuxinator-mode 'on'
-      #   '';
-      # }
     ];
     extraConfig = ''
       # Undercurl support
       set -as terminal-overrides ',*:Smulx=\E[4::%p1%dm'
       set -as terminal-overrides ',*:Setulc=\E[58::2::%p1%{65536}%/%d::%p1%{256}%/%{255}%&%d::%p1%{255}%&%d%;m'
 
-      set-option -g renumber-windows on # Auto renumber windows when windows change
+      # Auto renumber windows when windows change
+      set-option -g renumber-windows on
     '';
   };
 }

@@ -3,8 +3,9 @@ let
   trash-cli = pkgs.trash-cli;
 in
 {
-  home.packages = [
+  home.packages = with pkgs; [
     pkgs.ripgrep
+    pkgs.cloc
     pkgs.bind
     trash-cli
   ];

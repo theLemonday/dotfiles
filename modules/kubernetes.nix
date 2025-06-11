@@ -4,6 +4,7 @@
     kubectl
     kubecolor
     talosctl
+    helm-ls
   ];
 
   programs.k9s = {

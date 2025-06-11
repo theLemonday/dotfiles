@@ -25,6 +25,8 @@ let
     debugpy
     ruff
     click
+    uv
+    mutagen
   ]);
 in
 {
