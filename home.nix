@@ -31,6 +31,8 @@ in
     # Graphics
     nixgl.nixGLIntel
 
+    nix-output-monitor
+    wl-clipboard-rs
     # pkgs.nix-your-shell
 
     x11_ssh_askpass
@@ -59,16 +61,23 @@ in
     # fonts
     nerd-fonts.fira-code
     nerd-fonts.jetbrains-mono
+    nerd-fonts.iosevka
+    (google-fonts.override {
+      fonts = [ "GrapeNuts" "IcomoonFeather" ];
+    })
 
     hey
 
     openstackclient
+
     # # You can also create simple shell scripts directly inside your
     # # configuration. For example, this adds a command 'my-hello' to your
     # # environment:
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
+
+    # (pkgs.writeShellScriptBin "hms")
   ];
 
   home.activation = {
@@ -136,6 +145,7 @@ in
   ];
 
   home.shellAliases = {
+    kitty = "nixGLIntel kitty";
     ls = "eza";
     ll = "ls-l";
     k = "kubectl";
