@@ -107,7 +107,7 @@ in
     #   org.gradle.console=verbose
     #   org.gradle.daemon.idletimeout=3600000
     # '';
-    ".custom-script/xdg-open".source = ./scripts/xdg-open;
+    # ".custom-script/xdg-open".source = ./scripts/xdg-open;
     ".markdownlint.json".source = ./dotfiles/markdownlint.json;
     ".config/kitty/dark-theme.auto.conf".source = ./dotfiles/kitty/dark-theme.auto.conf;
     ".config/kitty/light-theme.auto.conf".source = ./dotfiles/kitty/light-theme.auto.conf;
@@ -132,15 +132,15 @@ in
   #  /etc/profiles/per-user/lemonday/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-    VAGRANT_WSL_ENABLE_WINDOWS_ACCESS = "1";
+    GTK_IM_MODULE = "fcitx";
+    QT_IM_MODULE = "fcitx";
+    XMODIFIERS = "@im=fcitx";
+    INPUT_METHOD = "fcitx5";
+    SDL_IM_MODULE = "fcitx";
     EDITOR = "nvim";
-    FLYCTL_INSTALL = "/home/lemonday/.fly";
-    ZK_NOTEBOOK_DIR = zkNotebookDir;
   };
 
   home.sessionPath = [
-    # "$HOME/.local/share/nvim/mason/bin"
-    "$FLYCTL_INSTALL/bin"
     "$HOME/.custom-script"
   ];
 
@@ -149,7 +149,6 @@ in
     ls = "eza";
     ll = "ls-l";
     k = "kubectl";
-    update = "sudo nixos-rebuild switch";
     lzd = "lazydocker";
     lzg = "lazygit";
     n = "nvim";
@@ -184,5 +183,53 @@ in
     music = "${config.home.homeDirectory}/Music";
     pictures = "${config.home.homeDirectory}/Pictures";
     videos = "${config.home.homeDirectory}/Videos";
+  };
+
+  i18n.inputMethod = {
+    enable = true;
+    type = "fcitx5";
+    fcitx5 = {
+      waylandFrontend = false;
+      addons = with pkgs; [
+        fcitx5-gtk
+        fcitx5-configtool
+        fcitx5-chinese-addons
+        fcitx5-unikey
+        fcitx5-bamboo
+        fcitx5-nord
+      ];
+      settings = {
+        globalOptions = {
+          Hotkey = {
+            TriggerInputMethod = true;
+          };
+          "Hotkey/TriggerKeys" = {
+            "0" = "Super+space";
+          };
+        };
+        inputMethod = {
+          GroupOrder."0" = "Default";
+          "Groups/0" = {
+            Name = "Default";
+            "Default Layout" = "us";
+            # DefaultIM = "unikey";
+          };
+          "Groups/0/Items/0".Name = "keyboard-us";
+          "Groups/0/Items/1".Name = "unikey";
+          "Groups/0/Items/2".Name = "pinyin";
+          "Groups/0/Items/3".Name = "keyboard-de";
+
+          # GroupOrder."0" = "Default";
+          # "Groups/0" = {
+          #   Name = "Default";
+          #   "Default Layout" = "us";
+          # };
+          # # "Groups/0/Items/0".Name = "keyboard-us";
+          # "Groups/0/Items/1".Name = "bamboo";
+          # "Groups/0/Items/2".Name = "pinyin";
+          # "Groups/0/Items/3".Name = "keyboard-de";
+        };
+      };
+    };
   };
 }

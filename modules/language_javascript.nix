@@ -13,6 +13,9 @@
     nodejs
     pnpm
     prettierd
+    yarn
+    typescript
+    typescript-language-server
   ];
 
 

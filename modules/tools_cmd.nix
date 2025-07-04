@@ -4,9 +4,9 @@ let
 in
 {
   home.packages = with pkgs; [
-    pkgs.ripgrep
-    pkgs.cloc
-    pkgs.bind
+    ripgrep
+    cloc
+    bind
     trash-cli
   ];
 

@@ -1,5 +1,16 @@
 { pkgs, lib, ... }:
 let
+  viKeyBindingsSetup = ''
+    fish_vi_key_bindings
+    function fish_mode_prompt
+      switch $fish_bind_mode
+        case insert
+          echo -n '[I] '
+        case default
+          echo -n '[N] '
+      end
+    end
+  '';
   direnvSetup = ''direnv hook fish | source'';
 
   exportFunctionSetup = ''
@@ -115,6 +126,7 @@ in
         ''
         kubecolorSetup
         exportFunctionSetup
+        viKeyBindingsSetup
       ];
   };
 }
