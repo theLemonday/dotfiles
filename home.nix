@@ -1,20 +1,18 @@
 { config, pkgs, lib, ... }:
 let
-  zkNotebookDir = "notes";
-
   directories = [
     ".pnpm-global"
-    ".config/zk"
     ".config/mpd"
     ".custom-script"
-    zkNotebookDir
   ];
+
+  user = "lemonday";
 in
 {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
-  home.username = "lemonday";
-  home.homeDirectory = "/home/lemonday";
+  home.username = user;
+  home.homeDirectory = "/home/${user}";
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -31,11 +29,8 @@ in
     # Graphics
     nixgl.nixGLIntel
 
-    nix-output-monitor
     wl-clipboard-rs
-    # pkgs.nix-your-shell
 
-    x11_ssh_askpass
     glibc
     nix-ld
     cmake
@@ -44,18 +39,15 @@ in
 
     tealdeer
 
-    lazydocker
     gnumake
     gcc
     unzip
 
-    libgen-cli
     luajitPackages.luarocks
 
     just
     imagemagick
 
-    awscli2
     ffmpeg_7-full
 
     # fonts
@@ -66,18 +58,12 @@ in
       fonts = [ "GrapeNuts" "IcomoonFeather" ];
     })
 
-    hey
-
-    openstackclient
-
     # # You can also create simple shell scripts directly inside your
     # # configuration. For example, this adds a command 'my-hello' to your
     # # environment:
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
-
-    # (pkgs.writeShellScriptBin "hms")
   ];
 
   home.activation = {
@@ -87,12 +73,6 @@ in
       '') directories)}
     '';
   };
-  # home.activation.createDirs = lib.mkAfter ''
-  #   # Use builtins.map to create directories
-  #   ${lib.concatStringsSep "\n" (builtins.map (dir: ''
-  #     mkdir -p /home/${config.home.username}/${dir}
-  #   '') directories)}
-  # '';
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
@@ -107,12 +87,7 @@ in
     #   org.gradle.console=verbose
     #   org.gradle.daemon.idletimeout=3600000
     # '';
-    # ".custom-script/xdg-open".source = ./scripts/xdg-open;
     ".markdownlint.json".source = ./dotfiles/markdownlint.json;
-    ".config/kitty/dark-theme.auto.conf".source = ./dotfiles/kitty/dark-theme.auto.conf;
-    ".config/kitty/light-theme.auto.conf".source = ./dotfiles/kitty/light-theme.auto.conf;
-    ".config/kitty/no-preference-theme.auto.conf".source = ./dotfiles/kitty/no-preference-theme.auto.conf;
-    # ".config/kitty/kitty.conf".source = config.lib.file.mkOutOfStoreSymlink /home/lemonday/.config/home-manager/dotfiles/kitty.conf;
   };
 
   # Home Manager can also manage your environment variables through
@@ -132,22 +107,18 @@ in
   #  /etc/profiles/per-user/lemonday/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-    GTK_IM_MODULE = "fcitx";
-    QT_IM_MODULE = "fcitx";
-    XMODIFIERS = "@im=fcitx";
-    INPUT_METHOD = "fcitx5";
-    SDL_IM_MODULE = "fcitx";
-    EDITOR = "nvim";
+    EDITOR = "vi";
   };
 
   home.sessionPath = [
-    "$HOME/.custom-script"
+    "${config.home.homeDirectory}/.custom-script"
+    "${config.home.homeDirectory}/.config/emacs/bin"
   ];
 
   home.shellAliases = {
     kitty = "nixGLIntel kitty";
     ls = "eza";
-    ll = "ls-l";
+    ll = "ls -l";
     k = "kubectl";
     lzd = "lazydocker";
     lzg = "lazygit";
@@ -155,7 +126,7 @@ in
     nf = "nvim $(fzf)";
     pnpx = "pnpm dlx";
     hm = "home-manager";
-    hms = "$HOME/.config/home-manager/update-home.fish";
+    hms = "/home/${user}/.config/home-manager/scripts/update-home.fish";
     tf = "terraform";
   };
 
@@ -172,64 +143,53 @@ in
 
   fonts.fontconfig.enable = true;
 
-  xdg.userDirs = {
-    enable = true;
+  xdg = {
+    userDirs = {
+      enable = true;
 
-    desktop = "${config.home.homeDirectory}/Desktop";
-    download = "${config.home.homeDirectory}/Downloads";
-    templates = "${config.home.homeDirectory}/Templates";
-    publicShare = "${config.home.homeDirectory}/Public";
-    documents = "${config.home.homeDirectory}/Documents";
-    music = "${config.home.homeDirectory}/Music";
-    pictures = "${config.home.homeDirectory}/Pictures";
-    videos = "${config.home.homeDirectory}/Videos";
+      desktop = "${config.home.homeDirectory}/Desktop";
+      download = "${config.home.homeDirectory}/Downloads";
+      templates = "${config.home.homeDirectory}/Templates";
+      publicShare = "${config.home.homeDirectory}/Public";
+      documents = "${config.home.homeDirectory}/Documents";
+      music = "${config.home.homeDirectory}/Music";
+      pictures = "${config.home.homeDirectory}/Pictures";
+      videos = "${config.home.homeDirectory}/Videos";
+    };
   };
 
-  i18n.inputMethod = {
+  programs.nh = {
     enable = true;
-    type = "fcitx5";
-    fcitx5 = {
-      waylandFrontend = false;
-      addons = with pkgs; [
-        fcitx5-gtk
-        fcitx5-configtool
-        fcitx5-chinese-addons
-        fcitx5-unikey
-        fcitx5-bamboo
-        fcitx5-nord
-      ];
-      settings = {
-        globalOptions = {
-          Hotkey = {
-            TriggerInputMethod = true;
-          };
-          "Hotkey/TriggerKeys" = {
-            "0" = "Super+space";
-          };
-        };
-        inputMethod = {
-          GroupOrder."0" = "Default";
-          "Groups/0" = {
-            Name = "Default";
-            "Default Layout" = "us";
-            # DefaultIM = "unikey";
-          };
-          "Groups/0/Items/0".Name = "keyboard-us";
-          "Groups/0/Items/1".Name = "unikey";
-          "Groups/0/Items/2".Name = "pinyin";
-          "Groups/0/Items/3".Name = "keyboard-de";
+    clean.enable = true;
+    clean.extraArgs = "--keep-since 4d --keep 3";
+    flake = "/home/lemonday/.config/home-manager/";
+  };
 
-          # GroupOrder."0" = "Default";
-          # "Groups/0" = {
-          #   Name = "Default";
-          #   "Default Layout" = "us";
-          # };
-          # # "Groups/0/Items/0".Name = "keyboard-us";
-          # "Groups/0/Items/1".Name = "bamboo";
-          # "Groups/0/Items/2".Name = "pinyin";
-          # "Groups/0/Items/3".Name = "keyboard-de";
-        };
-      };
+  services.darkman = {
+    enable = true;
+    settings = {
+      # Website to find location: https://www.latlong.net/
+      lat = 21.028511;
+      lng = 105.804817;
+      portal = true;
+    };
+
+    # Can be test with: darkman set [dark|light], remember: if new mode = current mode, the scripts are not executed
+    lightModeScripts = {
+      set-theme = ''
+        if [[ "$XDG_CURRENT_DESKTOP" == "KDE" ]]; then
+          lookandfeeltool -a org.kde.breeze.desktop
+          plasma-apply-colorscheme BreezeLight
+        fi
+      '';
+    };
+    darkModeScripts = {
+      set-theme = ''
+        if [[ "$XDG_CURRENT_DESKTOP" == "KDE" ]]; then
+          lookandfeeltool -a org.kde.breezedark.desktop
+          plasma-apply-colorscheme BreezeDark
+        fi
+      '';
     };
   };
 }

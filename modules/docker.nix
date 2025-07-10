@@ -5,5 +5,4 @@
     lazydocker
     dockerfile-language-server-nodejs
   ];
-
 }

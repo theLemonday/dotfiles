@@ -10,6 +10,7 @@ let
     # Note that even if you add Python packages here like PyTorch or Tensorflow,
     # they will be reinstalled when running `pip -r requirements.txt` because
     # virtualenv is used below in the shellHook.
+    pyqt6
     ipython
     pip
     setuptools

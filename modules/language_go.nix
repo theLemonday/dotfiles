@@ -2,7 +2,7 @@
 {
   home.packages = with pkgs; [
     go-tools
-    go-task
+    # go-task
     delve # debugger
     gopls
 

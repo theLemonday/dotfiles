@@ -11,20 +11,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-your-shell = {
-      url = "github:MercuryTechnologies/nix-your-shell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     # neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
 
-    tmux-sessionx = {
-      url = "github:omerxx/tmux-sessionx";
-    };
-
     yazi.url = "github:sxyazi/yazi";
-
-    templ.url = "github:a-h/templ";
 
     nixgl.url = "github:nix-community/nixGL";
   };
@@ -48,11 +37,9 @@
           })
           {
             nixpkgs.overlays = [
-              inputs.templ.overlays.default
               inputs.nixgl.overlay
               # inputs.neovim-nightly-overlay.overlays.default
               inputs.yazi.overlays.default
-              inputs.nix-your-shell.overlays.default
             ];
           }
         ];
