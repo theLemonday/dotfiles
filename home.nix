@@ -116,6 +116,7 @@ in
   ];
 
   home.shellAliases = {
+    clab = "containerlab";
     kitty = "nixGLIntel kitty";
     ls = "eza";
     ll = "ls -l";
