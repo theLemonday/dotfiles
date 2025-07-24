@@ -26,7 +26,6 @@ in
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs;[
-    anki-bin
     # Graphics
     nixgl.nixGLIntel
 
@@ -193,5 +192,9 @@ in
         fi
       '';
     };
+  };
+
+  programs.anki = {
+    enable = true;
   };
 }
