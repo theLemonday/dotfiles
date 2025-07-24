@@ -46,6 +46,13 @@ in
             template = "daily.md";
           };
         };
+        lab = {
+          paths = [ "lab" ];
+          note = {
+            template = "lab.md";
+            extension = "md";
+          };
+        };
       };
     };
   };
