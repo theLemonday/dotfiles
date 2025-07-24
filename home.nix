@@ -32,8 +32,8 @@ in
 
     wl-clipboard-rs
 
-    glibc
-    nix-ld
+    # glibc
+    # nix-ld
     cmake
 
     ani-cli
