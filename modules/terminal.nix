@@ -62,6 +62,16 @@ in
       "alt+enter" = "toggle_fullscreen";
     };
   };
+  xdg.desktopEntries.kitty = {
+    name = "Kitty Terminal";
+    genericName = "Terminal Emulator";
+    comment = "Fast, feature-rich GPU-based terminal emulator";
+    exec = "${pkgs.kitty}/bin/kitty";
+    icon = "kitty"; # Uses system-installed icon if available
+    terminal = false;
+    type = "Application";
+    categories = [ "System" "TerminalEmulator" ];
+  };
 
   programs.tmux = {
     enable = true;
