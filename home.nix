@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, nixgl, ... }:
 let
   directories = [
     ".pnpm-global"
@@ -7,6 +7,7 @@ let
   ];
 
   user = "lemonday";
+
 in
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -22,6 +23,12 @@ in
   # want to update the value, then make sure to first check the Home Manager
   # release notes.
   home.stateVersion = "25.05"; # Please read the comment before changing.
+
+  nixGL = {
+    packages = nixgl.packages;
+    defaultWrapper = "mesa";
+    installScripts = [ "mesa" ];
+  };
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
@@ -196,6 +203,7 @@ in
       # passwordFile = builtins.readFile ./secrets/ankiPassword;
     };
     language = "en_US";
+    # package = (config.lib.nixGL.wrap pkgs.anki-bin);
   };
 
   programs.yazi = {

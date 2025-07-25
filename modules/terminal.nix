@@ -1,4 +1,4 @@
-{ pkgs, nixgl, config, ... }:
+{ pkgs, config, ... }:
 let
   themeRepo = pkgs.fetchFromGitHub {
     owner = "kdrag0n";
@@ -13,13 +13,6 @@ let
     light = "gruvbox-light-medium";
   };
 
-  nixGL = {
-    packages = import nixgl {
-      inherit pkgs;
-    };
-    defaultWrapper = "mesa";
-    installScripts = [ "mesa" ];
-  };
 
 in
 {
@@ -42,7 +35,7 @@ in
 
   programs.kitty = {
     enable = true;
-    package = (config.lib.nixGL.wrap pkgs.kitty);
+    # package = (config.lib.nixGL.wrap pkgs.kitty);
 
     font = {
       name = "JetBrainsMono Nerd Font Mono";
