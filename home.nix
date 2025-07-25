@@ -202,4 +202,8 @@ in
     enable = true;
     enableFishIntegration = true;
   };
+
+  programs.ssh = {
+    enable = true;
+  };
 }
