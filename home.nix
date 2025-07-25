@@ -26,9 +26,6 @@ in
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs;[
-    # Graphics
-    # nixgl.nixGLIntel
-
     wl-clipboard-rs
 
     # glibc
@@ -116,8 +113,6 @@ in
   ];
 
   home.shellAliases = {
-    clab = "containerlab";
-    kitty = "nixGLIntel kitty";
     ls = "eza";
     ll = "ls -l";
     k = "kubectl";
@@ -126,7 +121,7 @@ in
     n = "nvim";
     nf = "nvim $(fzf)";
     pnpx = "pnpm dlx";
-    hm = "home-manager";
+    hm = "nh home";
     hms = "/home/${user}/.config/home-manager/scripts/update-home.fish";
     tf = "terraform";
   };

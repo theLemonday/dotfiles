@@ -15,7 +15,6 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
 
     nixgl.url = "github:nix-community/nixGL";
   };
@@ -34,12 +33,6 @@
         modules = [
           ./home.nix
           ./modules/default.nix
-          # {
-          #   nixpkgs.overlays = [
-          #     inputs.nixgl.overlay
-          #     # inputs.neovim-nightly-overlay.overlays.default
-          #   ];
-          # }
         ];
 
         # Optionally use extraSpecialArgs
