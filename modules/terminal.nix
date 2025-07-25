@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, nixgl, config, ... }:
 let
   themeRepo = pkgs.fetchFromGitHub {
     owner = "kdrag0n";
@@ -13,7 +13,14 @@ let
     light = "gruvbox-light-medium";
   };
 
-  tmuxSessions = [ ];
+  nixGL = {
+    packages = import nixgl {
+      inherit pkgs;
+    };
+    defaultWrapper = "mesa";
+    installScripts = [ "mesa" ];
+  };
+
 in
 {
   home.sessionVariables = {
@@ -35,6 +42,7 @@ in
 
   programs.kitty = {
     enable = true;
+    package = (config.lib.nixGL.wrap pkgs.kitty);
 
     font = {
       name = "JetBrainsMono Nerd Font Mono";

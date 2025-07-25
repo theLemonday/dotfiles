@@ -11,14 +11,16 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
-
-    yazi.url = "github:sxyazi/yazi";
 
     nixgl.url = "github:nix-community/nixGL";
   };
 
-  outputs = { self, nixpkgs, home-manager, yazi, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
@@ -32,16 +34,12 @@
         modules = [
           ./home.nix
           ./modules/default.nix
-          ({ pkgs, ... }: {
-            home.packages = [ yazi.packages.${pkgs.system}.default ];
-          })
-          {
-            nixpkgs.overlays = [
-              inputs.nixgl.overlay
-              # inputs.neovim-nightly-overlay.overlays.default
-              inputs.yazi.overlays.default
-            ];
-          }
+          # {
+          #   nixpkgs.overlays = [
+          #     inputs.nixgl.overlay
+          #     # inputs.neovim-nightly-overlay.overlays.default
+          #   ];
+          # }
         ];
 
         # Optionally use extraSpecialArgs

@@ -27,7 +27,7 @@ in
   # environment.
   home.packages = with pkgs;[
     # Graphics
-    nixgl.nixGLIntel
+    # nixgl.nixGLIntel
 
     wl-clipboard-rs
 
@@ -196,5 +196,14 @@ in
 
   programs.anki = {
     enable = true;
+    sync = {
+      # usernameFile = builtins.readFile ./secrets/ankiUsername;
+      # passwordFile = builtins.readFile ./secrets/ankiPassword;
+    };
+  };
+
+  programs.yazi = {
+    enable = true;
+    enableFishIntegration = true;
   };
 }
