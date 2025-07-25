@@ -195,6 +195,7 @@ in
       # usernameFile = builtins.readFile ./secrets/ankiUsername;
       # passwordFile = builtins.readFile ./secrets/ankiPassword;
     };
+    language = "en_US";
   };
 
   programs.yazi = {
