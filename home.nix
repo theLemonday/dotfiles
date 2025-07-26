@@ -28,6 +28,7 @@ in
   home.packages = with pkgs;[
     wl-clipboard-rs
 
+    sops
     # glibc
     # nix-ld
     cmake
