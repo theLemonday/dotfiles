@@ -197,7 +197,7 @@ in
     };
     language = "en_US";
     package = config.lib.nixGL.wrap pkgs.anki;
-    videoDriver = "vulkan";
+    videoDriver = "opengl";
   };
 
   programs.yazi = {
