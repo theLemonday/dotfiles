@@ -26,14 +26,13 @@ in
   sops = {
     age.keyFile = "/home/${user}/.config/sops/age/keys.txt";
     defaultSopsFile = ./secrets/default.yaml;
+    defaultSopsFormat = "yaml";
     secrets = {
-      "anki_username" = {
+      "anki/username" = {
         sopsFile = ./secrets/anki.yaml;
-        # key = "anki_username";
       };
-      "anki_password" = {
+      "anki/password" = {
         sopsFile = ./secrets/anki.yaml;
-        # key = "anki_password";
       };
     };
   };
@@ -209,8 +208,8 @@ in
   programs.anki = {
     enable = true;
     sync = {
-      usernameFile = config.sops.secrets."anki_username".path;
-      passwordFile = config.sops.secrets."anki_password".path;
+      usernameFile = config.sops.secrets."anki/username".path;
+      passwordFile = config.sops.secrets."anki/password".path;
     };
     language = "en_US";
     package = config.lib.nixGL.wrap pkgs.anki;
