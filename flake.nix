@@ -18,10 +18,7 @@
 
     nixgl.url = "github:nix-community/nixGL";
 
-    agenix = {
-      url = "github:ryantm/agenix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    agenix.url = "github:ryantm/agenix";
   };
 
   outputs = { self, nixpkgs, home-manager, nixgl, agenix, ... }@inputs:
