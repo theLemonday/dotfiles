@@ -26,6 +26,16 @@ in
   sops = {
     age.keyFile = "/home/${user}/.config/sops/age/keys.txt";
     defaultSopsFile = ./secrets/default.yaml;
+    secrets = {
+      "anki_username" = {
+        sopsFile = ./secrets/anki.yaml;
+        key = "anki_username";
+      };
+      "anki_password" = {
+        sopsFile = ./secrets/anki.yaml;
+        key = "anki_password";
+      };
+    };
   };
 
   # The home.packages option allows you to install Nix packages into your
@@ -199,8 +209,8 @@ in
   programs.anki = {
     enable = true;
     sync = {
-      # usernameFile = builtins.readFile ./secrets/ankiUsername;
-      # passwordFile = builtins.readFile ./secrets/ankiPassword;
+      usernameFile = config.sops.secrets."anki_username".path;
+      passwordFile = config.sops.secrets."anki_password".path;
     };
     language = "en_US";
     package = config.lib.nixGL.wrap pkgs.anki;
