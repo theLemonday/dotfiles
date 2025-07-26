@@ -23,46 +23,52 @@ in
   # release notes.
   home.stateVersion = "25.05"; # Please read the comment before changing.
 
+  sops = {
+    age.keyFile = "/home/${user}/.config/sops/age/keys.txt";
+    defaultSopsFile = ./secrets/default.yaml;
+  };
+
   # The home.packages option allows you to install Nix packages into your
   # environment.
-  home.packages = with pkgs;[
-    wl-clipboard-rs
+  home.packages = with pkgs;
+    [
+      wl-clipboard-rs
 
-    sops
-    # glibc
-    # nix-ld
-    cmake
+      sops
+      # glibc
+      # nix-ld
+      cmake
 
-    ani-cli
+      ani-cli
 
-    tealdeer
+      tealdeer
 
-    gnumake
-    gcc
-    unzip
+      gnumake
+      gcc
+      unzip
 
-    luajitPackages.luarocks
+      luajitPackages.luarocks
 
-    just
-    imagemagick
+      just
+      imagemagick
 
-    ffmpeg_7-full
+      ffmpeg_7-full
 
-    # fonts
-    nerd-fonts.fira-code
-    nerd-fonts.jetbrains-mono
-    nerd-fonts.iosevka
-    (google-fonts.override {
-      fonts = [ "GrapeNuts" "IcomoonFeather" ];
-    })
+      # fonts
+      nerd-fonts.fira-code
+      nerd-fonts.jetbrains-mono
+      nerd-fonts.iosevka
+      (google-fonts.override {
+        fonts = [ "GrapeNuts" "IcomoonFeather" ];
+      })
 
-    # # You can also create simple shell scripts directly inside your
-    # # configuration. For example, this adds a command 'my-hello' to your
-    # # environment:
-    # (pkgs.writeShellScriptBin "my-hello" ''
-    #   echo "Hello, ${config.home.username}!"
-    # '')
-  ];
+      # # You can also create simple shell scripts directly inside your
+      # # configuration. For example, this adds a command 'my-hello' to your
+      # # environment:
+      # (pkgs.writeShellScriptBin "my-hello" ''
+      #   echo "Hello, ${config.home.username}!"
+      # '')
+    ];
 
   home.activation = {
     init = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
