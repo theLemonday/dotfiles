@@ -34,12 +34,19 @@
           ./home.nix
           ./modules/default.nix
           inputs.sops-nix.homeManagerModules.sops
+          {
+            nixGL = {
+              packages = nixgl.packages;
+              defaultWrapper = "mesa";
+              installScripts = [ "mesa" ];
+            };
+          }
         ];
 
         # Optionally use extraSpecialArgs
         # to pass through arguments to home.nix
         extraSpecialArgs = {
-          inherit nixgl inputs;
+          inherit inputs;
         };
       };
     };
