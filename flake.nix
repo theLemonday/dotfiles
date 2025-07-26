@@ -24,7 +24,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, nixgl, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, nixgl, agenix, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
@@ -39,6 +39,7 @@
           ./home.nix
           ./modules/default.nix
           inputs.sops-nix.homeManagerModules.sops
+          agenix.homeManagerModules.default
           {
             nixGL = {
               packages = nixgl.packages;
