@@ -1,4 +1,4 @@
-{ config, pkgs, lib, nixgl, ... }:
+{ config, inputs, pkgs, lib, nixgl, ... }:
 let
   directories = [
     ".pnpm-global"
@@ -7,7 +7,6 @@ let
   ];
 
   user = "lemonday";
-
 in
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -25,7 +24,7 @@ in
   home.stateVersion = "25.05"; # Please read the comment before changing.
 
   nixGL = {
-    packages = nixgl.packages;
+    packages = inputs.nixgl.packages;
     defaultWrapper = "mesa";
     installScripts = [ "mesa" ];
   };
@@ -167,7 +166,7 @@ in
     enable = true;
     clean.enable = true;
     clean.extraArgs = "--keep-since 4d --keep 3";
-    flake = "/home/lemonday/.config/home-manager/";
+    flake = "/home/${user}/.config/home-manager/";
   };
 
   services.darkman = {
