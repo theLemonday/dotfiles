@@ -208,8 +208,8 @@ in
   programs.anki = {
     enable = true;
     sync = {
-      # usernameFile = config.sops.secrets."anki/username".path;
-      # passwordFile = config.sops.secrets."anki/password".path;
+      usernameFile = config.age.secrets.anki_username.path;
+      passwordFile = config.age.secrets.anki_password.path;
     };
     language = "en_US";
     package = config.lib.nixGL.wrap pkgs.anki;

@@ -36,15 +36,19 @@
           agenix.homeManagerModules.default
           {
             home.packages = [ agenix.packages.${system}.default ];
-            age =
-              {
-                secrets = {
-                  # "anki_username" = {
-                  #   file = ./secrets/anki_username.age;
-                  # };
+            age = {
+              secrets = {
+                "anki_username" = {
+                  file = ./secrets/anki_username.age;
                 };
-                identityPaths = [ "/home/lemonday/.ssh/agenix" ];
+                "anki_password" = {
+                  file = ./secrets/password.age;
+                };
               };
+              identityPaths = [ "/home/lemonday/.ssh/agenix" ];
+              secretsDir = "/home/lemonday/.local/share/agenix/agenix";
+              secretsMountPoint = "/home/lemonday/.local/share/agenix/agenix.d";
+            };
           }
           {
             nixGL = {
