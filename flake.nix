@@ -34,9 +34,6 @@
         # the path to your home.nix.
         modules = [
           agenix.homeManagerModules.default
-          ./home.nix
-          ./modules/default.nix
-          inputs.sops-nix.homeManagerModules.sops
           {
             nixGL = {
               packages = nixgl.packages;
@@ -45,6 +42,9 @@
               vulkan.enable = true;
             };
           }
+          ./home.nix
+          ./modules/default.nix
+          # inputs.sops-nix.homeManagerModules.sops
         ];
 
         # Optionally use extraSpecialArgs

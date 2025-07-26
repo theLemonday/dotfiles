@@ -23,19 +23,19 @@ in
   # release notes.
   home.stateVersion = "25.05"; # Please read the comment before changing.
 
-  sops = {
-    age.keyFile = "/home/${user}/.config/sops/age/keys.txt";
-    defaultSopsFile = ./secrets/default.yaml;
-    # defaultSopsFormat = "json";
-    secrets = {
-      "anki/username" = {
-        # sopsFile = ./secrets/anki.yaml;
-      };
-      "anki/password" = {
-        # sopsFile = ./secrets/anki.yaml;
-      };
-    };
-  };
+  # sops = {
+  #   age.keyFile = "/home/${user}/.config/sops/age/keys.txt";
+  #   defaultSopsFile = ./secrets/default.yaml;
+  #   # defaultSopsFormat = "json";
+  #   secrets = {
+  #     "anki/username" = {
+  #       # sopsFile = ./secrets/anki.yaml;
+  #     };
+  #     "anki/password" = {
+  #       # sopsFile = ./secrets/anki.yaml;
+  #     };
+  #   };
+  # };
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
@@ -43,7 +43,7 @@ in
     [
       wl-clipboard-rs
 
-      sops
+      # sops
       # glibc
       # nix-ld
       cmake
@@ -208,8 +208,8 @@ in
   programs.anki = {
     enable = true;
     sync = {
-      usernameFile = config.sops.secrets."anki/username".path;
-      passwordFile = config.sops.secrets."anki/password".path;
+      # usernameFile = config.sops.secrets."anki/username".path;
+      # passwordFile = config.sops.secrets."anki/password".path;
     };
     language = "en_US";
     package = config.lib.nixGL.wrap pkgs.anki;
