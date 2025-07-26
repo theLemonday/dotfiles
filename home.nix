@@ -200,7 +200,7 @@ in
     package = config.lib.nixGL.wrap pkgs.anki;
     minimalistMode = true;
     style = "native";
-    videoDriver = "opengl";
+    videoDriver = "vulkan";
   };
 
   programs.yazi = {
