@@ -1,4 +1,4 @@
-{ config, inputs, pkgs, lib, nixgl, ... }:
+{ config, pkgs, lib, nixgl, ... }:
 let
   directories = [
     ".pnpm-global"
@@ -24,7 +24,7 @@ in
   home.stateVersion = "25.05"; # Please read the comment before changing.
 
   nixGL = {
-    packages = inputs.nixgl.packages;
+    packages = nixgl.packages;
     defaultWrapper = "mesa";
     installScripts = [ "mesa" ];
   };
@@ -204,7 +204,7 @@ in
       # passwordFile = builtins.readFile ./secrets/ankiPassword;
     };
     language = "en_US";
-    package = (config.lib.nixGL.wrap pkgs.anki);
+    package = config.lib.nixGL.wrap pkgs.anki;
   };
 
   programs.yazi = {

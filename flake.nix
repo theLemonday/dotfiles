@@ -39,7 +39,7 @@
         # Optionally use extraSpecialArgs
         # to pass through arguments to home.nix
         extraSpecialArgs = {
-          inherit inputs;
+          inherit nixgl inputs;
         };
       };
     };
