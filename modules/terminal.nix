@@ -12,8 +12,6 @@ let
     dark = "gruvbox-dark-hard";
     light = "gruvbox-light-medium";
   };
-
-
 in
 {
   home.sessionVariables = {
@@ -35,7 +33,7 @@ in
 
   programs.kitty = {
     enable = true;
-    # package = (config.lib.nixGL.wrap pkgs.kitty);
+    package = (config.lib.nixGL.wrap pkgs.kitty);
 
     font = {
       name = "JetBrainsMono Nerd Font Mono";

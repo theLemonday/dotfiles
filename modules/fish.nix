@@ -10,6 +10,11 @@ let
           echo -n '[N] '
       end
     end
+
+    # Disable vi mode if the terminal is opened in neovim
+    if set -q NVIM
+      fish_default_key_bindings
+    end
   '';
   # direnvSetup = ''direnv hook fish | source'';
 

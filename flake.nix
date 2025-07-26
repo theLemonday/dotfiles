@@ -33,6 +33,7 @@
         modules = [
           ./home.nix
           ./modules/default.nix
+          inputs.sops-nix.homeManagerModules.sops
         ];
 
         # Optionally use extraSpecialArgs
