@@ -109,7 +109,7 @@ in
   };
 
   home.sessionPath = [
-    "${config.home.homeDirectory}/.custom-script"
+    "${config.home.homeDirectory}/.config/home-manager/scripts"
     "${config.home.homeDirectory}/.config/emacs/bin"
   ];
 
