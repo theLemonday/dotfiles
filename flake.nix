@@ -42,7 +42,7 @@
                   file = ./secrets/anki_username.age;
                 };
                 "anki_password" = {
-                  file = ./secrets/password.age;
+                  file = ./secrets/anki_password.age;
                 };
               };
               identityPaths = [ "/home/lemonday/.ssh/agenix" ];
