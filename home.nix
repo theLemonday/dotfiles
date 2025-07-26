@@ -203,7 +203,7 @@ in
       # passwordFile = builtins.readFile ./secrets/ankiPassword;
     };
     language = "en_US";
-    # package = (config.lib.nixGL.wrap pkgs.anki-bin);
+    package = (config.lib.nixGL.wrap pkgs.anki);
   };
 
   programs.yazi = {
