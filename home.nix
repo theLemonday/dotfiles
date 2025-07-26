@@ -197,6 +197,8 @@ in
     };
     language = "en_US";
     package = config.lib.nixGL.wrap pkgs.anki;
+    minimalistMode = true;
+    style = "native";
     videoDriver = "opengl";
   };
 
