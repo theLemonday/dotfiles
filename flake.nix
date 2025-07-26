@@ -36,10 +36,10 @@
         # Specify your home configuration modules here, for example,
         # the path to your home.nix.
         modules = [
+          agenix.homeManagerModules.default
           ./home.nix
           ./modules/default.nix
           inputs.sops-nix.homeManagerModules.sops
-          agenix.homeManagerModules.default
           {
             nixGL = {
               packages = nixgl.packages;
