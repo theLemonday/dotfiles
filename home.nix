@@ -29,11 +29,11 @@ in
     secrets = {
       "anki_username" = {
         sopsFile = ./secrets/anki.yaml;
-        key = "anki_username";
+        # key = "anki_username";
       };
       "anki_password" = {
         sopsFile = ./secrets/anki.yaml;
-        key = "anki_password";
+        # key = "anki_password";
       };
     };
   };
