@@ -35,6 +35,7 @@
         modules = [
           agenix.homeManagerModules.default
           {
+            home.packages = [ agenix.packages.${system}.default ];
             age =
               {
                 secrets = {
