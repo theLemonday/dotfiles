@@ -35,6 +35,17 @@
         modules = [
           agenix.homeManagerModules.default
           {
+            age =
+              {
+                secrets = {
+                  # "anki_username" = {
+                  #   file = ./secrets/anki_username.age;
+                  # };
+                };
+                identityPaths = [ "/home/lemonday/.ssh/agenix" ];
+              };
+          }
+          {
             nixGL = {
               packages = nixgl.packages;
               defaultWrapper = "mesa";
