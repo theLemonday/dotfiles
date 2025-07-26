@@ -29,10 +29,10 @@ in
     defaultSopsFormat = "yaml";
     secrets = {
       "anki/username" = {
-        sopsFile = ./secrets/anki.yaml;
+        # sopsFile = ./secrets/anki.yaml;
       };
       "anki/password" = {
-        sopsFile = ./secrets/anki.yaml;
+        # sopsFile = ./secrets/anki.yaml;
       };
     };
   };
