@@ -25,8 +25,8 @@ in
 
   sops = {
     age.keyFile = "/home/${user}/.config/sops/age/keys.txt";
-    defaultSopsFile = ./secrets/default.yaml;
-    defaultSopsFormat = "yaml";
+    defaultSopsFile = ./secrets/default.json;
+    # defaultSopsFormat = "json";
     secrets = {
       "anki/username" = {
         # sopsFile = ./secrets/anki.yaml;
