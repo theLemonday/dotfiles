@@ -10,8 +10,9 @@ let
           echo -n '[N] '
       end
     end
+  '';
 
-    # Disable vi mode if the terminal is opened in neovim
+  disableViKeyBindingInNeovim = ''
     if set -q NVIM
       fish_default_key_bindings
     end
@@ -99,6 +100,7 @@ in
           end
         end
       ''
+      disableViKeyBindingInNeovim
     ];
     shellInit = lib.strings.concatStrings
       [
