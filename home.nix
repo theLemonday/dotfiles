@@ -217,7 +217,7 @@ in
     package = config.lib.nixGL.wrap pkgs.anki;
     minimalistMode = true;
     style = "native";
-    videoDriver = "vulkan";
+    # videoDriver = "vulkan";
   };
 
   programs.yazi = {
