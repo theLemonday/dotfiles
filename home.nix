@@ -220,6 +220,10 @@ in
     # videoDriver = "vulkan";
   };
 
+  services.copyq = {
+    enable = true;
+  };
+
   programs.yazi = {
     enable = true;
     enableFishIntegration = true;
