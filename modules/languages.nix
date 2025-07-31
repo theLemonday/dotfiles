@@ -31,6 +31,7 @@
           };
           "Hotkey/TriggerKeys" = {
             "0" = "Super+space";
+            "1" = "Ctrl+space";
           };
         };
         inputMethod = {
@@ -38,12 +39,38 @@
           "Groups/0" = {
             Name = "Default";
             "Default Layout" = "us";
-            # DefaultIM = "unikey";
           };
           "Groups/0/Items/0".Name = "keyboard-us";
           "Groups/0/Items/1".Name = "unikey";
           "Groups/0/Items/2".Name = "pinyin";
           "Groups/0/Items/3".Name = "keyboard-de";
+        };
+        addons.pinyin.globalSection = {
+          PageSize = 7;
+          SpellEnabled = "True";
+          SymbolsEnabled = "True";
+          ChaiziEnabled = "True";
+          ExtBEnabled = "True";
+          CloudPinyinEnabled = "True";
+          CloudPinyinIndex = 2;
+          CloudPinyinAnimation = "True";
+          PinyinInPreedit = "True";
+          Prediction = "False";
+          SwitchInputMethodBehavior = "Commit current preedit";
+          SecondCandidate = "";
+          ThirdCandidate = "";
+          UseKeypadAsSelection = "True";
+          BackSpaceToUnselect = "True";
+          NumberOfSentence = 2;
+          LongWordLengthLimit = 4;
+          QuickPhraseKey = "semicolon";
+          VAsQuickphrase = "True";
+          FirstRun = "False";
+        };
+        addons.cloudpinyin.globalSection = {
+          MinimumPinyinLength = 2;
+          Backend = "Baidu";
+          "Toggle Key" = "";
         };
       };
     };
