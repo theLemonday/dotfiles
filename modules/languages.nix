@@ -31,7 +31,7 @@
           };
           "Hotkey/TriggerKeys" = {
             "0" = "Super+space";
-            "1" = "Ctrl+space";
+            "1" = "Control+space";
           };
         };
         inputMethod = {
