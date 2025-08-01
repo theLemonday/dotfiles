@@ -219,7 +219,7 @@ in
     #   # passwordFile = config.age.secrets.anki_password.path;
     # };
     language = "en_US";
-    # package = config.lib.nixGL.wrap pkgs.anki;
+    package = config.lib.nixGL.wrap pkgs.anki;
     minimalistMode = true;
     style = "native";
     # videoDriver = "vulkan";
