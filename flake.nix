@@ -3,7 +3,6 @@
 
   inputs = {
     # Specify the source of Home Manager and Nixpkgs.
-    # nixpkgs.url = "nixpkgs/nixos-24.11";
     nixpkgs = { url = "github:NixOS/nixpkgs/nixos-unstable"; };
 
     home-manager = {
@@ -21,7 +20,7 @@
     agenix.url = "github:ryantm/agenix";
   };
 
-  outputs = { self, nixpkgs, home-manager, nixgl, agenix, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, nixgl, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
@@ -33,23 +32,24 @@
         # Specify your home configuration modules here, for example,
         # the path to your home.nix.
         modules = [
-          agenix.homeManagerModules.default
-          {
-            home.packages = [ agenix.packages.${system}.default ];
-            age = {
-              secrets = {
-                "anki_username" = {
-                  file = ./secrets/anki_username.age;
-                };
-                "anki_password" = {
-                  file = ./secrets/anki_password.age;
-                };
-              };
-              identityPaths = [ "/home/lemonday/.ssh/agenix" ];
-              secretsDir = "/home/lemonday/.local/share/agenix/agenix";
-              secretsMountPoint = "/home/lemonday/.local/share/agenix/agenix.d";
-            };
-          }
+          # agenix.homeManagerModules.default
+          # {
+          #   home.packages = [ agenix.packages.${system}.default ];
+          #   age = {
+          #     secrets = {
+          #       "anki_username" = {
+          #         file = ./secrets/anki_username.age;
+          #       };
+          #       "anki_password" = {
+          #         file = ./secrets/anki_password.age;
+          #       };
+          #     };
+          #     identityPaths = [ "/home/lemonday/.ssh/agenix" ];
+          #     secretsDir = "/home/lemonday/.local/share/agenix/agenix";
+          #     secretsMountPoint = "/home/lemonday/.local/share/agenix/agenix.d";
+          #   };
+          # }
+          inputs.sops-nix.homeManagerModules.sops
           {
             nixGL = {
               packages = nixgl.packages;
@@ -60,7 +60,6 @@
           }
           ./home.nix
           ./modules/default.nix
-          # inputs.sops-nix.homeManagerModules.sops
         ];
 
         # Optionally use extraSpecialArgs

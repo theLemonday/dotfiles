@@ -31,7 +31,43 @@
           };
           "Hotkey/TriggerKeys" = {
             "0" = "Super+space";
-            "1" = "Control+space";
+            # "1" = "Control+space";
+          };
+          Behavior = {
+            # Active By Default
+            ActiveByDefault = false;
+            # Reset state on Focus In
+            resetStateWhenFocusIn = "No";
+            # Share Input State
+            ShareInputState = "All";
+            # Show preedit in application
+            PreeditEnabledByDefault = true;
+            # Show Input Method Information when switch input method
+            ShowInputMethodInformation = true;
+            # Show Input Method Information when changing focus
+            showInputMethodInformationWhenFocusIn = true;
+            # Show compact input method information
+            CompactInputMethodInformation = true;
+            # Show first input method information
+            ShowFirstInputMethodInformation = true;
+            # Default page size
+            DefaultPageSize = 5;
+            # Override Xkb Option
+            OverrideXkbOption = false;
+            # Custom Xkb Option
+            CustomXkbOption = "";
+            # Force Enabled Addons
+            EnabledAddons = "";
+            # Force Disabled Addons
+            DisabledAddons = "";
+            # Preload input method to be used by default
+            PreloadInputMethod = true;
+            # Allow input method in the password field
+            AllowInputMethodForPassword = false;
+            # Show preedit text when typing password
+            ShowPreeditForPassword = false;
+            # Interval of saving user data in minutes
+            AutoSavePeriod = 30;
           };
         };
         inputMethod = {
@@ -69,7 +105,7 @@
         };
         addons.cloudpinyin.globalSection = {
           MinimumPinyinLength = 2;
-          Backend = "Baidu";
+          Backend = "GoogleCN";
           "Toggle Key" = "";
         };
       };
