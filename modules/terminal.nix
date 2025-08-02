@@ -81,11 +81,12 @@ in
 
     tmuxp.enable = true;
 
-    plugins = with pkgs;[
-      tmuxPlugins.vim-tmux-navigator
-      tmuxPlugins.sensible
-      tmuxPlugins.yank
-      tmuxPlugins.tmux-fzf
+    plugins = with pkgs.tmuxPlugins;[
+      vim-tmux-navigator
+      sensible
+      yank
+      tmux-fzf
+      fingers
     ];
     extraConfig = ''
       # Undercurl support
