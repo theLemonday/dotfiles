@@ -1,6 +1,14 @@
+{ pkgs, ... }:
 {
   programs.plasma = {
     enable = true;
+
+    panels = [
+      {
+        location = "top";
+        height = 26;
+      }
+    ];
 
     hotkeys = {
       commands = {
