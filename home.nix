@@ -6,13 +6,8 @@ let
     ".custom-script"
   ];
 
-  user = "lemonday";
 in
 {
-  # Home Manager needs a bit of information about you and the paths it should
-  # manage.
-  home.username = user;
-  home.homeDirectory = "/home/${user}";
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -23,8 +18,25 @@ in
   # release notes.
   home.stateVersion = "25.05"; # Please read the comment before changing.
 
+  xdg = {
+    enable = true;
+
+    userDirs = {
+      enable = true;
+
+      desktop = "${config.home.homeDirectory}/Desktop";
+      download = "${config.home.homeDirectory}/Downloads";
+      templates = "${config.home.homeDirectory}/Templates";
+      publicShare = "${config.home.homeDirectory}/Public";
+      documents = "${config.home.homeDirectory}/Documents";
+      music = "${config.home.homeDirectory}/Music";
+      pictures = "${config.home.homeDirectory}/Pictures";
+      videos = "${config.home.homeDirectory}/Videos";
+    };
+  };
+
   sops = {
-    age.keyFile = "/home/${user}/.config/sops/age/keys.txt";
+    age.keyFile = "${config.xdg.configHome}/sops/age/keys.txt";
     defaultSopsFile = ./secrets/default.yaml;
     secrets = {
       "anki/username" = { };
@@ -133,7 +145,7 @@ in
     nf = "nvim $(fzf)";
     pnpx = "pnpm dlx";
     hm = "nh home";
-    hms = "/home/${user}/.config/home-manager/scripts/update-home.fish";
+    hms = "${config.xdg.configHome}/home-manager/scripts/update-home.fish";
     tf = "terraform";
   };
 
@@ -150,26 +162,11 @@ in
 
   fonts.fontconfig.enable = true;
 
-  xdg = {
-    userDirs = {
-      enable = true;
-
-      desktop = "${config.home.homeDirectory}/Desktop";
-      download = "${config.home.homeDirectory}/Downloads";
-      templates = "${config.home.homeDirectory}/Templates";
-      publicShare = "${config.home.homeDirectory}/Public";
-      documents = "${config.home.homeDirectory}/Documents";
-      music = "${config.home.homeDirectory}/Music";
-      pictures = "${config.home.homeDirectory}/Pictures";
-      videos = "${config.home.homeDirectory}/Videos";
-    };
-  };
-
   programs.nh = {
     enable = true;
     clean.enable = true;
     clean.extraArgs = "--keep-since 4d --keep 3";
-    flake = "/home/${user}/.config/home-manager/";
+    flake = "${config.xdg.configHome}/home-manager/";
   };
 
   services.darkman = {

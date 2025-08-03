@@ -18,10 +18,17 @@
     nixgl.url = "github:nix-community/nixGL";
 
     agenix.url = "github:ryantm/agenix";
+
+    plasma-manager = {
+      url = "github:nix-community/plasma-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, nixgl, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, nixgl, plasma-manager, ... }@inputs:
     let
+      username = "lemonday";
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
     in
@@ -32,6 +39,14 @@
         # Specify your home configuration modules here, for example,
         # the path to your home.nix.
         modules = [
+          {
+            home = {
+              # Home Manager needs a bit of information about you and the paths it should
+              # manage.
+              inherit username;
+              homeDirectory = "/home/${username}";
+            };
+          }
           # agenix.homeManagerModules.default
           # {
           #   home.packages = [ agenix.packages.${system}.default ];
