@@ -197,10 +197,10 @@ in
     };
   };
 
-  services.clipmenu = {
-    enable = true;
-    launcher = "rofi";
-  };
+  # services.clipmenu = {
+  #   enable = true;
+  #   launcher = "rofi";
+  # };
 
   programs.anki = {
     enable = true;
