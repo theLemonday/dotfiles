@@ -22,8 +22,9 @@
         fcitx5-chinese-addons
         fcitx5-unikey
         fcitx5-bamboo
-        fcitx5-nord
-        fcitx5-material-color
+        # themes
+        # fcitx5-nord
+        # fcitx5-material-color
       ];
       settings = {
         globalOptions = {
