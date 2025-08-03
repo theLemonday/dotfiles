@@ -1,24 +1,26 @@
 {
   programs.plasma = {
+    enable = true;
+
     hotkeys = {
       commands = {
-        "Change input method to US" = {
+        "input-method-to-US" = {
           command = "fcitx5-remote -s fcitx-keyboard-us";
           key = "Ctrl+!";
         };
-        "Change input method to Unikey" = {
+        "input-method-to-Unikey" = {
           command = "fcitx5-remote -s unikey";
           key = "Ctrl+@";
         };
-        "Change input method to Pinyin" = {
+        "input-method-to-Pinyin" = {
           command = "fcitx5-remote -s pinyin";
           key = "Ctrl+#";
         };
-        "Change input method to German keyboard" = {
+        "input-method-to-German" = {
           command = "fcitx5-remote -s keyboard-de";
           key = "Ctrl+$";
         };
-        "Change input method to Spanish keyboard" = {
+        "input-method-to-Spanish" = {
           command = "fcitx5-remote -s keyboard-es";
           key = "Ctrl+%";
         };
