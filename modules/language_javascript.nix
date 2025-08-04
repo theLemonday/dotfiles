@@ -16,6 +16,7 @@
     yarn
     typescript
     typescript-language-server
+    vue-language-server
   ];
 
 
