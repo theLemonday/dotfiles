@@ -31,5 +31,32 @@ in
       WantedBy = [ "timers.target" ];
     };
   };
-}
 
+  services.darkman = {
+    enable = true;
+    settings = {
+      # Website to find location: https://www.latlong.net/
+      lat = 21.028511;
+      lng = 105.804817;
+      portal = true;
+    };
+
+    # Can be test with: darkman set [dark|light], remember: if new mode = current mode, the scripts are not executed
+    lightModeScripts = {
+      set-theme = ''
+        if [[ "$XDG_CURRENT_DESKTOP" == "KDE" ]]; then
+          lookandfeeltool -a org.kde.breeze.desktop
+          plasma-apply-colorscheme BreezeLight
+        fi
+      '';
+    };
+    darkModeScripts = {
+      set-theme = ''
+        if [[ "$XDG_CURRENT_DESKTOP" == "KDE" ]]; then
+          lookandfeeltool -a org.kde.breezedark.desktop
+          plasma-apply-colorscheme BreezeDark
+        fi
+      '';
+    };
+  };
+}
