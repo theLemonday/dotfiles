@@ -17,6 +17,7 @@
     typescript
     typescript-language-server
     vue-language-server
+    vtsls
   ];
 
 
