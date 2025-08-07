@@ -30,7 +30,10 @@ let
   ]);
 in
 {
-  home.packages = [ pythonWithPkgs ];
+  home.packages = with pkgs;[
+    pythonWithPkgs
+    basedpyright
+  ];
 
   programs.uv = {
     enable = true;
