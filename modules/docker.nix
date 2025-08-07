@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
-    docker-compose
+    # docker-compose
     lazydocker
     dockerfile-language-server-nodejs
   ];
