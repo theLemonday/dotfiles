@@ -15,7 +15,10 @@ let
     ipython
     pip
     setuptools
-    virtualenvwrapper
+    # protobuf
+    grpcio
+    grpcio-tools
+    # virtualenvwrapper
     wheel
     pylatexenc
     paramiko
