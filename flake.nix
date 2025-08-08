@@ -17,8 +17,6 @@
 
     nixgl.url = "github:nix-community/nixGL";
 
-    agenix.url = "github:ryantm/agenix";
-
     plasma-manager = {
       url = "github:nix-community/plasma-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -47,23 +45,6 @@
               homeDirectory = "/home/${username}";
             };
           }
-          # agenix.homeManagerModules.default
-          # {
-          #   home.packages = [ agenix.packages.${system}.default ];
-          #   age = {
-          #     secrets = {
-          #       "anki_username" = {
-          #         file = ./secrets/anki_username.age;
-          #       };
-          #       "anki_password" = {
-          #         file = ./secrets/anki_password.age;
-          #       };
-          #     };
-          #     identityPaths = [ "/home/lemonday/.ssh/agenix" ];
-          #     secretsDir = "/home/lemonday/.local/share/agenix/agenix";
-          #     secretsMountPoint = "/home/lemonday/.local/share/agenix/agenix.d";
-          #   };
-          # }
           inputs.sops-nix.homeManagerModules.sops
           {
             nixGL = {

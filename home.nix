@@ -133,7 +133,6 @@ in
 
   home.sessionPath = [
     "${config.home.homeDirectory}/.config/home-manager/scripts"
-    "${config.home.homeDirectory}/.config/emacs/bin"
   ];
 
   home.shellAliases = {

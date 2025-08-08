@@ -17,13 +17,10 @@ in
     # Nix
     nixpkgs-fmt
     nil # nix language server
-
-    # Caddy reverse proxy
-    caddy
   ];
 
   programs.zk = {
-    enable = true;
+    # enable = true;
     settings = {
       notebook = {
         dir = zkNotebookDir;
