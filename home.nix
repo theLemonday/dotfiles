@@ -171,12 +171,12 @@ in
 
   programs.anki = {
     enable = true;
-    # sync = {
-    #   # usernameFile = config.age.secrets.anki_username.path;
-    #   username = "nhathao090703@gmail.com";
-    #   passwordFile = /tmp/test;
-    #   # passwordFile = config.age.secrets.anki_password.path;
-    # };
+    sync = {
+      # usernameFile = config.age.secrets.anki_username.path;
+      username = "nhathao090703@gmail.com";
+      # passwordFile = /tmp/test;
+      passwordFile = config.sops.secrets."anki/password".path;
+    };
     language = "en_US";
     package = config.lib.nixGL.wrap pkgs.anki;
     minimalistMode = true;
