@@ -16,7 +16,7 @@
     yarn
     typescript
     typescript-language-server
-    vue-language-server
+    # vue-language-server
     vtsls
   ];
 
