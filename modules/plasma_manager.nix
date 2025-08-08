@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   programs.plasma = {
-    enable = true;
+    # enable = true;
 
     hotkeys = {
       commands = {
