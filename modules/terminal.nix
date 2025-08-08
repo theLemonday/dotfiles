@@ -86,7 +86,7 @@ in
       sensible
       yank
       tmux-fzf
-      fingers
+      # fingers
     ];
     extraConfig = ''
       # Undercurl support
