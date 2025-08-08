@@ -14,10 +14,10 @@
     pnpm
     prettierd
     yarn
-    typescript
-    typescript-language-server
+    # typescript
+    # typescript-language-server
     # vue-language-server
-    vtsls
+    # vtsls
   ];
 
 
