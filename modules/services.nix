@@ -46,7 +46,6 @@ in
       set-theme = ''
         if [[ "$XDG_CURRENT_DESKTOP" == "KDE" ]]; then
           lookandfeeltool -a org.kde.breeze.desktop
-          plasma-apply-colorscheme BreezeLight
         fi
       '';
     };
@@ -54,7 +53,6 @@ in
       set-theme = ''
         if [[ "$XDG_CURRENT_DESKTOP" == "KDE" ]]; then
           lookandfeeltool -a org.kde.breezedark.desktop
-          plasma-apply-colorscheme BreezeDark
         fi
       '';
     };
