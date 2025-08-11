@@ -11,7 +11,7 @@
 
     # Caddy reverse proxy
     caddy
-    cloudflare-warp
+    # cloudflare-warp
   ];
 
   home.activation.containerlabFishCompletion = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
