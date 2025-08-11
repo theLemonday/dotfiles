@@ -76,13 +76,13 @@
           GroupOrder."0" = "Default";
           "Groups/0" = {
             Name = "Default";
-            "Default Layout" = "us";
+            "Default Layout" = "keyboard-de-neo_qwertz";
           };
-          "Groups/0/Items/0".Name = "keyboard-us";
+          "Groups/0/Items/0".Name = "keyboard-de";
           "Groups/0/Items/1".Name = "unikey";
           "Groups/0/Items/2".Name = "pinyin";
-          "Groups/0/Items/3".Name = "keyboard-de";
-          "Groups/0/Items/4".Name = "keyboard-es";
+          "Groups/0/Items/3".Name = "keyboard-es";
+          "Groups/0/Items/4".Name = "keyboard-us";
         };
         addons.pinyin.globalSection = {
           PageSize = 7;
