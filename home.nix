@@ -49,6 +49,7 @@ in
   home.packages = with pkgs;
     [
       (config.lib.nixGL.wrap pkgs.anki)
+      (config.lib.nixGL.wrap pkgs.drawio)
       wl-clipboard-rs
 
       sops
