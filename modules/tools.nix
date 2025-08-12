@@ -15,6 +15,7 @@ in
     cloc
     bind
     trash-cli
+    gemini-cli
   ];
 
   home.shellAliases = {
