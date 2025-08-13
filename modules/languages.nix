@@ -78,7 +78,7 @@
             Name = "Default";
             "Default Layout" = "keyboard-de-neo_qwertz";
           };
-          "Groups/0/Items/0".Name = "keyboard-de";
+          "Groups/0/Items/0".Name = "keyboard-de-neo_qwertz";
           "Groups/0/Items/1".Name = "unikey";
           "Groups/0/Items/2".Name = "pinyin";
           "Groups/0/Items/3".Name = "keyboard-es";

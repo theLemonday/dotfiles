@@ -15,6 +15,7 @@ let
     ipython
     pip
     setuptools
+    pipx
     # protobuf
     grpcio
     grpcio-tools
