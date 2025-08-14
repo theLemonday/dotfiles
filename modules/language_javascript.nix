@@ -10,6 +10,7 @@
   ];
 
   home.packages = with pkgs; [
+    tailwindcss-language-server
     nodejs
     pnpm
     prettierd
