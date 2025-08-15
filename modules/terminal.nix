@@ -90,9 +90,9 @@ in
         plugin = fingers;
         extraConfig = ''
           # Unbind the default prefix + f
-          unbind-key f
+          unbind-key s
 
-          set -g @fingers-key f
+          set -g @fingers-key s
         '';
       }
     ];
