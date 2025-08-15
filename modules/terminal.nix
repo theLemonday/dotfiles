@@ -92,7 +92,7 @@ in
           # Unbind the default prefix + f
           unbind-key f
 
-          set -g @fingers-key f
+          # set -g @fingers-key f
         '';
       }
     ];
