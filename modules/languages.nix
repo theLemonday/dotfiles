@@ -76,7 +76,7 @@
           GroupOrder."0" = "Default";
           "Groups/0" = {
             Name = "Default";
-            # "Default Layout" = "keyboard-de-neo_qwertz";
+            "Default Layout" = "keyboard-de-neo_qwertz";
             # DefaultIM
           };
           "Groups/0/Items/0".Name = "keyboard-de-neo_qwertz";
