@@ -131,6 +131,7 @@ in
   #
   home.sessionVariables = {
     EDITOR = "vi";
+    XMODIFIERS = "@im=fcitx";
   };
 
   home.sessionPath = [
