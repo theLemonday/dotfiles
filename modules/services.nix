@@ -44,6 +44,8 @@ in
     # Can be test with: darkman set [dark|light], remember: if new mode = current mode, the scripts are not executed
     lightModeScripts = {
       set-theme = ''
+        env > /tmp/darkman-env.log
+
         if [[ "$XDG_CURRENT_DESKTOP" == "KDE" ]]; then
           lookandfeeltool -a org.kde.breeze.desktop
           plasma-apply-colorscheme BreezeLight
@@ -52,6 +54,8 @@ in
     };
     darkModeScripts = {
       set-theme = ''
+        env > /tmp/darkman-env.log
+
         if [[ "$XDG_CURRENT_DESKTOP" == "KDE" ]]; then
           lookandfeeltool -a org.kde.breezedark.desktop
           plasma-apply-colorscheme BreezeDark
