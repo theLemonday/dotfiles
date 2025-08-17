@@ -44,7 +44,7 @@ in
     # Can be test with: darkman set [dark|light], remember: if new mode = current mode, the scripts are not executed
     lightModeScripts = {
       set-theme = ''
-        if [[ "$XDG_CURRENT_DESKTOP" == "KDE" ]]; then
+        # if [[ "$XDG_CURRENT_DESKTOP" == "KDE" ]]; then
           export XDG_RUNTIME_DIR="/run/user/$(id -u)"
           export DBUS_SESSION_BUS_ADDRESS="unix:path=$XDG_RUNTIME_DIR/bus"
           export WAYLAND_DISPLAY="wayland-0"      # if using Wayland
@@ -52,12 +52,12 @@ in
           plasma-apply-colorscheme BreezeLight
           plasma-apply-desktoptheme Breeze
           notify-send "KDE Theme" "Switched to Breeze Light 🌞"
-        fi
+        # fi
       '';
     };
     darkModeScripts = {
       set-theme = ''
-        if [[ "$XDG_CURRENT_DESKTOP" == "KDE" ]]; then
+        # if [[ "$XDG_CURRENT_DESKTOP" == "KDE" ]]; then
           export XDG_RUNTIME_DIR="/run/user/$(id -u)"
           export DBUS_SESSION_BUS_ADDRESS="unix:path=$XDG_RUNTIME_DIR/bus"
           export WAYLAND_DISPLAY="wayland-0"      # if using Wayland
@@ -65,7 +65,7 @@ in
           plasma-apply-colorscheme BreezeDark
           lookandfeeltool -a org.kde.breezedark
           notify-send "KDE Theme" "Switched to Breeze Dark 🌙"
-        fi
+        # fi
       '';
     };
   };
