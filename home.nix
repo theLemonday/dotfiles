@@ -41,6 +41,9 @@ in
     secrets = {
       "anki/username" = { };
       "anki/password" = { };
+      "ssh" = {
+        sopsFile = ./secrets/ssh.yml;
+      };
     };
   };
 
@@ -196,5 +199,8 @@ in
 
   programs.ssh = {
     enable = true;
+    includes = [
+      config.sops.secrets."ssh".path
+    ];
   };
 }
