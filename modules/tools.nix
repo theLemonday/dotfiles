@@ -130,9 +130,4 @@ in
   programs.ripgrep-all = {
     enable = true;
   };
-
-  programs.obsidian = {
-    enable = true;
-  };
 }
-
