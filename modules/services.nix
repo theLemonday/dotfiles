@@ -44,22 +44,22 @@ in
     # Can be test with: darkman set [dark|light], remember: if new mode = current mode, the scripts are not executed
     lightModeScripts = {
       set-theme = ''
-        if [[ "$XDG_CURRENT_DESKTOP" == "KDE" ]]; then
-          lookandfeeltool -a org.kde.breeze.desktop
-          plasma-apply-colorscheme BreezeLight
-          plasma-apply-desktoptheme Breeze
-          notify-send "KDE Theme" "Switched to Breeze Light 🌞"
-        fi
+        # if [[ "$XDG_CURRENT_DESKTOP" == "KDE" ]]; then
+        lookandfeeltool -a org.kde.breeze.desktop
+        plasma-apply-colorscheme BreezeLight
+        plasma-apply-desktoptheme Breeze
+        notify-send "KDE Theme" "Switched to Breeze Light 🌞"
+        # fi
       '';
     };
     darkModeScripts = {
       set-theme = ''
-        if [[ "$XDG_CURRENT_DESKTOP" == "KDE" ]]; then
-          lookandfeeltool -a org.kde.breezedark.desktop
-          plasma-apply-colorscheme BreezeDark
-          lookandfeeltool -a org.kde.breezedark
-          notify-send "KDE Theme" "Switched to Breeze Dark 🌙"
-        fi
+        # if [[ "$XDG_CURRENT_DESKTOP" == "KDE" ]]; then
+        lookandfeeltool -a org.kde.breezedark.desktop
+        plasma-apply-colorscheme BreezeDark
+        lookandfeeltool -a org.kde.breezedark
+        notify-send "KDE Theme" "Switched to Breeze Dark 🌙"
+        # fi
       '';
     };
   };
