@@ -10,7 +10,7 @@ let
   # Default: light theme (no-preference = light)
   themes = {
     dark = "gruvbox-dark-hard";
-    light = "gruvbox-light-medium";
+    light = "gruvbox-material-light-medium";
   };
 in
 {
