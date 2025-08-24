@@ -39,8 +39,6 @@ in
     age.keyFile = "${config.xdg.configHome}/sops/age/keys.txt";
     defaultSopsFile = ./secrets/default.yaml;
     secrets = {
-      "anki/username" = { };
-      "anki/password" = { };
       "ssh" = {
         sopsFile = ./secrets/ssh.yml;
       };
@@ -51,7 +49,7 @@ in
   # environment.
   home.packages = with pkgs;
     [
-      (config.lib.nixGL.wrap pkgs.anki)
+      # (config.lib.nixGL.wrap pkgs.anki)
       (config.lib.nixGL.wrap pkgs.drawio)
       openapi-generator-cli
       wl-clipboard-rs
