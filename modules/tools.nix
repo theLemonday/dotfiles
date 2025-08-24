@@ -109,14 +109,14 @@ in
     enable = true;
   };
 
-  programs.rofi = {
-    enable = true;
-  };
-
-  home.file.".config/rofi/" = {
-    source = "${themeRepo}/files";
-    recursive = true;
-  };
+  # programs.rofi = {
+  #   enable = true;
+  # };
+  #
+  # home.file.".config/rofi/" = {
+  #   source = "${themeRepo}/files";
+  #   recursive = true;
+  # };
 
   programs.taskwarrior = {
     enable = true;
