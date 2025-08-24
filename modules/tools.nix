@@ -11,11 +11,10 @@ let
 in
 {
   home.packages = with pkgs; [
-    argocd
     cloc
     bind
     trash-cli
-    gemini-cli
+    silicon
   ];
 
   home.shellAliases = {
