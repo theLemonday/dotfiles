@@ -55,6 +55,7 @@ in
       (config.lib.nixGL.wrap pkgs.drawio)
       openapi-generator-cli
       wl-clipboard-rs
+      albert
 
       sops
       # glibc
