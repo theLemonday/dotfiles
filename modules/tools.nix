@@ -101,13 +101,7 @@ in
   };
   home.shellAliases.cat = "bat --paging=never";
 
-  programs.cmus = {
-    enable = true;
-  };
-
-  programs.htop = {
-    enable = true;
-  };
+  programs.bottom.enable = true;
 
   # programs.rofi = {
   #   enable = true;

@@ -53,20 +53,11 @@ in
       (config.lib.nixGL.wrap pkgs.drawio)
       openapi-generator-cli
       wl-clipboard-rs
-      browsh
-      # albert
-      # xorg.libxcb
-      # xorg.xcbutil
-      # xorg.xcbutilwm
-      # xorg.xcbutilkeysyms
-      # xorg.xcbutilcursor
 
       sops
       # glibc
       # nix-ld
       cmake
-
-      ani-cli
 
       tealdeer
 
