@@ -12,7 +12,7 @@
   };
 
   i18n.inputMethod = {
-    enable = true;
+    # enable = true;
     type = "fcitx5";
     fcitx5 = {
       waylandFrontend = true;
