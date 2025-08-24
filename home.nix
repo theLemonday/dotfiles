@@ -56,6 +56,11 @@ in
       openapi-generator-cli
       wl-clipboard-rs
       albert
+      xorg.libxcb
+      xorg.xcbutil
+      xorg.xcbutilwm
+      xorg.xcbutilkeysyms
+      xorg.xcbutilcursor
 
       sops
       # glibc
