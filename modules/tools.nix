@@ -15,6 +15,7 @@ in
     bind
     trash-cli
     silicon
+    vit
   ];
 
   home.shellAliases = {
