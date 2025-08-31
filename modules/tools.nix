@@ -16,6 +16,7 @@ in
     trash-cli
     silicon
     vit
+    cookiecutter
   ];
 
   home.shellAliases = {
