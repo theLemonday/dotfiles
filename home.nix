@@ -131,6 +131,7 @@ in
   home.sessionVariables = {
     EDITOR = "vi";
     XMODIFIERS = "@im=fcitx";
+    LD_LIBRARY_PATH = "${pkgs.cudaPackages.libcublas}/lib:${pkgs.cudaPackages.cudatoolkit}/lib:${pkgs.cudaPackages.cudatoolkit}/lib64";
   };
 
   home.sessionPath = [
