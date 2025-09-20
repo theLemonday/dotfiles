@@ -13,7 +13,6 @@
     golines
     gofumpt
 
-    templ
   ];
 
   home.sessionPath = [
