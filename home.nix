@@ -110,6 +110,15 @@ in
     #   org.gradle.daemon.idletimeout=3600000
     # '';
     ".markdownlint.json".source = ./dotfiles/markdownlint.json;
+    ".taplo.toml".text = ''
+      [schemas]
+      air = "https://raw.githubusercontent.com/air-verse/air/0a3f56961f682c08c2d012dbf828188b4e12e854/air.schema.json"
+
+      [[schema.associations]]
+      pattern = ".air.toml"
+      name = "air"
+    '';
+
   };
 
   # Home Manager can also manage your environment variables through
