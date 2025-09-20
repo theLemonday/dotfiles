@@ -25,6 +25,13 @@
     delta = {
       enable = true;
     };
+
+    aliases = {
+      co = "checkout";
+      br = "branch";
+      cm = "commit -m";
+      st = "status";
+    };
   };
 
   programs.lazygit = {
