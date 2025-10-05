@@ -14,6 +14,10 @@ let
   };
 in
 {
+  home.packages = with pkgs; [
+    presenterm
+  ];
+
   home.sessionVariables = {
     "DARK_THEME" = themes.dark;
     "LIGHT_THEME" = themes.light;
@@ -121,15 +125,15 @@ in
       set -g @time_format          "#{E:@status_line_time_format,%T}"
       set -g @date_format          "#{E:@status_line_date_format,%F}"
 
-      set -g @TC  'colour18'
-      set -g @G0  'colour00'
-      set -g @G1  'colour01'
-      set -g @G2  'colour02'
-      set -g @G3  'colour03'
-      set -g @G4  'colour04'
-      set -g @G5  'colour05'
-      set -g @G7  'colour07'
-      set -g @G8 	'colour08'
+      set -g @TC 'colour18'
+      set -g @G0 'colour00'
+      set -g @G1 'colour01'
+      set -g @G2 'colour02'
+      set -g @G3 'colour03'
+      set -g @G4 'colour04'
+      set -g @G5 'colour05'
+      set -g @G7 'colour07'
+      set -g @G8 'colour08'
 
       ##### Basic status bar #####
       set -gF status-style "bg=#{@TC},fg=#{@G4}"
