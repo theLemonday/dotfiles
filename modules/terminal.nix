@@ -16,6 +16,7 @@ in
 {
   home.packages = with pkgs; [
     presenterm
+    watchexec
   ];
 
   home.sessionVariables = {
