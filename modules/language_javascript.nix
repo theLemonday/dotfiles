@@ -17,8 +17,9 @@
     yarn
     typescript
     typescript-language-server
-    vue-language-server
-    vtsls
+    # vue-language-server
+    tailwindcss-language-server
+    # vtsls
   ];
 
 

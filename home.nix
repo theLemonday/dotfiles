@@ -126,7 +126,7 @@ in
   #
   # or
   #
-  #  /etc/profiles/per-user/lemonday/etc/profile.d/hm-session-vars.sh
+  #  /etc/profiles/per-user/southclementide/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
     EDITOR = "vi";

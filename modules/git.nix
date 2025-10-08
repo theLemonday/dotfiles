@@ -1,7 +1,4 @@
-{ pkgs, ... }: {
-  home.packages = with pkgs; [
-    gibo # gitignore 
-  ];
+{ ... }: {
   programs.git = {
     enable = true;
     userName = "theLemonday";

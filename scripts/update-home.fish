@@ -1,4 +1,4 @@
-#!/usr/bin/env /home/lemonday/.nix-profile/bin/fish
+#!/usr/bin/env /home/southclementide/.nix-profile/bin/fish
 
 set home_manager_dir ~/.config/home-manager/
 cd $home_manager_dir

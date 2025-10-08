@@ -1,5 +1,5 @@
 {
-  description = "Home Manager configuration of lemonday";
+  description = "Home Manager configuration of southclementide";
 
   inputs = {
     # Specify the source of Home Manager and Nixpkgs.
@@ -24,16 +24,18 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
+
+    vicinae.url = "github:vicinaehq/vicinae";
   };
 
-  outputs = { self, nixpkgs, home-manager, nixgl, plasma-manager, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, nixgl, plasma-manager, vicinae, ... }@inputs:
     let
-      username = "lemonday";
+      username = "southclementide";
       system = "x86_64-linux";
       pkgs = import nixpkgs { inherit system; config.allowUnfree = true; };
     in
     {
-      homeConfigurations."lemonday" = home-manager.lib.homeManagerConfiguration {
+      homeConfigurations."southclementide" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
 
         # Specify your home configuration modules here, for example,
