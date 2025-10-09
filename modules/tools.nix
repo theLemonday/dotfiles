@@ -114,7 +114,7 @@ in
   # };
 
   programs.taskwarrior = {
-    enable = true;
+    # enable = true;
     package = pkgs.taskwarrior3;
   };
 

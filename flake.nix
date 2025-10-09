@@ -58,7 +58,7 @@
               vulkan.enable = true;
             };
           }
-          inputs.plasma-manager.homeManagerModules.plasma-manager
+          inputs.plasma-manager.homeModules.plasma-manager
           ./home.nix
           ./modules/default.nix
         ];

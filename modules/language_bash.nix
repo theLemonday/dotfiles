@@ -2,7 +2,7 @@
 {
   home.packages = with pkgs; [
     shfmt
-    bashdb
+    # bashdb
     shellcheck
   ];
 }
