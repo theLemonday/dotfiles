@@ -15,7 +15,7 @@ in
     bind
     trash-cli
     silicon
-    # vit
+    taskwarrior-tui
     cookiecutter
   ];
 
