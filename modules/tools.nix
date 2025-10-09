@@ -15,7 +15,7 @@ in
     bind
     trash-cli
     silicon
-    vit
+    # vit
     cookiecutter
   ];
 
@@ -113,10 +113,10 @@ in
   #   recursive = true;
   # };
 
-  # programs.taskwarrior = {
-  #   # enable = true;
-  #   package = pkgs.taskwarrior3;
-  # };
+  programs.taskwarrior = {
+    enable = true;
+    package = pkgs.taskwarrior3;
+  };
 
   programs.ripgrep = {
     enable = true;
