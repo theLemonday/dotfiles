@@ -7,7 +7,7 @@
     nmap
     inetutils
     bettercap
-    containerlab
+    # containerlab
 
     # Caddy reverse proxy
     caddy
