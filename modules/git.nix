@@ -1,4 +1,10 @@
-{ ... }: {
+{ pkgs, ... }: {
+  home.packages = with pkgs;[
+    husky
+    lint-staged
+    commitlint
+  ];
+
   programs.git = {
     enable = true;
     userName = "theLemonday";
