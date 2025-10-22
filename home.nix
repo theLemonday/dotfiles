@@ -47,46 +47,42 @@ in
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
-  home.packages = with pkgs;
-    [
-      # (config.lib.nixGL.wrap pkgs.anki)
-      (config.lib.nixGL.wrap pkgs.drawio)
-      openapi-generator-cli
-      wl-clipboard-rs
+  home.packages = with pkgs; [
+    (config.lib.nixGL.wrap pkgs.drawio)
+    openapi-generator-cli
+    wl-clipboard-rs
 
-      sops
-      # glibc
-      # nix-ld
-      cmake
+    sops
+    cmake
 
-      tealdeer
+    tealdeer
 
-      gnumake
-      gcc
-      unzip
+    gnumake
+    gcc
+    unzip
 
-      luajitPackages.luarocks
+    luajitPackages.luarocks
 
-      just
-      imagemagick
+    just
+    imagemagick
 
-      ffmpeg_7-full
+    ffmpeg_7-full
 
-      # fonts
-      nerd-fonts.fira-code
-      nerd-fonts.jetbrains-mono
-      nerd-fonts.iosevka
-      (google-fonts.override {
-        fonts = [ "GrapeNuts" "IcomoonFeather" ];
-      })
+    # fonts
+    nerd-fonts.fira-code
+    nerd-fonts.jetbrains-mono
+    nerd-fonts.iosevka
+    (google-fonts.override {
+      fonts = [ "GrapeNuts" "IcomoonFeather" ];
+    })
 
-      # # You can also create simple shell scripts directly inside your
-      # # configuration. For example, this adds a command 'my-hello' to your
-      # # environment:
-      # (pkgs.writeShellScriptBin "my-hello" ''
-      #   echo "Hello, ${config.home.username}!"
-      # '')
-    ];
+    # # You can also create simple shell scripts directly inside your
+    # # configuration. For example, this adds a command 'my-hello' to your
+    # # environment:
+    # (pkgs.writeShellScriptBin "my-hello" ''
+    #   echo "Hello, ${config.home.username}!"
+    # '')
+  ];
 
   home.activation = {
     init = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
@@ -151,6 +147,7 @@ in
     hm = "nh home";
     hms = "${config.xdg.configHome}/home-manager/scripts/update-home.fish";
     tf = "terraform";
+    docker = "nerdctl";
   };
 
   # Let Home Manager install and manage itself.
