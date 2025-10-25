@@ -32,6 +32,7 @@ let
     debugpy
     click
     mutagen
+    pyqt6
   ]);
 in
 {
