@@ -11,6 +11,9 @@
     enable = true;
   };
 
+  home.sessionVariables = {
+    KUBECOLOR_PRESET = "light";
+  };
   programs.kubecolor = {
     enable = true;
     enableAlias = true;
