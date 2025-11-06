@@ -21,10 +21,15 @@ in
   };
   programs.k9s = {
     enable = true;
+    settings = {
+      k9s = {
+        skin = "gruvbox-material-light-soft";
+      };
+    };
   };
 
   home.sessionVariables = {
-    KUBECOLOR_PRESET = "light";
+    KUBECOLOR_PRESET = "dark";
   };
   programs.kubecolor = {
     enable = true;
