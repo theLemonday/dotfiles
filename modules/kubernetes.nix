@@ -23,7 +23,9 @@ in
     enable = true;
     settings = {
       k9s = {
-        skin = "gruvbox-material-light-soft";
+        ui = {
+          skin = "gruvbox-material-light-soft";
+        };
       };
     };
   };
