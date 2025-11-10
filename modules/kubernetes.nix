@@ -24,7 +24,7 @@ in
     settings = {
       k9s = {
         ui = {
-          skin = "gruvbox-material-light-soft";
+          skin = "transparent";
         };
       };
     };
