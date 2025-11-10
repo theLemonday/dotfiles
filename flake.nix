@@ -17,18 +17,16 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixgl.url = "github:nix-community/nixGL";
+    # nixgl.url = "github:nix-community/nixGL";
 
     plasma-manager = {
       url = "github:nix-community/plasma-manager";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
-
-    vicinae.url = "github:vicinaehq/vicinae";
   };
 
-  outputs = { self, nixpkgs, home-manager, nixgl, plasma-manager, vicinae, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, plasma-manager, ... }@inputs:
     let
       username = "southclementide";
       system = "x86_64-linux";
@@ -50,14 +48,14 @@
             };
           }
           inputs.sops-nix.homeManagerModules.sops
-          {
-            nixGL = {
-              packages = nixgl.packages;
-              defaultWrapper = "mesa";
-              installScripts = [ "mesa" ];
-              vulkan.enable = true;
-            };
-          }
+          # {
+          #   nixGL = {
+          #     packages = nixgl.packages;
+          #     defaultWrapper = "mesa";
+          #     installScripts = [ "mesa" ];
+          #     vulkan.enable = true;
+          #   };
+          # }
           inputs.plasma-manager.homeModules.plasma-manager
           ./home.nix
           ./modules/default.nix
