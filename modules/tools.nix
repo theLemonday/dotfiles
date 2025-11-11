@@ -59,6 +59,12 @@ in
     enable = true;
     enableFishIntegration = true;
 
+    theme =
+      {
+        light = "kanagawa-lotus";
+        dark = "gruvbox-dark";
+      };
+
     # settings = {
     #   manager = {
     #     show_hidden = true;
