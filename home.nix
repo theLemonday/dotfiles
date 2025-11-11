@@ -5,7 +5,6 @@ let
     ".config/mpd"
     ".custom-script"
   ];
-
 in
 {
 
@@ -126,7 +125,6 @@ in
   home.sessionVariables = {
     EDITOR = "vi";
     XMODIFIERS = "@im=fcitx";
-    LD_LIBRARY_PATH = "${pkgs.cudaPackages.libcublas}/lib:${pkgs.cudaPackages.cudatoolkit}/lib:${pkgs.cudaPackages.cudatoolkit}/lib64";
   };
 
   home.sessionPath = [
@@ -167,27 +165,6 @@ in
     clean.enable = true;
     clean.extraArgs = "--keep-since 4d --keep 3";
     flake = "${config.xdg.configHome}/home-manager/";
-  };
-
-  # programs.anki = {
-  #   enable = true;
-  #   sync = {
-  #     # usernameFile = config.age.secrets.anki_username.path;
-  #     username = "nhathao090703@gmail.com";
-  #     # passwordFile = /tmp/test;
-  #     # passwordFile = config.sops.secrets."anki/password".path;
-  #     passwordFile = ~/ankiPassword;
-  #   };
-  #   language = "en_US";
-  #   package = config.lib.nixGL.wrap pkgs.anki;
-  #   minimalistMode = true;
-  #   style = "native";
-  #   # videoDriver = "vulkan";
-  # };
-
-  programs.yazi = {
-    enable = true;
-    enableFishIntegration = true;
   };
 
   programs.ssh = {
