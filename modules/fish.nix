@@ -19,32 +19,32 @@ let
   '';
   # direnvSetup = ''direnv hook fish | source'';
 
-  exportFunctionSetup = ''
-      function export
-        for arg in $argv
-            set varname (string split "=" $arg)[1]
-            set varval (string split "=" $arg)[2]
-            set -x $varname $varval
-        end
-    end
-  '';
+  # exportFunctionSetup = ''
+  #     function export
+  #       for arg in $argv
+  #           set varname (string split "=" $arg)[1]
+  #           set varval (string split "=" $arg)[2]
+  #           set -x $varname $varval
+  #       end
+  #   end
+  # '';
 
-  kubecolorSetup = ''
-    # adds alias for "kubectl" to "kubecolor" with completions
-    function kubectl --wraps kubectl
-      command kubecolor $argv
-    end
-
-    # adds alias for "k" to "kubecolor" with completions
-    function k --wraps kubectl
-      command kubecolor $argv
-    end
-
-    # reuse "kubectl" completions on "kubecolor"
-    function kubecolor --wraps kubectl
-      command kubecolor $argv
-    end
-  '';
+  # kubecolorSetup = ''
+  #   # adds alias for "kubectl" to "kubecolor" with completions
+  #   function kubectl --wraps kubectl
+  #     command kubecolor $argv
+  #   end
+  #
+  #   # adds alias for "k" to "kubecolor" with completions
+  #   function k --wraps kubectl
+  #     command kubecolor $argv
+  #   end
+  #
+  #   # reuse "kubectl" completions on "kubecolor"
+  #   function kubecolor --wraps kubectl
+  #     command kubecolor $argv
+  #   end
+  # '';
 
   tideSetup = ''
     tide configure --auto --style=Lean --prompt_colors='True color' --show_time=No --lean_prompt_height='Two lines' --prompt_connection=Solid --prompt_connection_andor_frame_color=Darkest --prompt_spacing=Sparse --icons='Few icons' --transient=Yes
@@ -128,12 +128,9 @@ in
                 eval $argv
             end
           end
-
-          # export MANPAGER="sh -c 'sed -u -e \"s/\\x1B\[[0-9;]*m//g; s/.\\x08//g\" | bat -p -lman'"
-          set -e BAT_THEME
         ''
-        kubecolorSetup
-        exportFunctionSetup
+        # kubecolorSetup
+        # exportFunctionSetup
         viKeyBindingsSetup
       ];
   };
