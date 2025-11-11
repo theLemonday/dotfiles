@@ -9,6 +9,7 @@ in
     trash-cli
     silicon
     cookiecutter
+    wgo
   ];
 
   home.shellAliases = {
