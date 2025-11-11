@@ -8,7 +8,6 @@ in
     bind
     trash-cli
     silicon
-    taskwarrior-tui
     cookiecutter
   ];
 
@@ -58,10 +57,6 @@ in
     shellWrapperName = "y";
   };
 
-  programs.yt-dlp = {
-    enable = true;
-  };
-
   programs.fzf = {
     enable = true;
     enableFishIntegration = true;
@@ -95,11 +90,6 @@ in
   home.shellAliases.cat = "bat --paging=never";
 
   programs.bottom.enable = true;
-
-  programs.taskwarrior = {
-    enable = true;
-    package = pkgs.taskwarrior3;
-  };
 
   programs.ripgrep = {
     enable = true;
