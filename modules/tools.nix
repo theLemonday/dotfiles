@@ -1,12 +1,5 @@
 { pkgs, ... }:
 let
-  themeRepo = pkgs.fetchFromGitHub {
-    owner = "adi1090x";
-    repo = "rofi";
-    rev = "master";
-    hash = "sha256-yMKpwxdwvp7ryz2XXunbjC/5ud9HHEDzyYRhM540958=";
-  };
-
   trash-cli = pkgs.trash-cli;
 in
 {
@@ -62,7 +55,7 @@ in
     #   };
     # };
 
-    shellWrapperName = "yy";
+    shellWrapperName = "y";
   };
 
   programs.yt-dlp = {
@@ -71,7 +64,6 @@ in
 
   programs.fzf = {
     enable = true;
-    # enableZshIntegration = true;
     enableFishIntegration = true;
 
     tmux = {
@@ -82,9 +74,9 @@ in
 
   programs.eza = {
     enable = true;
-    # enableZshIntegration = true;
     enableFishIntegration = true;
     icons = "auto";
+    colors = "always";
   };
 
   programs.fd = {
@@ -103,15 +95,6 @@ in
   home.shellAliases.cat = "bat --paging=never";
 
   programs.bottom.enable = true;
-
-  # programs.rofi = {
-  #   enable = true;
-  # };
-  #
-  # home.file.".config/rofi/" = {
-  #   source = "${themeRepo}/files";
-  #   recursive = true;
-  # };
 
   programs.taskwarrior = {
     enable = true;

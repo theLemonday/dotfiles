@@ -138,7 +138,6 @@ in
     k = "kubectl";
     lzd = "lazydocker";
     lzg = "lazygit";
-    n = "nvim";
     nf = "nvim $(fzf)";
     pnpx = "pnpm dlx";
     hm = "nh home";
