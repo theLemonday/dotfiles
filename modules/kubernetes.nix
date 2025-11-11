@@ -13,6 +13,11 @@ in
     talosctl
     helm-ls
     # helm
+    kubectx
+    kustomize
+    stern
+    kube-score
+    kubectl-tree
   ];
 
   home.file.".config/k9s/skins" = {
@@ -40,5 +45,10 @@ in
       kubectl = lib.getExe pkgs.kubectl;
       preset = "dark";
     };
+  };
+
+  programs.kubeswitch = {
+    enable = true;
+    enableFishIntegration = true;
   };
 }
