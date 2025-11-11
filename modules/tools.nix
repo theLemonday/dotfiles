@@ -1,6 +1,12 @@
 { pkgs, ... }:
 let
   trash-cli = pkgs.trash-cli;
+  yaziFlavorsSrc = pkgs.fetchFromGitHub {
+    owner = "yazi-rs";
+    repo = "flavors";
+    rev = "main"; # or a specific commit
+    sha256 = "sha256-bavHcmeGZ49nNeM+0DSdKvxZDPVm3e6eaNmfmwfCid0="; # replace after first build
+  };
 in
 {
   home.packages = with pkgs; [
@@ -45,6 +51,10 @@ in
     };
   };
 
+  home.file.".config/yazi/flavors" = {
+    source = yaziFlavorsSrc;
+    recursive = true;
+  };
   programs.yazi = {
     enable = true;
     enableFishIntegration = true;
