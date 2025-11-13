@@ -49,6 +49,7 @@ in
   home.packages = with pkgs; [
     openapi-generator-cli
     wl-clipboard-rs
+    xclip
 
     sops
     cmake
