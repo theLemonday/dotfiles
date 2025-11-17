@@ -168,7 +168,7 @@ in
 
   programs.ssh = {
     enable = true;
-    enableDefaultConfig = true;
+    enableDefaultConfig = false;
     includes = [
       config.sops.secrets."ssh".path
     ];
