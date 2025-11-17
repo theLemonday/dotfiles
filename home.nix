@@ -167,7 +167,7 @@ in
   };
 
   programs.ssh = {
-    enable = true;
+    # enable = true;
     enableDefaultConfig = false;
     includes = [
       config.sops.secrets."ssh".path
