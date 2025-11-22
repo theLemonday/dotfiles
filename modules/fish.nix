@@ -128,6 +128,8 @@ in
                 eval $argv
             end
           end
+
+          bind \cx\ce fish_clipboard_edit
         ''
         # kubecolorSetup
         # exportFunctionSetup
