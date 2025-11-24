@@ -107,6 +107,7 @@ in
         tideSetup
         ''
           just --completions fish > ~/.config/fish/completions/just.fish
+          nerdctl completion fish > ~/.config/fish/completions/nerdctl.fish
 
           # Define the alias for bathelp
           function bathelp
