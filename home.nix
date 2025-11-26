@@ -144,6 +144,7 @@ in
     hms = "${config.xdg.configHome}/home-manager/scripts/update-home.fish";
     tf = "terraform";
     docker = "nerdctl";
+    d = "docker";
   };
 
   # Let Home Manager install and manage itself.
