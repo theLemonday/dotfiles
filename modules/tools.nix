@@ -65,7 +65,7 @@ in
     tmux = {
       enableShellIntegration = true;
     };
-    defaultCommand = "fd --type f --exclude .git --ignore-file ~/.gitignore";
+    defaultCommand = "fd --type f --exclude .git --ignore-file ~/.gitignore --color=never";
   };
 
   programs.eza = {
@@ -78,7 +78,6 @@ in
   programs.fd = {
     enable = true;
   };
-
 
   home.sessionVariables = {
     MANPAGER = "sh -c 'col -bx | bat -l man -p'";
