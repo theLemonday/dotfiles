@@ -12,7 +12,6 @@ in
     kubectl
     talosctl
     helm-ls
-    # helm
     kubectx
     kustomize
     stern
@@ -41,6 +40,7 @@ in
   programs.kubecolor = {
     enable = true;
     enableAlias = true;
+    enableZshIntegration = true;
     settings = {
       kubectl = lib.getExe pkgs.kubectl;
       preset = "dark";
