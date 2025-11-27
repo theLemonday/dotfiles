@@ -48,6 +48,7 @@ in
   programs.yazi = {
     enable = true;
     enableFishIntegration = true;
+    enableZshIntegration = true;
 
     # settings = {
     #   manager = {
@@ -61,6 +62,7 @@ in
   programs.fzf = {
     enable = true;
     enableFishIntegration = true;
+    enableZshIntegration = true;
 
     tmux = {
       enableShellIntegration = true;
@@ -71,6 +73,7 @@ in
   programs.eza = {
     enable = true;
     enableFishIntegration = true;
+    enableZshIntegration = true;
     icons = "auto";
     colors = "always";
   };
