@@ -145,6 +145,7 @@ in
     tf = "terraform";
     docker = "nerdctl";
     d = "docker";
+    ccup = "docker compose up";
   };
 
   # Let Home Manager install and manage itself.
