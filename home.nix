@@ -7,14 +7,6 @@ let
   ];
 in
 {
-
-  # This value determines the Home Manager release that your configuration is
-  # compatible with. This helps avoid breakage when a new Home Manager release
-  # introduces backwards incompatible changes.
-  #
-  # You should not change this value, even if you update Home Manager. If you do
-  # want to update the value, then make sure to first check the Home Manager
-  # release notes.
   home.stateVersion = "25.05"; # Please read the comment before changing.
 
   xdg = {
@@ -134,18 +126,11 @@ in
 
   home.shellAliases = {
     ls = "eza";
-    ll = "ls -l";
     k = "kubectl";
     lzd = "lazydocker";
     lzg = "lazygit";
-    nf = "nvim $(fzf)";
-    pnpx = "pnpm dlx";
-    hm = "nh home";
-    hms = "${config.xdg.configHome}/home-manager/scripts/update-home.fish";
-    tf = "terraform";
+    hms = "${config.xdg.configHome}/home-manager/scripts/update-home.zsh";
     docker = "nerdctl";
-    d = "docker";
-    ccup = "docker compose up";
   };
 
   # Let Home Manager install and manage itself.
@@ -154,7 +139,7 @@ in
   services.ssh-agent.enable = true;
 
   programs.direnv = {
-    enable = true;
+    enable = false;
     enableBashIntegration = true; # see note on other shells below
     nix-direnv.enable = true;
   };

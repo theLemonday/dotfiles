@@ -12,7 +12,7 @@
 
     oh-my-zsh = {
       enable = true;
-      plugins = [ "docker" "docker-compose" "git" ];
+      plugins = [ "docker" "docker-compose" "git" "fzf" "eza" ];
       theme = "";
     };
 
