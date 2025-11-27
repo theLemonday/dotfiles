@@ -50,5 +50,6 @@ in
   programs.kubeswitch = {
     enable = true;
     enableFishIntegration = true;
+    enableZshIntegration = true;
   };
 }
