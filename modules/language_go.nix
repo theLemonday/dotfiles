@@ -14,6 +14,7 @@
     gofumpt
 
     # gopls
+    cobra-cli
   ];
 
   home.sessionPath = [

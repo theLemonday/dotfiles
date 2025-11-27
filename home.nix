@@ -45,8 +45,6 @@ in
     sops
     cmake
 
-    tealdeer
-
     gnumake
     gcc
     unzip
