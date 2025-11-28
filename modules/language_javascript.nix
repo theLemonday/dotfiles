@@ -18,7 +18,6 @@
     typescript
     typescript-language-server
     # vue-language-server
-    tailwindcss-language-server
     # vtsls
     volta
   ];
