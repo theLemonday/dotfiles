@@ -23,12 +23,12 @@
       tmux-fzf
       {
         plugin = fingers;
-        # extraConfig = ''
-        #   # Unbind the default prefix + f
-        #   unbind-key s
-        #
-        #   set -g @fingers-key 
-        # '';
+        extraConfig = ''
+          # Unbind the default prefix + f
+          unbind-key s
+
+          set -g @fingers-key 
+        '';
       }
     ];
     extraConfig = ''

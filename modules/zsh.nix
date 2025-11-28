@@ -70,9 +70,9 @@
           ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE="20"
           ZSH_AUTOSUGGEST_USE_ASYNC=1
 
-          if [ -z "$TMUX" ]; then
-            tmux attach -t main 2>/dev/null || tmux new -s main
-          fi
+          # if [ -z "$TMUX" ]; then
+          #   tmux attach -t main 2>/dev/null || tmux new -s main
+          # fi
         '';
       in
       lib.mkMerge [ earlyConfig beforeCompletionInitialization config lastToRunConfig ];
