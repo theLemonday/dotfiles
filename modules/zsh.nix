@@ -1,5 +1,5 @@
 { pkgs, lib, ... }: {
-  # home.packages = with pkgs;[ pure-prompt ];
+  home.packages = with pkgs;[ pure-prompt ];
 
   programs.zsh = {
     enable = true;
@@ -76,6 +76,6 @@
 
   programs.fzf.enableZshIntegration = true;
 
-  programs.starship = { enable = true; enableZshIntegration = true; };
+  # programs.starship = { enable = true; enableZshIntegration = true; };
 }
 
