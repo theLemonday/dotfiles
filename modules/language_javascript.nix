@@ -20,6 +20,7 @@
     # vue-language-server
     tailwindcss-language-server
     # vtsls
+    volta
   ];
 
 
