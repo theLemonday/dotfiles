@@ -23,6 +23,20 @@
 
     initContent =
       let
+        earlyConfig = lib.mkOrder 500 ''
+          DISABLE_AUTO_UPDATE="true"
+          DISABLE_MAGIC_FUNCTIONS="true"
+          DISABLE_COMPFIX="true"
+        '';
+        beforeCompletionInitialization = lib.mkOrder 550 ''
+          # Cache completions aggressively
+          autoload -Uz compinit
+          if [ "$(date +'%j')" != "$(stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null)" ]; then
+              compinit
+          else
+              compinit -C
+          fi
+        '';
         config = lib.mkOrder 1000 '' 
           python_venv() {
             MYVENV=./venv
@@ -33,9 +47,27 @@
           }
           autoload -U add-zsh-hook
           add-zsh-hook chpwd python_venv
+
+          # Make aliases expand automatically when you press <space>, <s-tab>
+          # Inside incremental search, space behaves normally
+          globalias() {
+             if [[ $LBUFFER =~ '[a-zA-Z0-9]+$' ]]; then
+                 zle _expand_alias
+                 zle expand-word
+             fi
+             zle self-insert
+          }
+
+          bindkey " " globalias
+          bindkey "^[[Z" magic-space
+          bindkey -M isearch " " magic-space
+        '';
+        lastToRunConfig = lib.mkOrder 1500 ''
+          ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE="20"
+          ZSH_AUTOSUGGEST_USE_ASYNC=1
         '';
       in
-      lib.mkMerge [ config ];
+      lib.mkMerge [ earlyConfig beforeCompletionInitialization config lastToRunConfig ];
   };
 
   programs.fzf.enableZshIntegration = true;
