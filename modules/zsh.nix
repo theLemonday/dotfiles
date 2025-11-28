@@ -57,6 +57,7 @@
              fi
              zle self-insert
           }
+          zle -N globalias
 
           bindkey " " globalias
           bindkey "^[[Z" magic-space
