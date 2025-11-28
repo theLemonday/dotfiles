@@ -136,7 +136,7 @@ in
 
   services.ssh-agent = {
     enable = true;
-    enableZshIntegration = true;
+    # enableZshIntegration = true;
   };
 
   programs.direnv = {
