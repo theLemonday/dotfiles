@@ -36,6 +36,9 @@
           else
               compinit -C
           fi
+
+          autoload -U promptinit; promptinit
+          prompt pure
         '';
         config = lib.mkOrder 1000 '' 
           python_venv() {
