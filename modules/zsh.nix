@@ -42,11 +42,20 @@
         '';
         config = lib.mkOrder 1000 '' 
           python_venv() {
-            MYVENV=./venv
-            # when you cd into a folder that contains $MYVENV
-            [[ -d $MYVENV ]] && source $MYVENV/bin/activate > /dev/null 2>&1
-            # when you cd into a folder that doesn't
-            [[ ! -d $MYVENV ]] && deactivate > /dev/null 2>&1
+            # Supported virtual-env folder names
+            for VENV_DIR in ./venv ./.venv; do
+              if [[ -d "$VENV_DIR" ]]; then
+                # Activate only if not already active,
+                # or if the active venv is different
+                if [[ "$VIRTUAL_ENV" != "$(realpath "$VENV_DIR")" ]]; then
+                  source "$VENV_DIR/bin/activate" >/dev/null 2>&1
+                fi
+                return
+              fi
+            done
+
+            # No venv found → deactivate only if one is active
+            [[ -n "$VIRTUAL_ENV" ]] && deactivate >/dev/null 2>&1
           }
           autoload -U add-zsh-hook
           add-zsh-hook chpwd python_venv
