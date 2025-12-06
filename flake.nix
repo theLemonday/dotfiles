@@ -2,9 +2,8 @@
   description = "Home Manager configuration of southclementide";
 
   inputs = {
-    # Specify the source of Home Manager and Nixpkgs.
     nixpkgs = {
-      url = "github:NixOS/nixpkgs/nixos-unstable";
+      url = "github:NixOS/nixpkgs/nixos-25.11";
     };
 
     home-manager = {
@@ -19,14 +18,14 @@
 
     nixgl.url = "github:nix-community/nixGL";
 
-    plasma-manager = {
-      url = "github:nix-community/plasma-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.home-manager.follows = "home-manager";
-    };
+    # plasma-manager = {
+    #   url = "github:nix-community/plasma-manager";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    #   inputs.home-manager.follows = "home-manager";
+    # };
   };
 
-  outputs = { self, nixpkgs, nixgl, home-manager, plasma-manager, ... }@inputs:
+  outputs = { self, nixpkgs, nixgl, home-manager, ... }@inputs:
     let
       username = "southclementide";
       system = "x86_64-linux";
@@ -56,7 +55,7 @@
               vulkan.enable = true;
             };
           }
-          inputs.plasma-manager.homeModules.plasma-manager
+          # inputs.plasma-manager.homeModules.plasma-manager
           ./home.nix
           ./modules/default.nix
         ];

@@ -9,13 +9,13 @@ nix_command="nh home switch $home_manager_dir"
 if [[ -z "$(git status --porcelain)" ]]; then
   echo "✨ No changes to commit. Running Nix..."
   eval "$nix_command"
-  status=$?
-  if [[ $status -eq 0 ]]; then
+  ret=$?
+  if [[ $ret -eq 0 ]]; then
     echo "✅ Nix command succeeded."
   else
     echo "❌ Nix command failed."
   fi
-  exit $status
+  exit $ret
 fi
 
 # Commit the changes
@@ -25,13 +25,13 @@ git commit -am "Updated $(date)"
 # Run the Nix command
 echo "⚙️ Running Nix command..."
 eval "$nix_command"
-status=$?
+ret=$?
 
-if [[ $status -eq 0 ]]; then
+if [[ $ret -eq 0 ]]; then
   echo "✅ Nix succeeded. Keeping commit."
 else
   echo "❌ Nix failed. Reverting commit..."
   git reset --soft HEAD~1
 fi
 
-exit $status
+exit $ret

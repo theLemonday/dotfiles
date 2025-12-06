@@ -89,12 +89,12 @@
 
   programs.fzf.enableZshIntegration = true;
 
-  home.activation.zshCompile = config.lib.dag.entryAfter [ "writeBoundary" ] ''
-    # Compile .zshrc if it exists
-    if [ -f "${config.home.homeDirectory}/.zshrc" ]; then
-      zsh -fc "zcompile ${config.home.homeDirectory}/.zshrc"
-    fi
-  '';
+  # home.activation.zshCompile = config.lib.dag.entryAfter [ "writeBoundary" ] ''
+  #   # Compile .zshrc if it exists
+  #   if [ -f "${config.home.homeDirectory}/.zshrc" ]; then
+  #     zsh -fc "zcompile ${config.home.homeDirectory}/.zshrc"
+  #   fi
+  # '';
   # programs.starship = { enable = true; enableZshIntegration = true; };
 }
 
