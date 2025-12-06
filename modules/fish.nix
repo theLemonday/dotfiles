@@ -35,7 +35,7 @@ in
   };
 
   programs.fish = {
-    enable = true;
+    # enable = true;
     interactiveShellInit = lib.strings.concatStrings [
       ''
         # Based on https://gist.github.com/bastibe/c0950e463ffdfdfada7adf149ae77c6f
