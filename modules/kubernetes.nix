@@ -17,6 +17,7 @@ in
     stern
     kube-score
     kubectl-tree
+    telepresence2
   ];
 
   home.file.".config/k9s/skins" = {

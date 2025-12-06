@@ -10,6 +10,7 @@ in
     silicon
     cookiecutter
     wgo
+    dust
   ];
 
   home.shellAliases = {
