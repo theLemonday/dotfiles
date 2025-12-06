@@ -59,7 +59,6 @@ in
     # fonts
     nerd-fonts.fira-code
     nerd-fonts.jetbrains-mono
-    nerd-fonts.iosevka
     (google-fonts.override {
       fonts = [ "GrapeNuts" "IcomoonFeather" ];
     })
