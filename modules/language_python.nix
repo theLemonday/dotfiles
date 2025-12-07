@@ -11,7 +11,6 @@ let
     # they will be reinstalled when running `pip -r requirements.txt` because
     # virtualenv is used below in the shellHook.
     cython
-    kaggle
     pyqt6
     ipython
     pip
@@ -22,7 +21,6 @@ let
     grpcio-tools
     # virtualenvwrapper
     wheel
-    pylatexenc
     paramiko
     python-lsp-server
     python-lsp-ruff
@@ -32,7 +30,6 @@ let
     debugpy
     click
     mutagen
-    pyqt6
   ]);
 in
 {
