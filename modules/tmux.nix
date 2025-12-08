@@ -25,9 +25,9 @@
         plugin = fingers;
         extraConfig = ''
           # Unbind the default prefix + f
-          unbind-key s
+          unbind-key f
 
-          set -g @fingers-key 
+          set -g @fingers-key f
         '';
       }
     ];
