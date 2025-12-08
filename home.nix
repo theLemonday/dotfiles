@@ -123,6 +123,8 @@ in
   home.sessionPath = [
     "${config.home.homeDirectory}/.local/bin"
     "${config.home.homeDirectory}/.config/home-manager/scripts"
+    "/var/lib/flatpak/exports/share"
+    "${config.home.homeDirectory}/.local/share/flatpak/exports/share"
   ];
 
   home.shellAliases = {
