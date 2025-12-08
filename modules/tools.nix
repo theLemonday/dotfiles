@@ -56,6 +56,17 @@ in
     #     show_hidden = true;
     #   };
     # };
+    keymap = {
+      manager = {
+        prepend_keymap = [
+          {
+            on = [ "g" "n" ];
+            run = "cd ~/.config/home-manager";
+            desc = "[G]o [N]ix home manager";
+          }
+        ];
+      };
+    };
 
     shellWrapperName = "y";
   };
