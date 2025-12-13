@@ -84,6 +84,8 @@
           # fi
           # Silent check: if the agent has no identities, try to add them using the GUI askpass
           ssh-add -l > /dev/null || ssh-add ~/.ssh/id_github
+
+          ZSH_AUTOSUGGEST_STRATEGY=(history completion match_prev_cmd)
         '';
       in
       lib.mkMerge [ earlyConfig beforeCompletionInitialization config lastToRunConfig ];
