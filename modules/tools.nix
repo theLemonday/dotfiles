@@ -112,6 +112,7 @@ in
 
   programs.ripgrep = {
     enable = true;
+    arguments = [ "--smart-case" ];
   };
 
   programs.ripgrep-all = {
