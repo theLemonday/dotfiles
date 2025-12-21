@@ -51,13 +51,24 @@ in
     enableFishIntegration = true;
     enableZshIntegration = true;
 
-    # settings = {
-    #   manager = {
-    #     show_hidden = true;
-    #   };
-    # };
+    settings = {
+      plugin =
+        {
+          prepend_previewers = [
+            {
+              url = "*.md";
+              run = "piper --CLICOLOR_FORCE=1 glow -w=$w '$1'";
+            }
+            {
+              url = "*/";
+              run = "piper -- eza -TL=3 --group-directories-first --no-quotes '$1'";
+            }
+          ];
+        };
+    };
+
     keymap = {
-      manager = {
+      mgr = {
         prepend_keymap = [
           {
             on = [ "g" "n" ];
@@ -69,6 +80,12 @@ in
     };
 
     shellWrapperName = "y";
+
+    plugins = with pkgs.yaziPlugins;{
+      piper = piper;
+      git = git;
+    };
+
   };
 
   programs.fzf = {
@@ -126,3 +143,8 @@ in
     };
   };
 }
+
+
+
+
+
