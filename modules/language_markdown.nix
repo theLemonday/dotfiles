@@ -19,6 +19,7 @@ in
     nil # nix language server
     mermaid-cli
     texliveSmall
+    glow
   ];
 
   programs.zk = {
