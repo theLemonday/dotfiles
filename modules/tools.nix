@@ -57,7 +57,7 @@ in
           prepend_previewers = [
             {
               name = "*.md";
-              run = "piper -- CLICOLOR_FORCE=1 glow -w=$w \"$1\"";
+              run = "piper -- CLICOLOR_FORCE=1 glow -w=$w -s=dracula \"$1\"";
             }
             {
               url = "*/";
