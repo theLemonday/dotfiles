@@ -12,6 +12,10 @@
         name = "theLemonday";
         email = "nhathao090703@gmail.com";
       };
+      pull.rebase = true;
+      # rebase.autoStash = true;
+      # # Optional: helps with those repetitive conflicts we talked about
+      # rerere.enabled = true;
     };
 
     extraConfig = {
