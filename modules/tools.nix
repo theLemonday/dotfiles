@@ -57,11 +57,11 @@ in
           prepend_previewers = [
             {
               url = "*.md";
-              run = "piper --CLICOLOR_FORCE=1 glow -w=$w '$1'";
+              run = "piper --CLICOLOR_FORCE=1 glow -w=$w \"$1\"";
             }
             {
               url = "*/";
-              run = "piper -- eza -TL=3 --group-directories-first --no-quotes '$1'";
+              run = "piper -- eza -TL=3 --group-directories-first --no-quotes \"$1\"";
             }
           ];
         };
