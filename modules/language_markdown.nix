@@ -23,7 +23,7 @@ in
   ];
 
   programs.zk = {
-    # enable = true;
+    enable = true;
     settings = {
       notebook = {
         dir = zkNotebookDir;
