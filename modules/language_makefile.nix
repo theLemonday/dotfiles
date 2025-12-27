@@ -12,6 +12,6 @@ in
 {
   home.packages = with pkgs; [
     mbake
-    mbake-completions
+    # mbake-completions
   ];
 }

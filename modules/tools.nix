@@ -11,6 +11,7 @@ in
     cookiecutter
     wgo
     dust
+    ast-grep
   ];
 
   home.shellAliases = {
