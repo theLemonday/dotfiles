@@ -39,7 +39,7 @@
         pagers = [
           {
             colorArg = "always";
-            pager = "delta --dark --paging=never --side-by-side";
+            pager = "delta --dark --paging=never";
           }
         ];
       };
