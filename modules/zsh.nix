@@ -42,6 +42,8 @@
           PURE_GIT_UNSTAGED_DIRTY='*'
           PURE_GIT_STAGED_DIRTY='+'
           PURE_GIT_UNTRACKED_DIRTY='?'
+          PURE_GIT_SHOW_DIRTY=true
+          PURE_GIT_SHOW_DETAILS=true
           prompt pure
         '';
         config = lib.mkOrder 1000 '' 
