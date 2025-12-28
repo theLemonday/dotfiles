@@ -29,7 +29,23 @@
     };
   };
 
-  programs.delta = { enable = true; enableGitIntegration = true; };
+  nixpkgs.overlays = [
+    (final: prev: {
+      delta = prev.delta.overrideAttrs (oldAttrs: {
+        nativeBuildInputs = (oldAttrs.nativeBuildInputs or [ ]) ++ [ prev.installShellFiles ];
+
+        postInstall = (oldAttrs.postInstall or "") + ''
+          installShellCompletion --cmd delta \
+            --zsh <($out/bin/delta --generate-completion zsh)
+        '';
+      });
+    })
+  ];
+
+  programs.delta = {
+    enable = true;
+    enableGitIntegration = true;
+  };
 
   programs.lazygit = {
     enable = true;
