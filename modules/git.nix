@@ -19,6 +19,9 @@
         br = "branch";
         cm = "commit -m";
         st = "status";
+        wtl = "worktree list";
+        wtc = "worktree add -b";
+        wtr = "worktree remove";
       };
       init = {
         defaultBranch = "main";

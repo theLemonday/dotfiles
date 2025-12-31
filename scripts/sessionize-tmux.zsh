@@ -3,7 +3,7 @@
 # 1. Define where your projects live
 # You can add multiple paths here
 search_paths=(
-    "~/Documents/"
+    "$HOME/Documents"
 )
 
 # 2. Use find to get directories and pipe to fzf
@@ -13,7 +13,7 @@ if [[ $# -eq 1 ]]; then
 else
     # find commands usually need to be adjusted based on your folder structure
     # This finds directories exactly 1 level deep inside the search paths
-    selected=$(fd "${search_paths[@]}" -mindepth 1 -maxdepth 1 -type d | fzf)
+    selected=$(fd --min-depth=1 --max-depth=1 --type=d --full-path "${search_paths[@]}" | fzf)
 fi
 
 # 3. Exit if no selection was made (user pressed Esc)
