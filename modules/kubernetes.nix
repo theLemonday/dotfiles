@@ -10,7 +10,6 @@ in
 {
   home.packages = with pkgs;[
     kubectl
-    talosctl
     helm-ls
     kubectx
     kustomize
