@@ -59,9 +59,9 @@ in
     # fonts
     nerd-fonts.fira-code
     nerd-fonts.jetbrains-mono
-    (google-fonts.override {
-      fonts = [ "GrapeNuts" "IcomoonFeather" ];
-    })
+    # (google-fonts.override {
+    #   fonts = [ "GrapeNuts" "IcomoonFeather" ];
+    # })
 
     # # You can also create simple shell scripts directly inside your
     # # configuration. For example, this adds a command 'my-hello' to your
