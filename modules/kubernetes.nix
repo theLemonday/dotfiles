@@ -18,6 +18,7 @@ in
     kube-score
     kubectl-tree
     telepresence2
+    cilium-cli
   ];
 
   home.file.".config/k9s/skins" = {
