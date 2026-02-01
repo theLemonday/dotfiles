@@ -5,7 +5,7 @@
   # nightly release
   programs.neovim = {
     enable = true;
-    extraLuaPackages = luaPkgs: with luaPkgs; [ xml2lua mimetypes ];
+#    extraLuaPackages = luaPkgs: with luaPkgs; [ mimetypes ];
     viAlias = true;
     vimAlias = true;
   };

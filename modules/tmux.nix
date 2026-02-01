@@ -1,20 +1,63 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+let
+  # We define the script as a package
+  tmux-sessionizer = pkgs.writeShellScriptBin "tmux-sessionizer" ''
+    # Note: In Nix, we usually hardcode the binary paths or ensure they are in the PATH
+    # The 'lib.makeBinPath' is the most robust way, but for a simple script, 
+    # relying on the user environment is okay if you add packages to home.packages.
+    
+    # 1. Define paths
+    search_paths=("$HOME/Documents" "$HOME/Documents/code")
+
+    # 2. Use fd (Nix usually provides 'fd', not 'fdfind')
+    if [[ $# -eq 1 ]]; then
+        selected=$1
+    else
+        # We use ${pkgs.fd}/bin/fd to ensure we use the Nix version
+        selected=$(${pkgs.fd}/bin/fd --min-depth=1 --max-depth=1 --type=d --full-path . "''${search_paths[@]}" | ${pkgs.fzf}/bin/fzf)
+    fi
+
+    if [[ -z $selected ]]; then
+        exit 0
+    fi
+
+    session_name=$(basename "$selected" | tr . _)
+
+    # Check if tmux is running
+    # We use explicit paths for robustness
+    tmux_running=$(${pkgs.procps}/bin/pgrep tmux)
+
+    if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
+        ${pkgs.tmux}/bin/tmux new-session -s "$session_name" -c "$selected"
+        exit 0
+    fi
+
+    if ! ${pkgs.tmux}/bin/tmux has-session -t="$session_name" 2> /dev/null; then
+        ${pkgs.tmux}/bin/tmux new-session -ds "$session_name" -c "$selected"
+    fi
+
+    if [[ -n $TMUX ]]; then
+        ${pkgs.tmux}/bin/tmux switch-client -t "$session_name"
+    else
+        ${pkgs.tmux}/bin/tmux attach-session -t "$session_name"
+    fi
+  '';
+in
+{
+  home.packages = with pkgs; [
+    tmux-sessionizer
+  ];
+
   programs.tmux = {
     enable = true;
 
-    # shell = "${pkgs.fish}/bin/fish";
-
     terminal = "tmux-256color";
-
     historyLimit = 100000;
-
     mouse = true;
     keyMode = "vi";
     customPaneNavigationAndResize = true;
 
     prefix = "C-Space";
-
-    tmuxp.enable = true;
 
     plugins = with pkgs.tmuxPlugins;[
       vim-tmux-navigator

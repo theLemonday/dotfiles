@@ -17,8 +17,6 @@ in
     # Nix
     nixpkgs-fmt
     nil # nix language server
-    mermaid-cli
-    texliveSmall
     glow
   ];
 

@@ -1,4 +1,63 @@
-{ config, pkgs, lib, ... }: {
+{ config, pkgs, lib, ... }:
+let
+  autoload_python_venv = ''
+    auto_source_venv() {
+      # Check if we are inside a git directory
+      local gitdir
+      gitdir=$(git rev-parse --show-toplevel 2>/dev/null)
+
+      if [[ -n "$gitdir" ]]; then
+        gitdir=$(realpath "$gitdir")
+        local cwd=$(pwd -P)
+
+        # Walk up until we leave the git root
+        while [[ "$cwd" == "$gitdir"* ]]; do
+          if [[ -f "$cwd/.venv/bin/activate" ]]; then
+            source "$cwd/.venv/bin/activate" &>/dev/null
+            return
+          elif [[ -f "$cwd/venv/bin/activate" ]]; then
+            source "$cwd/venv/bin/activate" &>/dev/null
+            return
+          fi
+          cwd="''${cwd%/*}"
+          [[ -z "$cwd" ]] && break
+        done
+      fi
+
+      # Deactivate if no venv applies anymore
+      if [[ -n "$VIRTUAL_ENV" ]]; then
+        deactivate
+      fi
+    }
+
+    autoload -Uz add-zsh-hook
+    add-zsh-hook chpwd auto_source_venv
+
+    # Run once on shell startup
+    auto_source_venv
+  '';
+
+  bat_help_alias = ''
+    alias -g -- -h='-h 2>&1 | bat --language=help --style=plain'
+    alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
+  '';
+
+  enable_vi_mode = ''
+    # Enable vi keybindings
+    bindkey -v
+
+    # Show mode in prompt (vi-mode indicator)
+    function zle-keymap-select {
+      zle reset-prompt
+    }
+    zle -N zle-keymap-select
+
+    # Make Ctrl-A / Ctrl-E still work in vi mode
+    bindkey -M vicmd '^A' beginning-of-line
+    bindkey -M vicmd '^E' end-of-line
+  '';
+in
+{
   home.packages = with pkgs;[ pure-prompt ];
 
   programs.zsh = {
@@ -9,6 +68,8 @@
     autosuggestion = { enable = true; };
 
     autocd = true;
+
+    dotDir = "${config.xdg.configHome}/zsh";
 
     oh-my-zsh = {
       enable = true;
@@ -46,26 +107,8 @@
           PURE_GIT_SHOW_DETAILS=true
           prompt pure
         '';
-        config = lib.mkOrder 1000 '' 
-          python_venv() {
-            # Supported virtual-env folder names
-            for VENV_DIR in ./venv ./.venv; do
-              if [[ -d "$VENV_DIR" ]]; then
-                # Activate only if not already active,
-                # or if the active venv is different
-                if [[ "$VIRTUAL_ENV" != "$(realpath "$VENV_DIR")" ]]; then
-                  source "$VENV_DIR/bin/activate" >/dev/null 2>&1
-                fi
-                return
-              fi
-            done
-
-            # No venv found → deactivate only if one is active
-            [[ -n "$VIRTUAL_ENV" ]] && deactivate >/dev/null 2>&1
-          }
-          autoload -U add-zsh-hook
-          add-zsh-hook chpwd python_venv
-
+        config = lib.mkOrder 1000
+          (autoload_python_venv + bat_help_alias + '' 
           # Make aliases expand automatically when you press <space>, <s-tab>
           # Inside incremental search, space behaves normally
           globalias() {
@@ -80,7 +123,16 @@
           bindkey " " globalias
           bindkey "^[[Z" magic-space
           bindkey -M isearch " " magic-space
-        '';
+
+          # -s means "string": it simulates typing the text
+          # ^f represents Ctrl+f
+          # \n represents the Enter key
+          bindkey -s ^s "tmux-sessionizer\n"
+          # -r means "repeatable" (optional, allows you to hit 'f' multiple times)
+          # run-shell executes a command in the background
+          # "tmux neww" opens a temporary window to run the script
+          bind-key -r s run-shell "tmux neww tmux-sessionizer"
+        '');
         lastToRunConfig = lib.mkOrder 1500 ''
           ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE="20"
           ZSH_AUTOSUGGEST_USE_ASYNC=1
@@ -98,13 +150,4 @@
   };
 
   programs.fzf.enableZshIntegration = true;
-
-  # home.activation.zshCompile = config.lib.dag.entryAfter [ "writeBoundary" ] ''
-  #   # Compile .zshrc if it exists
-  #   if [ -f "${config.home.homeDirectory}/.zshrc" ]; then
-  #     zsh -fc "zcompile ${config.home.homeDirectory}/.zshrc"
-  #   fi
-  # '';
-  # programs.starship = { enable = true; enableZshIntegration = true; };
 }
-

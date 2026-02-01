@@ -7,12 +7,6 @@
     nmap
     inetutils
     bettercap
-    # containerlab
-
-    # Caddy reverse proxy
-    caddy
-    # cloudflare-warp
-    mosquitto
   ];
 
   home.activation.containerlabFishCompletion = lib.hm.dag.entryAfter [ "writeBoundary" ] ''

@@ -6,5 +6,7 @@
     # docker-compose
     lazydocker
     dockerfile-language-server
+    dive
+    hadolint
   ];
 }
