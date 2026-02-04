@@ -19,6 +19,7 @@ in
     kubectl-tree
     telepresence2
     cilium-cli
+    tektoncd-cli
   ];
 
   home.file.".config/k9s/skins" = {
