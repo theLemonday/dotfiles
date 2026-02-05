@@ -11,6 +11,7 @@ in
   home.packages = with pkgs;[
     kubectl
     helm-ls
+    yq
     kubectx
     kustomize
     stern
