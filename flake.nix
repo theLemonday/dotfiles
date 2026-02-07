@@ -59,8 +59,8 @@
               };
             }
             ./home.nix
-            ./modules
             ./modules/common
+            ./modules/personal
           ];
 
           # Optionally use extraSpecialArgs
@@ -87,8 +87,8 @@
                 }
               )
               inputs.sops-nix.homeManagerModules.sops
-              ./modules
               ./modules/common
+              ./modules/work
             ];
 
             # Optionally use extraSpecialArgs

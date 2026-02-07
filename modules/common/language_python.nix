@@ -10,32 +10,12 @@ let
     # Note that even if you add Python packages here like PyTorch or Tensorflow,
     # they will be reinstalled when running `pip -r requirements.txt` because
     # virtualenv is used below in the shellHook.
-    cython
-    pyqt6
-    ipython
     pip
-    setuptools
-    pipx
-    # protobuf
-    grpcio
-    grpcio-tools
-    # virtualenvwrapper
-    wheel
-    paramiko
-    python-lsp-server
-    python-lsp-ruff
-    python-lsp-jsonrpc
-    pylsp-rope
-    # mypy
-    debugpy
-    click
-    mutagen
   ]);
 in
 {
   home.packages = with pkgs;[
     pythonWithPkgs
-    ty
   ];
 
   programs.uv = {
@@ -53,4 +33,6 @@ in
       # };
     };
   };
+
+  programs.ty = { enable = true; };
 }

@@ -10,16 +10,7 @@
   ];
 
   home.packages = with pkgs; [
-    tailwindcss-language-server
-    nodejs
-    pnpm
     prettierd
-    yarn
-    typescript
-    typescript-language-server
-    # vue-language-server
-    # vtsls
-    volta
   ];
 
 
@@ -30,10 +21,5 @@
         "proseWrap": "always"
       }
     '';
-  };
-
-  programs.bun = {
-    enable = true;
-    enableGitIntegration = true;
   };
 }

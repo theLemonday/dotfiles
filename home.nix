@@ -3,27 +3,11 @@ let
   directories = [
     ".pnpm-global"
     ".custom-script"
+    ".config/zsh/conf.d"
   ];
 in
 {
   home.stateVersion = "25.05"; # Please read the comment before changing.
-
-  xdg = {
-    enable = true;
-
-    userDirs = {
-      enable = true;
-
-      desktop = "${config.home.homeDirectory}/Desktop";
-      download = "${config.home.homeDirectory}/Downloads";
-      templates = "${config.home.homeDirectory}/Templates";
-      publicShare = "${config.home.homeDirectory}/Public";
-      documents = "${config.home.homeDirectory}/Documents";
-      music = "${config.home.homeDirectory}/Music";
-      pictures = "${config.home.homeDirectory}/Pictures";
-      videos = "${config.home.homeDirectory}/Videos";
-    };
-  };
 
   sops = {
     age.keyFile = "${config.xdg.configHome}/sops/age/keys.txt";
@@ -38,9 +22,6 @@ in
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
-    # openapi-generator-cli
-    wl-clipboard-rs
-
     sops
     # cmake
 
@@ -54,10 +35,6 @@ in
     imagemagick
 
     ffmpeg_7-full
-
-    # fonts
-    nerd-fonts.fira-code
-    nerd-fonts.jetbrains-mono
 
     # # You can also create simple shell scripts directly inside your
     # # configuration. For example, this adds a command 'my-hello' to your
@@ -109,10 +86,6 @@ in
   home.sessionVariables = {
     EDITOR = "vi";
     XMODIFIERS = "@im=fcitx";
-
-    SSH_ASKPASS = "/usr/bin/ksshaskpass";
-    # Force SSH to use the GUI prompt even if you are in a terminal
-    SSH_ASKPASS_REQUIRE = "prefer";
   };
 
   home.sessionPath = [
@@ -131,7 +104,6 @@ in
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
-  fonts.fontconfig.enable = true;
 
   programs.nh = {
     enable = true;

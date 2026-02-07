@@ -127,7 +127,7 @@ in
           # -s means "string": it simulates typing the text
           # ^f represents Ctrl+f
           # \n represents the Enter key
-          bindkey -s ^s "tmux-sessionizer\n"
+          # bindkey -s ^s "tmux-sessionizer\n"
           # -r means "repeatable" (optional, allows you to hit 'f' multiple times)
           # run-shell executes a command in the background
           # "tmux neww" opens a temporary window to run the script
@@ -144,6 +144,18 @@ in
           ssh-add -l > /dev/null || ssh-add ~/.ssh/id_github
 
           ZSH_AUTOSUGGEST_STRATEGY=(history completion match_prev_cmd)
+
+          # Define the directory where you keep your split configs
+          ZSH_CONFIG_DIR="$HOME/.config/zsh/conf.d"
+
+          # 1. Check if directory exists
+          if [ -d "$ZSH_CONFIG_DIR" ]; then
+            # 2. Loop through every file ending in .zsh
+            for config_file in "$ZSH_CONFIG_DIR"/*.zsh; do
+              # 3. Source (load) the file
+              source "$config_file"
+            done
+          fi
         '';
       in
       lib.mkMerge [ earlyConfig beforeCompletionInitialization config lastToRunConfig ];

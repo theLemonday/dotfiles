@@ -11,7 +11,6 @@ in
   home.packages = with pkgs;[
     kubectl
     talosctl
-    helm-ls
     kubectx
     kustomize
     stern
@@ -52,7 +51,6 @@ in
 
   programs.kubeswitch = {
     enable = true;
-    enableFishIntegration = true;
     enableZshIntegration = true;
   };
 }
