@@ -8,7 +8,6 @@ in
     bind
     trash-cli
     silicon
-    cookiecutter
     wgo
     dust
     ast-grep
