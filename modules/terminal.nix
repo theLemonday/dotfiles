@@ -14,11 +14,6 @@ let
   };
 in
 {
-  home.packages = with pkgs; [
-    presenterm
-    watchexec
-  ];
-
   home.sessionVariables = {
     "DARK_THEME" = themes.dark;
     "LIGHT_THEME" = themes.light;
@@ -67,15 +62,5 @@ in
     terminal = false;
     type = "Application";
     categories = [ "System" "TerminalEmulator" ];
-  };
-
-  programs.zellij = {
-    # enable = true;
-    enableFishIntegration = true;
-    settings = {
-      ui = {
-        show_keybinds = false;
-      };
-    };
   };
 }
