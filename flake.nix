@@ -1,5 +1,5 @@
 {
-  description = "Home Manager configuration of southclementide";
+  description = "Home Manager personal configuration of southclementide";
 
   inputs = {
     nixpkgs = {
@@ -27,44 +27,75 @@
 
   outputs = { self, nixpkgs, nixgl, home-manager, ... }@inputs:
     let
-      username = "southclementide";
+      # username = "southclementide";
       system = "x86_64-linux";
       pkgs = import nixpkgs { inherit system; config.allowUnfree = true; };
     in
     {
-      homeConfigurations."southclementide" = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
+      homeConfigurations = {
+        "personal" = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
 
-        # Specify your home configuration modules here, for example,
-        # the path to your home.nix.
-        modules = [
-          {
-            home = {
-              # Home Manager needs a bit of information about you and the paths it should
-              # manage.
-              inherit username;
-              homeDirectory = "/home/${username}";
-            };
-          }
-          inputs.sops-nix.homeManagerModules.sops
-          {
-            nixGL = {
-              packages = nixgl.packages;
-              defaultWrapper = "mesa";
-              installScripts = [ "mesa" ];
-              vulkan.enable = true;
-            };
-          }
-          # inputs.plasma-manager.homeModules.plasma-manager
-          ./home.nix
-          ./modules/default.nix
-        ];
+          # Specify your home configuration modules here, for example,
+          # the path to your home.nix.
+          modules = [
+            (
+              let username = "southclementide"; in {
+                home = {
+                  # Home Manager needs a bit of information about you and the paths it should
+                  # manage.
+                  inherit username;
+                  homeDirectory = "/home/${username}";
+                };
+              }
+            )
+            inputs.sops-nix.homeManagerModules.sops
+            {
+              nixGL = {
+                packages = nixgl.packages;
+                defaultWrapper = "mesa";
+                installScripts = [ "mesa" ];
+                vulkan.enable = true;
+              };
+            }
+            ./home.nix
+            ./modules/default.nix
+          ];
 
-        # Optionally use extraSpecialArgs
-        # to pass through arguments to home.nix
-        extraSpecialArgs = {
-          inherit inputs;
+          # Optionally use extraSpecialArgs
+          # to pass through arguments to home.nix
+          extraSpecialArgs = {
+            inherit inputs;
+          };
         };
+        "work" = home-manager.lib.homeManagerConfiguration
+          {
+            inherit pkgs;
+
+            # Specify your home configuration modules here, for example,
+            # the path to your home.nix.
+            modules = [
+              (
+                let username = "haoln"; in {
+                  home = {
+                    # Home Manager needs a bit of information about you and the paths it should
+                    # manage.
+                    inherit username;
+                    homeDirectory = "/home/${username}";
+                  };
+                }
+              )
+              inputs.sops-nix.homeManagerModules.sops
+              ./home.nix
+              ./modules/default.nix
+            ];
+
+            # Optionally use extraSpecialArgs
+            # to pass through arguments to home.nix
+            extraSpecialArgs = {
+              inherit inputs;
+            };
+          };
       };
     };
 }

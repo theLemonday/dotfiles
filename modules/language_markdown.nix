@@ -18,6 +18,7 @@ in
     nixpkgs-fmt
     nil # nix language server
     glow
+    presenterm
   ];
 
   programs.zk = {
