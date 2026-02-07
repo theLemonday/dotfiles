@@ -2,7 +2,6 @@
 let
   directories = [
     ".pnpm-global"
-    ".config/mpd"
     ".custom-script"
   ];
 in
@@ -90,7 +89,6 @@ in
     #   org.gradle.console=verbose
     #   org.gradle.daemon.idletimeout=3600000
     # '';
-    ".markdownlint.json".source = ./dotfiles/markdownlint.json;
   };
 
   # Home Manager can also manage your environment variables through
@@ -128,7 +126,6 @@ in
   home.shellAliases = {
     ls = "eza";
     k = "kubectl";
-    lzd = "lazydocker";
     lzg = "lazygit";
     hms = "${config.xdg.configHome}/home-manager/scripts/update-home.zsh";
     docker = "nerdctl";
@@ -136,11 +133,6 @@ in
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
-
-  services.ssh-agent = {
-    enable = true;
-    # enableZshIntegration = true;
-  };
 
   programs.direnv = {
     enable = false;
@@ -157,10 +149,14 @@ in
     flake = "${config.xdg.configHome}/home-manager/";
   };
 
+  services.ssh-agent = {
+    enable = true;
+  };
   programs.ssh = {
     enable = true;
     enableDefaultConfig = false;
     includes = [
+      "config.d/*"
       config.sops.secrets."ssh".path
     ];
   };
