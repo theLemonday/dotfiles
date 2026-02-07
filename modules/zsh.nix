@@ -131,7 +131,7 @@ in
           # -r means "repeatable" (optional, allows you to hit 'f' multiple times)
           # run-shell executes a command in the background
           # "tmux neww" opens a temporary window to run the script
-          bindgey -r s run-shell "tmux neww tmux-sessionizer"
+          bindkey -r s run-shell "tmux neww tmux-sessionizer"
         '');
         lastToRunConfig = lib.mkOrder 1500 ''
           ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE="20"
