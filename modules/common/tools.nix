@@ -10,7 +10,6 @@ in
     silicon
     wgo
     dust
-    ast-grep
   ];
 
   home.shellAliases = {

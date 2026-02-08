@@ -14,9 +14,9 @@ let
   ]);
 in
 {
-  home.packages = with pkgs;[
-    pythonWithPkgs
-  ];
+  # home.packages = with pkgs;[
+  #   pythonWithPkgs
+  # ];
 
   programs.uv = {
     enable = true;
