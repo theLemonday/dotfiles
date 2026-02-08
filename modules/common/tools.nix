@@ -132,10 +132,6 @@ in
     arguments = [ "--smart-case" ];
   };
 
-  programs.ripgrep-all = {
-    enable = true;
-  };
-
   programs.tealdeer = {
     enable = true;
     settings = {
