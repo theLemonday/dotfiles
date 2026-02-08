@@ -1,9 +1,10 @@
-{ pkgs, ... }: {
-  home.packages = with pkgs;[
+{ pkgs, ... }:
+{
+  home.packages = with pkgs; [
     ast-grep
   ];
 
-    programs.ripgrep-all = {
+  programs.ripgrep-all = {
     enable = true;
   };
 }
