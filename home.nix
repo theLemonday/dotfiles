@@ -22,7 +22,7 @@ in
         sopsFile = ./secrets/ssh.yml;
       };
       "work_git_config" = {
-        sopsFile = ./secrets/work_git_config.toml;
+        sopsFile = ./secrets/work_git_config.yml;
       };
     };
   };
