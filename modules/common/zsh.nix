@@ -169,7 +169,7 @@ in
 
           # OPTION 1: Base09 (Orange) - High Contrast, very visible
           # Ideally distinct from errors (Red) and Strings (Green/Yellow)
-          ZSH_HIGHLIGHT_STYLES[comment]='fg=16,italic'
+          ZSH_HIGHLIGHT_STYLES[comment]='fg=20,italic'
 
           # Define the directory where you keep your split configs
           ZSH_CONFIG_DIR="$HOME/.config/zsh/conf.d"
