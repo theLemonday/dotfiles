@@ -2,10 +2,12 @@
 keys:
   - &anki age1t6cdxzv6dgvv6408rsykkjz2hhhp6e5a8wa5x27eazzl67ezpsrqdmjr05
   - &ssh age1gr5g8gs9mzermeldl954694jmkqa0x3deax0pghjj29y8s3fe5gsfsnmh6
+  - &default age1dvxpflzv7pstnm3mrg2y85vx7zyr73e7xelr8jg4cfv8ayehxqdsrf49v0
 creation_rules:
-  # - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
-  #   key_groups:
-  #     - age: [*anki]
   - path_regex: secrets/ssh.yml
     key_groups:
       - age: [*ssh]
+
+  - path_regex: secrets/*
+    key_groups:
+      - age: [*default]

@@ -1,15 +1,9 @@
 { pkgs, ... }:
-let
-  trash-cli = pkgs.trash-cli;
-in
 {
   home.packages = with pkgs; [
-    cloc
-    bind
-    trash-cli
-    silicon
     wgo
     dust
+    tailspin
   ];
 
   home.shellAliases = {
@@ -25,7 +19,7 @@ in
     };
     Service = {
       Type = "oneshot";
-      ExecStart = "${trash-cli}/bin/trash-empty 60";
+      ExecStart = "${pkgs.trash-cli}/bin/trash-empty 60";
     };
     Install = {
       WantedBy = [ "default.target" ];
@@ -86,7 +80,6 @@ in
       piper = piper;
       git = git;
     };
-
   };
 
   programs.fzf = {

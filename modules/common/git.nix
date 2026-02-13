@@ -1,13 +1,8 @@
-{ pkgs, ... }: {
+{
   programs.git = {
     enable = true;
     settings = {
       pull.rebase = true;
-      user =
-        {
-          name = "theLemonday";
-          email = "nhathao090703@gmail.com";
-        };
       alias = {
         co = "checkout";
         br = "branch";

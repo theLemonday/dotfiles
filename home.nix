@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 let
   directories = [
     ".pnpm-global"
@@ -15,6 +20,9 @@ in
     secrets = {
       "ssh" = {
         sopsFile = ./secrets/ssh.yml;
+      };
+      "work_git_config" = {
+        sopsFile = ./secrets/work_git_config.toml;
       };
     };
   };
@@ -43,9 +51,11 @@ in
 
   home.activation = {
     init = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-      ${lib.concatStringsSep "\n" (builtins.map (dir: ''
-        mkdir -p ~/${dir}
-      '') directories)}
+      ${lib.concatStringsSep "\n" (
+        builtins.map (dir: ''
+          mkdir -p ~/${dir}
+        '') directories
+      )}
     '';
   };
 
@@ -100,7 +110,6 @@ in
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
-
 
   programs.nh = {
     enable = true;
