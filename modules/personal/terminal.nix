@@ -14,6 +14,10 @@ let
   };
 in
 {
+  home.packages = with pkgs;[
+    wl-clipboard-rs
+  ];
+
   home.sessionVariables = {
     "DARK_THEME" = themes.dark;
     "LIGHT_THEME" = themes.light;

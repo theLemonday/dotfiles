@@ -8,9 +8,8 @@ let
   };
 in
 {
-  home.packages = with pkgs;[
+  home.packages = with pkgs; [
     kubectl
-    helm-ls
     yq
     kubectx
     kustomize
@@ -19,7 +18,7 @@ in
     kubectl-tree
     telepresence2
     cilium-cli
-    tektoncd-cli
+    tekconcd-cli
   ];
 
   home.file.".config/k9s/skins" = {
@@ -52,7 +51,6 @@ in
 
   programs.kubeswitch = {
     enable = true;
-    enableFishIntegration = true;
     enableZshIntegration = true;
   };
 }

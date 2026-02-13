@@ -3,7 +3,7 @@
 home_manager_dir="$HOME/.config/home-manager/"
 cd "$home_manager_dir" || exit 1
 
-nix_command="nh home switch $home_manager_dir"
+nix_command="nh home switch $home_manager_dir --configuration personal"
 
 # If there are no changes, run switch command and exit
 if [[ -z "$(git status --porcelain)" ]]; then

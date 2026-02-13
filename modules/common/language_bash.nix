@@ -1,6 +1,8 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
-    dotenv-linter
+    shfmt
+    # bashdb
+    # shellcheck
   ];
 }

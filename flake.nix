@@ -59,7 +59,36 @@
               };
             }
             ./home.nix
-            ./modules/default.nix
+            ./modules/common
+            ./modules/personal
+          ];
+
+          # Optionally use extraSpecialArgs
+          # to pass through arguments to home.nix
+          extraSpecialArgs = {
+            inherit inputs;
+          };
+        };
+        "work" = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+
+          # Specify your home configuration modules here, for example,
+          # the path to your home.nix.
+          modules = [
+            (
+              let username = "haoln"; in {
+                home = {
+                  # Home Manager needs a bit of information about you and the paths it should
+                  # manage.
+                  inherit username;
+                  homeDirectory = "/home/${username}";
+                };
+              }
+            )
+            inputs.sops-nix.homeManagerModules.sops
+            ./home.nix
+            ./modules/common
+            ./modules/work
           ];
 
           # Optionally use extraSpecialArgs

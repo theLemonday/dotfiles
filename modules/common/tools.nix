@@ -8,10 +8,8 @@ in
     bind
     trash-cli
     silicon
-    cookiecutter
     wgo
     dust
-    ast-grep
   ];
 
   home.shellAliases = {
@@ -53,26 +51,28 @@ in
     enableZshIntegration = true;
 
     settings = {
-      plugin =
-        {
-          prepend_previewers = [
-            {
-              name = "*.md";
-              run = "piper -- CLICOLOR_FORCE=1 glow -w=$w \"$1\"";
-            }
-            {
-              url = "*/";
-              run = "piper -- eza -TL=3 --group-directories-first --no-quotes \"$1\"";
-            }
-          ];
-        };
+      plugin = {
+        prepend_previewers = [
+          {
+            name = "*.md";
+            run = "piper -- CLICOLOR_FORCE=1 glow -w=$w \"$1\"";
+          }
+          {
+            url = "*/";
+            run = "piper -- eza -TL=3 --group-directories-first --no-quotes \"$1\"";
+          }
+        ];
+      };
     };
 
     keymap = {
       mgr = {
         prepend_keymap = [
           {
-            on = [ "g" "n" ];
+            on = [
+              "g"
+              "n"
+            ];
             run = "cd ~/.config/home-manager";
             desc = "[G]o [N]ix home manager";
           }
@@ -82,7 +82,7 @@ in
 
     shellWrapperName = "y";
 
-    plugins = with pkgs.yaziPlugins;{
+    plugins = with pkgs.yaziPlugins; {
       piper = piper;
       git = git;
     };
@@ -134,19 +134,12 @@ in
     arguments = [ "--smart-case" ];
   };
 
-  programs.ripgrep-all = {
-    enable = true;
-  };
-
   programs.tealdeer = {
     enable = true;
     settings = {
-      updates = { auto_update = true; };
+      updates = {
+        auto_update = true;
+      };
     };
   };
 }
-
-
-
-
-

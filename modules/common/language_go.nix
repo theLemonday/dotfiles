@@ -1,20 +1,14 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
-    protoc-gen-go
-
     go-tools
-    # go-task
-    delve # debugger
+    delve
     gopls
 
     # formatter
     gotools
     golines
     gofumpt
-
-    # gopls
-    cobra-cli
   ];
 
   home.sessionPath = [
