@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 let
   autoload_python_venv = ''
     auto_source_venv() {
@@ -58,14 +63,18 @@ let
   '';
 in
 {
-  home.packages = with pkgs;[ pure-prompt ];
+  home.packages = with pkgs; [ pure-prompt ];
 
   programs.zsh = {
     enable = true;
 
     enableCompletion = true;
-    syntaxHighlighting = { enable = true; };
-    autosuggestion = { enable = true; };
+    syntaxHighlighting = {
+      enable = true;
+    };
+    autosuggestion = {
+      enable = true;
+    };
 
     autocd = true;
 
@@ -73,7 +82,13 @@ in
 
     oh-my-zsh = {
       enable = true;
-      plugins = [ "docker" "docker-compose" "git" "fzf" "eza" ];
+      plugins = [
+        "docker"
+        "docker-compose"
+        "git"
+        "fzf"
+        "eza"
+      ];
       theme = "";
     };
 
@@ -107,32 +122,35 @@ in
           PURE_GIT_SHOW_DETAILS=true
           prompt pure
         '';
-        config = lib.mkOrder 1000
-          (autoload_python_venv + bat_help_alias + '' 
-          # Make aliases expand automatically when you press <space>, <s-tab>
-          # Inside incremental search, space behaves normally
-          globalias() {
-             if [[ $LBUFFER =~ '[a-zA-Z0-9]+$' ]]; then
-                 zle _expand_alias
-                 zle expand-word
-             fi
-             zle self-insert
-          }
-          zle -N globalias
+        config = lib.mkOrder 1000 (
+          autoload_python_venv
+          + bat_help_alias
+          + ''
+            # Make aliases expand automatically when you press <space>, <s-tab>
+            # Inside incremental search, space behaves normally
+            globalias() {
+               if [[ $LBUFFER =~ '[a-zA-Z0-9]+$' ]]; then
+                   zle _expand_alias
+                   zle expand-word
+               fi
+               zle self-insert
+            }
+            zle -N globalias
 
-          bindkey " " globalias
-          bindkey "^[[Z" magic-space
-          bindkey -M isearch " " magic-space
+            bindkey " " globalias
+            bindkey "^[[Z" magic-space
+            bindkey -M isearch " " magic-space
 
-          # -s means "string": it simulates typing the text
-          # ^f represents Ctrl+f
-          # \n represents the Enter key
-          # bindkey -s ^s "tmux-sessionizer\n"
-          # -r means "repeatable" (optional, allows you to hit 'f' multiple times)
-          # run-shell executes a command in the background
-          # "tmux neww" opens a temporary window to run the script
-          # bindkey -r s run-shell "tmux neww tmux-sessionizer"
-        '');
+            # -s means "string": it simulates typing the text
+            # ^f represents Ctrl+f
+            # \n represents the Enter key
+            # bindkey -s ^s "tmux-sessionizer\n"
+            # -r means "repeatable" (optional, allows you to hit 'f' multiple times)
+            # run-shell executes a command in the background
+            # "tmux neww" opens a temporary window to run the script
+            # bindkey -r s run-shell "tmux neww tmux-sessionizer"
+          ''
+        );
         lastToRunConfig = lib.mkOrder 1500 ''
           ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE="20"
           ZSH_AUTOSUGGEST_USE_ASYNC=1
@@ -144,6 +162,14 @@ in
           ssh-add -l > /dev/null || ssh-add ~/.ssh/id_github
 
           ZSH_AUTOSUGGEST_STRATEGY=(history completion match_prev_cmd)
+
+          # Define styles for zsh-syntax-highlighting
+          # We use 'typeset -A' to ensure the array exists before modifying it
+          typeset -A ZSH_HIGHLIGHT_STYLES
+
+          # OPTION 1: Base09 (Orange) - High Contrast, very visible
+          # Ideally distinct from errors (Red) and Strings (Green/Yellow)
+          ZSH_HIGHLIGHT_STYLES[comment]='fg=16,italic'
 
           # Define the directory where you keep your split configs
           ZSH_CONFIG_DIR="$HOME/.config/zsh/conf.d"
@@ -158,7 +184,12 @@ in
           fi
         '';
       in
-      lib.mkMerge [ earlyConfig beforeCompletionInitialization config lastToRunConfig ];
+      lib.mkMerge [
+        earlyConfig
+        beforeCompletionInitialization
+        config
+        lastToRunConfig
+      ];
   };
 
   programs.fzf.enableZshIntegration = true;
