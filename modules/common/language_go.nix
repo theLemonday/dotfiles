@@ -9,6 +9,7 @@
     gotools
     golines
     gofumpt
+    ko
   ];
 
   home.sessionPath = [
