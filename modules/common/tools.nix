@@ -4,6 +4,7 @@
     wgo
     dust
     tailspin
+    trash-cli
   ];
 
   home.shellAliases = {

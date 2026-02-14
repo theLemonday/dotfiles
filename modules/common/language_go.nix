@@ -23,8 +23,6 @@
           # The command you suggested:
           installShellCompletion --cmd ko \
             --zsh <($out/bin/ko completion zsh) 
-            # --bash <($out/bin/ko completion bash) \
-            # --fish <($out/bin/ko completion fish)
         '';
       });
     })
