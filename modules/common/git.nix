@@ -33,6 +33,28 @@
   programs.delta = {
     enable = true;
     enableGitIntegration = true;
+    options = {
+        # This is the MAGIC SWITCH. 
+        # It tells Delta: "Use the terminal's 16 colors for syntax highlighting."
+        syntax-theme = "base16";
+        
+        # Now we map the diff styles to strict ANSI colors (0-15).
+        # "syntax" = use the syntax highlighting colors
+        # "auto" = let Delta pick the background style from the theme
+        
+        # DELETE (Red): Use terminal color 1 (Red) for text, no distinctive background
+        minus-style = "syntax auto";
+        
+        # ADD (Green): Use terminal color 2 (Green) for text
+        plus-style = "syntax auto";
+        
+        # CLEANUP: Remove the "box" decorations that often clash with themes
+        decorations = {
+          commit-decoration-style = "bold yellow box ul";
+          file-style = "bold yellow ul";
+          file-decoration-style = "none";
+        };
+      };
   };
 
   programs.lazygit = {
