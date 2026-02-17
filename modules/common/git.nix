@@ -43,28 +43,28 @@
       minus-emph-style = "syntax bold";
       plus-emph-style = "syntax bold";
 
-      # 3. Restoring "Other Components" (The Pop)
-      # We use explicit colors (blue, yellow) but AVOID background colors.
-      
-      # FILE PATHS: Make them Blue and Underlined
-      file-style = "blue bold";
-      file-decoration-style = "blue ul";
-
-      # COMMIT HASHES: Make them Yellow
-      commit-style = "raw"; # 'raw' keeps the original git color, or use "yellow bold"
-      commit-decoration-style = "yellow box"; # Adds a yellow box around the commit hash
-
-      # HUNK HEADERS: Make them distinct but transparent
-      # "syntax" uses code color, "bold" makes it pop.
-      # "box" draws a line around it.
-      hunk-header-style = "file line-number syntax bold"; 
-      hunk-header-decoration-style = "magenta box"; 
-
-      # 4. Line Numbers (Colorful)
-      line-numbers = true;
-      line-numbers-zero-style = "cyan";      # Cyan for unchanged lines
-      line-numbers-minus-style = "red";      # Red for deleted lines
-      line-numbers-plus-style = "green";     # Green for added lines
+    #   # 3. Restoring "Other Components" (The Pop)
+    #   # We use explicit colors (blue, yellow) but AVOID background colors.
+    #
+    #   # FILE PATHS: Make them Blue and Underlined
+    #   file-style = "blue bold";
+    #   file-decoration-style = "blue ul";
+    #
+    #   # COMMIT HASHES: Make them Yellow
+    #   commit-style = "raw"; # 'raw' keeps the original git color, or use "yellow bold"
+    #   commit-decoration-style = "yellow box"; # Adds a yellow box around the commit hash
+    #
+    #   # HUNK HEADERS: Make them distinct but transparent
+    #   # "syntax" uses code color, "bold" makes it pop.
+    #   # "box" draws a line around it.
+    #   hunk-header-style = "file line-number syntax bold"; 
+    #   hunk-header-decoration-style = "magenta box"; 
+    #
+    #   # 4. Line Numbers (Colorful)
+    #   line-numbers = true;
+    #   line-numbers-zero-style = "cyan";      # Cyan for unchanged lines
+    #   line-numbers-minus-style = "red";      # Red for deleted lines
+    #   line-numbers-plus-style = "green";     # Green for added lines
     };
   };
 
