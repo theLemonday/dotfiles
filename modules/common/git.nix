@@ -87,8 +87,8 @@
           activeBorderColor = ["green" "bold"];
           inactiveBorderColor = ["default"];
           # Keeping this "reverse" ensures the cursor is always visible
-          selectedLineBgColor = ["reverse"]; 
-          selectedRangeBgColor = ["reverse"];
+          # selectedLineBgColor = ["reverse"]; 
+          # selectedRangeBgColor = ["reverse"];
         };
       };
     };
