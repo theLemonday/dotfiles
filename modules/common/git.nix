@@ -76,10 +76,10 @@
         # You used 'pagers = [...]' in your snippet. 
         # That is for external commands only. 
         # For the MAIN view, you MUST use 'paging' (singular, table).
-        paging = {
+        pagers = [{
           colorArg = "always";
           pager = "delta --paging=never";
-        };
+        }];
       };
       
       gui = {
