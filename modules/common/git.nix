@@ -31,34 +31,36 @@
     })
   ];
   programs.delta = {
-    enable = true;
-    enableGitIntegration = true;
-    options = {
-      # 1. Use the terminal's colors
-      syntax-theme = "base16";
+  enable = true;
+  enableGitIntegration = true;
+  options = {
+    # 1. Use the terminal's 16 colors
+    syntax-theme = "base16";
 
-      # 2. THE FIX: Transparency ("syntax auto")
-      # This removes the background color from diff lines.
-      # It forces Delta to only color the TEXT (syntax), not the background box.
-      minus-style = "syntax auto";
-      plus-style = "syntax auto";
-      
-      # Optional: Make the specific character changes bold/reversed
-      minus-emph-style = "syntax auto reversed"; 
-      plus-emph-style = "syntax auto reversed";
+    # 2. Styles
+    # We remove 'auto' entirely. 
+    # 'syntax' implies "Use the code's syntax color for the text".
+    # By omitting the background color, it defaults to transparent.
+    minus-style = "syntax";
+    plus-style = "syntax";
+    
+    # 3. Emphasis (The Fix)
+    # "syntax bold" is the safest universal style.
+    # It adds weight without adding a clashing background color.
+    minus-emph-style = "syntax bold";
+    plus-emph-style = "syntax bold";
 
-      # 3. Clean up the UI
-      # Remove the large "file box" headers which often clash in Light Mode
-      hunk-header-style = "file line-number syntax";
-      hunk-header-decoration-style = "none";
-      
-      # 4. Line Numbers
-      line-numbers = true;
-      line-numbers-zero-style = "auto"; # Grey
-      line-numbers-minus-style = "auto"; # Red
-      line-numbers-plus-style = "auto"; # Green
-    };
+    # 4. Headers
+    hunk-header-style = "file line-number syntax";
+    hunk-header-decoration-style = "none";
+    
+    # 5. Line Numbers
+    line-numbers = true;
+    line-numbers-zero-style = "blue";      # Use a base16 color (0-15)
+    line-numbers-minus-style = "red";      # Use a base16 color
+    line-numbers-plus-style = "green";     # Use a base16 color
   };
+};
 
   programs.lazygit = {
     enable = true;
