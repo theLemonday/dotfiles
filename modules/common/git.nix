@@ -38,10 +38,10 @@
       syntax-theme = "base16";
 
       # 2. The Clean Diff (Your preference)
-      minus-style = "syntax";
-      plus-style = "syntax";
-      minus-emph-style = "syntax bold";
-      plus-emph-style = "syntax bold";
+      # minus-style = "syntax";
+      # plus-style = "syntax";
+      # minus-emph-style = "syntax bold";
+      # plus-emph-style = "syntax bold";
 
     #   # 3. Restoring "Other Components" (The Pop)
     #   # We use explicit colors (blue, yellow) but AVOID background colors.
