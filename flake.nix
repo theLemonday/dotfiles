@@ -18,6 +18,8 @@
 
     nixgl.url = "github:nix-community/nixGL";
 
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+
     # plasma-manager = {
     #   url = "github:nix-community/plasma-manager";
     #   inputs.nixpkgs.follows = "nixpkgs";
@@ -26,12 +28,11 @@
   };
 
   outputs =
-    {
-      self,
-      nixpkgs,
-      nixgl,
-      home-manager,
-      ...
+    { self
+    , nixpkgs
+    , nixgl
+    , home-manager
+    , ...
     }@inputs:
     let
       # username = "southclementide";
