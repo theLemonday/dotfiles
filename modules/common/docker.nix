@@ -6,5 +6,6 @@
     dockerfile-language-server
     dive
     hadolint
+    nerdctl
   ];
 }
