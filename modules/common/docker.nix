@@ -10,9 +10,9 @@
   ];
   nixpkgs.overlays = [
     (final: prev: {
-      nerdctl = prev.ko.overrideAttrs (oldAttrs: {
+      nerdctl = prev.nerdctl.overrideAttrs (oldAttrs: {
         # 1. Add the utility that provides 'installShellCompletion'
-        nativeBuildInputs = (oldAttrs.nativeBuildInputs or [ ]) ++ [ final.installShellFiles ];
+        nativeBuildInputs = (oldAttrs.nativeBuildInputs or [ ]) ++ [ prev.installShellFiles ];
 
         # 2. Run the command after the main install phase
         postInstall = (oldAttrs.postInstall or "") + ''
@@ -23,5 +23,4 @@
       });
     })
   ];
-
 }
