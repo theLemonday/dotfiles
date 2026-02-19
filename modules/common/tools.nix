@@ -5,6 +5,7 @@
     dust
     tailspin
     trash-cli
+    bpftrace
   ];
 
   home.shellAliases = {
