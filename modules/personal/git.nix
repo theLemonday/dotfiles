@@ -7,4 +7,6 @@
       };
     };
   };
+
+  programs.gh = { enable = true; };
 }

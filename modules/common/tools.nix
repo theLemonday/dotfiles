@@ -3,8 +3,8 @@
   home.packages = with pkgs; [
     wgo
     dust
-    tailspin
     trash-cli
+    bpftrace
   ];
 
   home.shellAliases = {
