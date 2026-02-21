@@ -2,7 +2,6 @@
 {
   home.packages = with pkgs; [
     ast-grep
-    gemini-cli
   ];
 
   programs.ripgrep-all = {
