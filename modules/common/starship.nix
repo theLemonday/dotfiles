@@ -5,12 +5,12 @@
 
     # Configure the look right here in Nix!
     settings = {
-      format = "$all$fill$kubernetes\n$character";
+      format = "$directory$git_branch$git_status$python$golang$lua$nodejs$nix_shell$fill$kubernetes\n$character";
       fill = {
         symbol = " ";
       };
 
-      add_newline = false;
+      add_newline = true;
 
       # 3. Your Custom Git Configuration
       git_branch = {
@@ -23,12 +23,6 @@
         disabled = false;
         format = "[$symbol$context(\($namespace\))]($style)";
       };
-
-      # python = {
-      #   detect_files = [ "requirements.txt" "pyproject.toml" ".python-version" ];
-      #   detect_folders = [ ".venv" "venv" ];
-      #   format = "via [\${symbol}\${pyenv_prefix}(\${version} )(\\($virtualenv\\))]($style) ";
-      # };
     };
   };
 }
