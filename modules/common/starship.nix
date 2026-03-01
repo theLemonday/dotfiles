@@ -5,7 +5,7 @@
 
     # Configure the look right here in Nix!
     settings = {
-      format = "$all$fill$kubernetes\n$character";
+      format = "$all$kubernetes\n$character";
       fill = {
         symbol = " ";
       };
