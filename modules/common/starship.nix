@@ -24,7 +24,7 @@
         format = "[$symbol$context(\($namespace\))]($style)";
       };
 
-      python = { disabled = false; };
+      python = { disabled = false; detect_files = [ ".python-version" "Pipfile" "__init__.py" "pyproject.toml" "requirements.txt" "setup.py" "tox.ini" ]; };
     };
   };
 }
