@@ -10,7 +10,7 @@
         symbol = " ";
       };
 
-      # add_newline = true;
+      add_newline = false;
 
       # 3. Your Custom Git Configuration
       git_branch = {
