@@ -23,6 +23,12 @@
         disabled = false;
         format = "[$symbol$context(\($namespace\))]($style)";
       };
+
+      python = {
+        detect_files = [ "requirements.txt" "pyproject.toml" ".python-version" ];
+        detect_folders = [ ".venv" "venv" ];
+        format = "via [\${symbol}\${pyenv_prefix}(\${version} )(\\($virtualenv\\))]($style) ";
+      };
     };
   };
 }
