@@ -23,6 +23,8 @@
         disabled = false;
         format = "[$symbol$context(\($namespace\))]($style)";
       };
+
+      python = { disabled = false; };
     };
   };
 }
