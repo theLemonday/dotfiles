@@ -19,9 +19,9 @@ in
       "ssh" = {
         sopsFile = ./secrets/ssh.yml;
       };
-      "work_git_config" = {
-        sopsFile = ./secrets/work_git_config.yml;
-      };
+      # "work_git_config" = {
+      #   sopsFile = ./secrets/work_git_config.yml;
+      # };
     };
   };
 
