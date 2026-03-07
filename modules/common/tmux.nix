@@ -55,7 +55,7 @@ in
     prefix = "C-Space";
 
     plugins = with pkgs.tmuxPlugins;[
-      vim-tmux-navigator
+      # vim-tmux-navigator
       yank
       tmux-fzf
       {
@@ -113,22 +113,15 @@ in
         set -g @prefix_highlight_output_suffix "#[nobold] "
         set -g @prefix_highlight_copy_mode_attr "fg=#{@green},bold"
 
-        # Left — session │ window list
-        # set -g status-left "#[fg=#{@yellow},bold] #S #[nobold,fg=#{@G1}]│ "
-
-        # Right — user@host
-        # set -g status-right "#[fg=#{@blue}]#{USER}#[fg=#{@G8}]@#H "
-
         # Window status
         set -g window-status-separator "  "
-        # set -g window-status-format         "#[fg=#{@G1}]#I #[fg=#{@G8}]#W"
-        # set -g window-status-current-format "#[fg=#{@blue},bold,underscore]#I #W"
-
-        # set -g @fingers-hint-style      "fg=colour3,bold"
-        # set -g @fingers-highlight-style "fg=colour5,bold"
-        # set -g @fingers-key f
 
         run-shell "~/.config/tmux/theme-apply.sh"
+
+        bind h select-pane -L
+        bind j select-pane -D
+        bind k select-pane -U
+        bind l select-pane -R
       '';
   };
 }
