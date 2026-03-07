@@ -92,6 +92,7 @@
       enableShellIntegration = true;
     };
     defaultCommand = "fd --type f --exclude .git --ignore-file ~/.gitignore --color=never";
+    defaultOptions = [ "--height 40%" "--border" "--layout=reverse" ];
   };
 
   programs.eza = {
