@@ -96,7 +96,7 @@ in
     k = "kubectl";
     lzg = "lazygit";
     hms = "${config.xdg.configHome}/home-manager/scripts/update-home.zsh";
-    docker = "nerdctl";
+    # docker = "nerdctl";
   };
 
   # Let Home Manager install and manage itself.
