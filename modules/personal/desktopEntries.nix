@@ -4,6 +4,7 @@
 
     userDirs = {
       enable = true;
+      setSessionVariables = false;
 
       desktop = "${config.home.homeDirectory}/Desktop";
       download = "${config.home.homeDirectory}/Downloads";
