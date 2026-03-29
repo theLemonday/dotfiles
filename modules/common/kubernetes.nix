@@ -30,7 +30,6 @@ in
     kubectl-tree
     telepresence2
     cilium-cli
-    tektoncd-cli
     cmctl # Manage cert-manager Certificate resources via cmctl
   ];
 
