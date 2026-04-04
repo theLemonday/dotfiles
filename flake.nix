@@ -18,7 +18,7 @@
 
     nixgl.url = "github:nix-community/nixGL";
 
-    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+    # neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
   };
 
   outputs =
