@@ -28,7 +28,6 @@ in
     stern
     kube-score
     kubectl-tree
-    telepresence2
     cilium-cli
     cmctl # Manage cert-manager Certificate resources via cmctl
   ];
