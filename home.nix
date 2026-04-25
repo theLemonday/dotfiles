@@ -30,7 +30,6 @@ in
   home.packages = with pkgs; [
     sops
     gnumake
-    gcc
     unzip
     # # You can also create simple shell scripts directly inside your
     # # configuration. For example, this adds a command 'my-hello' to your
