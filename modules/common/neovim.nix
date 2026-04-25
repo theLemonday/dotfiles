@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ pkgs, ... }:
 {
   home.packages = with pkgs;[ tree-sitter ];
 
@@ -9,5 +9,7 @@
     viAlias = true;
     vimAlias = true;
     # package = inputs.neovim-nightly-overlay.packages.${pkgs.stdenv.hostPlatform.system}.default;
+    withPython3 = false;
+    withRuby = false;
   };
 }
