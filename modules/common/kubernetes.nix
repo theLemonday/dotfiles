@@ -28,6 +28,7 @@ in
     stern
     kube-score
     kubectl-tree
+    kubectl-gadget
     cilium-cli
     cmctl # Manage cert-manager Certificate resources via cmctl
     kubernetes-helm

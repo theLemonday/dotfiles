@@ -1,12 +1,10 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
-    go-tools
     delve
     gopls
 
     # formatter
-    gotools
     golines
     gofumpt
     ko
