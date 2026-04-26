@@ -5,8 +5,8 @@
     gopls
 
     # formatter
-    golines
     gofumpt
+    golangci-lint
     ko
   ];
 
