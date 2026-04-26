@@ -5,8 +5,8 @@
     gopls
 
     # formatter
+    (pkgs.lowPrio gotools) # avoid conflict with gopls
     gofumpt
-    golangci-lint
     ko
   ];
 
