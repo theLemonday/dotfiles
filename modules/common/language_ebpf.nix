@@ -2,10 +2,10 @@
 {
   home.packages = with pkgs; [
     # --- eBPF kernel side ---
-    clang
-    llvm
-
-    clang-tools
+    # clang
+    # llvm
+    #
+    # clang-tools
     # use the host headers instead in a non-NixOs setup
     # sudo dnf install kernel-devel kernel-headers
 
