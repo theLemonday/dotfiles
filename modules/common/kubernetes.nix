@@ -32,7 +32,6 @@ in
     cilium-cli
     cmctl
     kubernetes-helm
-    cdk8s-cli
   ];
 
   home.file.".config/k9s/skins" = {
