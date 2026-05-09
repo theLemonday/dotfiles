@@ -30,8 +30,9 @@ in
     kubectl-tree
     kubectl-gadget
     cilium-cli
-    cmctl # Manage cert-manager Certificate resources via cmctl
+    cmctl
     kubernetes-helm
+    cdk8s-cli
   ];
 
   home.file.".config/k9s/skins" = {
