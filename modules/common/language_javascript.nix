@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
   home.packages = with pkgs; [
@@ -20,4 +20,8 @@
   home.sessionVariables = {
     NODE_PATH = "$HOME/.node_libraries";
   };
+
+  home.sessionPath = [
+    "${config.home.homeDirectory}/.cache/.bun/bin"
+  ];
 }

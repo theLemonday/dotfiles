@@ -83,6 +83,7 @@ in
   home.sessionVariables = {
     EDITOR = "vi";
     XMODIFIERS = "@im=fcitx";
+    SSL_CERT_FILE = "/etc/ssl/certs/ca-certificates.crt";
   };
 
   home.sessionPath = [
