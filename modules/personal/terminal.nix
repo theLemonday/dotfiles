@@ -51,6 +51,8 @@ in
       copy_on_select yes
 
       allow_remote_control yes
+
+      watch_for_file_changes no
     '';
 
     keybindings = {

@@ -128,6 +128,33 @@ in
         bind c new-window          -c "#{pane_current_path}"
         unbind '"'
         unbind %
+
+        # Fuzzy session switch
+        bind-key C-s display-popup -E "\
+          tmux list-sessions -F '#{session_name}' | \
+          fzf --reverse --prompt='session> ' | \
+          xargs tmux switch-client -t"
+
+        # Fuzzy window switch (across ALL sessions)
+        bind-key C-w display-popup -E "\
+          tmux list-windows -a -F '#{session_name}:#{window_index} #{window_name}' | \
+          fzf --reverse --prompt='window> ' | \
+          awk '{print $1}' | \
+          xargs tmux switch-client -t"
+
+        # last session
+        bind C-l switch-client -l
+
+        # Alt+number to jump windows
+        # bind -n M-1 select-window -t 1   
+        # bind -n M-2 select-window -t 2
+        # bind -n M-3 select-window -t 3
+        # bind -n M-4 select-window -t 4
+        # bind -n M-5 select-window -t 5
+        # bind -n M-6 select-window -t 6
+        # bind -n M-7 select-window -t 7
+        # bind -n M-8 select-window -t 8
+        # bind -n M-9 select-window -t 9
       '';
   };
 }
