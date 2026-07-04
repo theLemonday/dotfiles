@@ -5,6 +5,7 @@
     dust
     trash-cli
     bpftrace
+    go-task
   ];
 
   home.shellAliases = {
