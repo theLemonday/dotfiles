@@ -80,6 +80,7 @@ in
     oh-my-zsh = {
       enable = true;
       plugins = [
+        "sudo"
         "docker"
         "docker-compose"
         "git"
