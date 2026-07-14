@@ -1,6 +1,6 @@
 { pkgs, config, ... }:
 let
-  zkNotebookDir = "$HOME/notes";
+  zkNotebookDir = "$HOME/Documents/notes";
 in
 {
   home.sessionVariables = {
@@ -18,7 +18,7 @@ in
   ];
 
   programs.zk = {
-    enable = false;
+    enable = true;
     settings = {
       notebook = {
         dir = zkNotebookDir;
@@ -27,7 +27,24 @@ in
         daily = "zk new --no-input ${zkNotebookDir}/journal/daily";
       };
       extra = {
-        author = "Luong Nhat Hao";
+        author = "Southclementide";
+      };
+      note = {
+        language = "en";
+        default-title = "Untitled";
+
+        # This names the physical file. 
+        # {{id}} is a unique fingerprint, and {{slug title}} makes the title safe for URLs and paths.
+        filename = "{{id}}-{{slug title}}";
+        extension = "md";
+
+        # The markdown file template used when you create a new note
+        template = "default.md";
+
+        # We use a 4-character lowercase alphanumeric ID for clean, short filenames
+        id-charset = "alphanum";
+        id-length = 4;
+        id-case = "lower";
       };
       tool = {
         editor = "vi";
@@ -46,6 +63,8 @@ in
           note = {
             template = "lab.md";
             extension = "md";
+            # This creates a folder named after the lab, and places a file named 'README.md' inside it.
+            filename = "{{slug title}}/README";
           };
         };
       };

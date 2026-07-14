@@ -22,12 +22,8 @@ in
 {
   home.packages = with pkgs; [
     kubectl
-    yq
     kubectx
     kustomize
-    stern
-    kube-score
-    kubectl-tree
     kubectl-gadget
     cilium-cli
     cmctl

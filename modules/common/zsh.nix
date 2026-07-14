@@ -86,6 +86,7 @@ in
         "git"
         "fzf"
         "eza"
+        "podman"
       ];
       theme = "";
     };
@@ -96,6 +97,7 @@ in
       G = "| grep";
       L = "| less";
       C = "| xclip -selection clipboard";
+      docker = "podman";
     };
 
     initContent =

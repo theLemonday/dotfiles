@@ -1,6 +1,6 @@
 { pkgs, ... }:
 let
-  myPython = pkgs.python313;
+  myPython = pkgs.python312;
 
   # Convert the names to Nix package expressions
   pythonWithPkgs = myPython.withPackages (pythonPkgs: with pythonPkgs; [
@@ -10,13 +10,13 @@ let
     # Note that even if you add Python packages here like PyTorch or Tensorflow,
     # they will be reinstalled when running `pip -r requirements.txt` because
     # virtualenv is used below in the shellHook.
-    pip
+    # pip
   ]);
 in
 {
-  # home.packages = with pkgs;[
-  #   pythonWithPkgs
-  # ];
+  home.packages = [
+    pythonWithPkgs
+  ];
 
   programs.uv = {
     enable = true;

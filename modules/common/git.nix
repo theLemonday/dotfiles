@@ -1,6 +1,6 @@
 { pkgs, ... }: {
   home.packages = with pkgs;[
-    glab
+    # glab
   ];
   programs.git = {
     enable = true;
