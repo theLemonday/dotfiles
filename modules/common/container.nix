@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, xdg, ... }:
 {
   home.packages = with pkgs; [
     dockerfmt
@@ -13,6 +13,10 @@
   home.sessionVariables = {
     DOCKER_HOST = "unix://$XDG_RUNTIME_DIR/podman/podman.sock";
   };
+
+  xdg.configFile."dive/config.yaml".text = ''
+    container-engine: podman
+  '';
 
   systemd.user.sockets.podman = {
     Unit = {
