@@ -14,14 +14,19 @@ in
 
   sops = {
     age.keyFile = "${config.xdg.configHome}/sops/age/keys.txt";
-    defaultSopsFile = ./secrets/default.yaml;
+    # defaultSopsFile = ./secrets/default.yaml;
     secrets = {
-      "ssh" = {
-        sopsFile = ./secrets/ssh.yml;
-      };
-      # "work_git_config" = {
+      # "ssh" = {
+      #   sopsFile = ./secrets/ssh.yml;
+      # };
+      # # "work_git_config" = {
       #   sopsFile = ./secrets/work_git_config.yml;
       # };
+      "taskfile" = {
+        sopsFile = ./secrets/Taskfile.yml;
+        format = "binary";
+        path = "${config.home.homeDirectory}/Taskfile.yml";
+      };
     };
   };
 
@@ -95,7 +100,7 @@ in
     ls = "eza";
     k = "kubectl";
     lzg = "lazygit";
-    hms = "${config.xdg.configHome}/home-manager/scripts/update-home.zsh";
+    gitroot = "cd $(git rev-parse - -show-toplevel)";
     # docker = "nerdctl";
   };
 
@@ -117,7 +122,7 @@ in
     enableDefaultConfig = false;
     includes = [
       "config.d/*"
-      config.sops.secrets."ssh".path
+      # config.sops.secrets."ssh".path
     ];
   };
 }

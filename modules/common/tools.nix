@@ -6,6 +6,8 @@
     trash-cli
     bpftrace
     go-task
+    bazelisk
+    bazel-buildtools
   ];
 
   home.shellAliases = {

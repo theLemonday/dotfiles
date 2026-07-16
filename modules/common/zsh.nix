@@ -60,8 +60,20 @@ let
     bindkey -M vicmd '^A' beginning-of-line
     bindkey -M vicmd '^E' end-of-line
   '';
+
+  taskFzf = pkgs.writers.writePython3Bin "task_fzf.py"
+    {
+      libraries = [ pkgs.python3Packages.pyyaml ];
+      flakeIgnore = [ "E265" "E501" ];
+    }
+    (builtins.readFile ../../scripts/task_fzf.py);
+
 in
 {
+  home.packages = [
+    taskFzf
+  ];
+
   programs.zsh = {
     enable = true;
 
@@ -87,6 +99,9 @@ in
         "fzf"
         "eza"
         "podman"
+        "rust"
+        "golang"
+        "python"
       ];
       theme = "";
     };
@@ -188,6 +203,17 @@ in
           if ! tmux has-session 2>/dev/null; then
             tmux new-session -d -s main
           fi
+
+          task-fzf-run() {
+            local cmd
+            cmd=$(task_fzf.py "$HOME/Taskfile.yml")
+            [[ -n "$cmd" ]] && eval "$cmd"
+          }
+          task-fzf() {
+            local cmd
+            cmd=$(task_fzf.py "$HOME/Taskfile.yml")
+            [[ -n "$cmd" ]] && print -z "$cmd"
+          }
         '';
       in
       lib.mkMerge [

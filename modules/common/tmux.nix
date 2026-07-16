@@ -49,7 +49,7 @@ in
     historyLimit = 100000;
     mouse = true;
     shell = "${pkgs.zsh}/bin/zsh";
-    # keyMode = "vi";
+    keyMode = "vi";
     customPaneNavigationAndResize = true;
 
     prefix = "C-Space";
@@ -78,6 +78,8 @@ in
         );
       in
       ''
+        set -g allow-passthrough on
+
         # Dark palette - Gruvbox Hard
         set -g @dark-TC     '${darkPalette.TC}'
         set -g @dark-G1     '${darkPalette.G1}'
@@ -137,10 +139,11 @@ in
 
         # Fuzzy window switch (across ALL sessions)
         bind-key C-w display-popup -E "\
-          tmux list-windows -a -F '#{session_name}:#{window_index} #{window_name}' | \
+          tmux list-windows -a -F '#{session_name}:#{window_index} #{window_name} #{s|$HOME|~|:pane_current_path}' | \
+          nl -w2 -s'  ' | \
           fzf --reverse --prompt='window> ' | \
-          awk '{print $1}' | \
-          xargs tmux switch-client -t"
+          awk '{print \$2}' | \
+          xargs -r tmux switch-client -t"
 
         # last session
         bind C-l switch-client -l

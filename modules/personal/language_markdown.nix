@@ -10,8 +10,6 @@ in
   home.packages = with pkgs; [
     markdownlint-cli
 
-    glow
-    presenterm
 
     (config.lib.nixGL.wrap obsidian)
     qt6.qttools

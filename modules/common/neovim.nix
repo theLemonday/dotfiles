@@ -1,5 +1,8 @@
 { pkgs, ... }:
 {
+  home.sessionVariables = {
+    NVIM_APPNAME = "nvim-minimax";
+  };
   home.packages = with pkgs;[ tree-sitter ];
 
   # nightly release

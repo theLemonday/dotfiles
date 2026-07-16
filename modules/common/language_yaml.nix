@@ -1,9 +1,8 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
-    yq
+    yq-go
     yaml-language-server
     yamllint
-    yamlfix
   ];
 }

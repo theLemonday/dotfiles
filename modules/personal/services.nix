@@ -50,9 +50,13 @@ in
         lookandfeeltool -a org.kde.breeze.desktop
         plasma-apply-colorscheme BreezeLight
         plasma-apply-desktoptheme Breeze
-        notify-send "KDE Theme" "Switched to Breeze Light 🌞"
         export K9S_SKIN="gruvbox-material-light-soft"
         echo "light" > ~/.config/tmux/theme
+
+        glow_config="$HOME/.config/glow/glow.yml"
+        ${pkgs.yq-go}/bin/yq -i '.style = "light"' "$glow_config"
+
+        ${pkgs.libnotify}/bin/notify-send "KDE Theme" "Switched to Breeze Light 🌞"
       '';
     };
     darkModeScripts = {
@@ -63,9 +67,13 @@ in
         lookandfeeltool -a org.kde.breezedark.desktop
         plasma-apply-colorscheme BreezeDark
         lookandfeeltool -a org.kde.breezedark
-        notify-send "KDE Theme" "Switched to Breeze Dark 🌙"
         export K9S_SKIN="gruvbox-material-dark-soft"
         echo "dark" > ~/.config/tmux/theme
+
+        glow_config="$HOME/.config/glow/glow.yml"
+        ${pkgs.yq-go}/bin/yq -i '.style = "dark"' "$glow_config"
+
+        ${pkgs.libnotify}/bin/notify-send "KDE Theme" "Switched to Breeze Dark 🌙"
       '';
     };
   };

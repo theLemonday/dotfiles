@@ -58,6 +58,7 @@ in
     '';
     keybindings = {
       "alt+enter" = "toggle_fullscreen";
+      "f2" = "send_text all task-fzf-run\\n";
     };
   };
 
