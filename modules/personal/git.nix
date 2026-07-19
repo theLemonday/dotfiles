@@ -1,4 +1,7 @@
+{ pkgs, ... }:
 {
+  home.packages = with pkgs; [ gibo ];
+
   programs.git = {
     settings = {
       user = {
