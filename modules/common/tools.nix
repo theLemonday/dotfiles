@@ -8,6 +8,7 @@
     go-task
     bazelisk
     bazel-buildtools
+    miller
   ];
 
   home.shellAliases = {
