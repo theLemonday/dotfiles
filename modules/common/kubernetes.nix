@@ -29,6 +29,7 @@ in
     (helpers.mkPodmanWrapper {
       name = "helm";
       image = "docker.io/alpine/helm";
+      tag = "sha256:1338539a80db7f323def261f36d4a85ee39ecf5e714e532c7b2f8445404eef52";
       volumes = [
         "$HOME/.kube:/root/.kube:ro"
         "$PWD:/workdir"
