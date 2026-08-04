@@ -39,6 +39,21 @@ in
         "-w /workdir"
       ];
     })
+    (helpers.mkPodmanWrapper {
+      name = "cmctl";
+      image = "quay.io/jetstack/cmctl";
+      tag = "v2.5.0";
+      volumes = [
+        # The Security Badge: Mount kubeconfig so cmctl can access the cluster
+        "$HOME/.kube:/root/.kube:ro"
+        # Mount the current directory so cmctl can read local YAML certificates
+        "$PWD:/workdir"
+      ];
+      extraArgs = [
+        "--net=host"
+        "-w /workdir"
+      ];
+    })
   ];
 
   home.file.".config/k9s/skins" = {
