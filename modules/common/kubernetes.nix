@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ lib, pkgs, helpers, ... }:
 let
   k9sSrc = pkgs.fetchFromGitHub {
     owner = "derailed";
@@ -26,8 +26,18 @@ in
     kustomize
     kubectl-gadget
     cilium-cli
-    cmctl
-    kubernetes-helm
+    (helpers.mkPodmanWrapper {
+      name = "helm";
+      image = "docker.io/alpine/helm";
+      volumes = [
+        "$HOME/.kube:/root/.kube:ro"
+        "$PWD:/workdir"
+      ];
+      extraArgs = [
+        "--net=host"
+        "-w /workdir"
+      ];
+    })
   ];
 
   home.file.".config/k9s/skins" = {

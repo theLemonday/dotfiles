@@ -18,7 +18,6 @@
 
     nixgl.url = "github:nix-community/nixGL";
 
-    # neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
   };
 
   outputs =
@@ -34,6 +33,8 @@
         inherit system;
         config.allowUnfree = true;
       };
+      lib = pkgs.lib;
+      helpers = import ./helpers.nix { inherit pkgs lib; };
     in
     {
       homeConfigurations = {
@@ -69,7 +70,7 @@
           # Optionally use extraSpecialArgs
           # to pass through arguments to home.nix
           extraSpecialArgs = {
-            inherit inputs;
+            inherit inputs helpers;
           };
         };
         "work" = home-manager.lib.homeManagerConfiguration {
@@ -93,7 +94,7 @@
           # Optionally use extraSpecialArgs
           # to pass through arguments to home.nix
           extraSpecialArgs = {
-            inherit inputs;
+            inherit inputs helpers;
           };
         };
       };
