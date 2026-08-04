@@ -7,8 +7,8 @@
     in
     pkgs.writeShellScriptBin name ''
       exec podman run --rm -i \
-      ${volumeArgs}
-      ${customArgs}
+      ${volumeArgs} \
+      ${customArgs} \
       ${image}:${tag} "$@"
     '';
 }
