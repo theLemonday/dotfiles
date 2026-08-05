@@ -40,6 +40,18 @@ in
     })
 
     (helpers.mkPodmanWrapper {
+      name = "hubble";
+      image = "quay.io/cilium/hubble";
+      volumes = [
+        # Mount the Hubble config/certificates directory if you use TLS for the Relay
+        "$HOME/.hubble:/root/.hubble:ro"
+      ];
+      extraArgs = [
+        "--net=host"
+      ];
+    })
+
+    (helpers.mkPodmanWrapper {
       name = "kubectl-gadget";
       image = "ghcr.io/inspektor-gadget/inspektor-gadget";
       volumes = [
