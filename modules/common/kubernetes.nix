@@ -24,8 +24,42 @@ in
     kubectl
     kubectx
     kustomize
-    kubectl-gadget
-    cilium-cli
+    (helpers.mkPodmanWrapper {
+      name = "cilium";
+      image = "quay.io/cilium/cilium-cli";
+      # Defaulting to latest or you can pin a specific tag like "v0.16.12"
+      volumes = [
+        # The Security Badge
+        "$HOME/.kube:/root/.kube:ro"
+        # Cilium CLI sometimes caches state/configs here
+        "$HOME/.cilium:/root/.cilium"
+      ];
+      extraArgs = [
+        "--net=host"
+      ];
+    })
+
+    (helpers.mkPodmanWrapper {
+      name = "kubectl-gadget";
+      image = "ghcr.io/inspektor-gadget/inspektor-gadget";
+      volumes = [
+        "$HOME/.kube:/root/.kube:ro"
+      ];
+      extraArgs = [
+        "--net=host"
+      ];
+    })
+
+    (helpers.mkPodmanWrapper {
+      name = "ping";
+      image = "docker.io/alpine";
+      volumes = [ ];
+      extraArgs = [
+        "--net=host"
+        "--cap-add=NET_RAW" # The VIP pass to send ICMP packets
+        "--entrypoint=ping" # Bypasses 'sh' and forces the ping command
+      ];
+    })
     (helpers.mkPodmanWrapper {
       name = "helm";
       image = "docker.io/alpine/helm";

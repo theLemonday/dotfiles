@@ -5,7 +5,5 @@
     iperf3
     websocat
     nmap
-    inetutils
-    bind
   ];
 }
