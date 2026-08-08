@@ -40,22 +40,21 @@
     };
   };
 
-  programs.lazygit = {
-    enable = true;
-    settings = {
-      git = {
-        pagers = [{
-          colorArg = "always";
-          pager = "delta --paging=never";
-        }];
-      };
-
-      gui = {
-        theme = {
-          selectedLineBgColor = [ "reverse" ];
-          selectedRangeBgColor = [ "reverse" ];
-        };
+programs.lazygit = {
+  enable = true;
+  settings = {
+    git = {
+      diffRenderers = [{
+        colorArg = "always";
+        command = "delta --paging=never";
+      }];
+    };
+    gui = {
+      theme = {
+        selectedLineBgColor = [ "reverse" ];
+        selectedRangeBgColor = [ "reverse" ];
       };
     };
   };
+};
 }
