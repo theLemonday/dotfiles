@@ -5,10 +5,10 @@
     dust
     trash-cli
     bpftrace
-    go-task
     bazelisk
     bazel-buildtools
     miller
+    taskwarrior3
   ];
 
   home.shellAliases = {
@@ -146,6 +146,11 @@
     enable = true;
     enableZshIntegration = true; # Binds Ctrl+G in Zsh to open navi
   };
+
+  # $ profile: printf "%s\n" personal work
+  # When you trigger the command, navi opens an fzf prompt showing:
+  # > personal
+  # work
   home.file.".local/share/navi/cheats/lab.cheat".text = ''
     % lab, python, uv
 
