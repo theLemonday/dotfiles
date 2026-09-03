@@ -9,6 +9,7 @@
     bazel-buildtools
     miller
     taskwarrior3
+    hugo
   ];
 
   home.shellAliases = {
