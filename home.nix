@@ -14,19 +14,15 @@ in
 
   sops = {
     age.keyFile = "${config.xdg.configHome}/sops/age/keys.txt";
-    # defaultSopsFile = ./secrets/default.yaml;
+    defaultSopsFile = ./secrets/secrets.yml;
     secrets = {
-      # "ssh" = {
-      #   sopsFile = ./secrets/ssh.yml;
-      # };
+      "ssh_config" = {
+        path = "${config.home.homeDirectory}/.ssh/config.d/github";
+        mode = "0600";
+      };
       # # "work_git_config" = {
       #   sopsFile = ./secrets/work_git_config.yml;
       # };
-      "taskfile" = {
-        sopsFile = ./secrets/Taskfile.yml;
-        format = "binary";
-        path = "${config.home.homeDirectory}/Taskfile.yml";
-      };
     };
   };
 
