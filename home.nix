@@ -116,7 +116,7 @@ in
       "config.d/*"
       # config.sops.secrets."ssh".path
     ];
-    matchBlocks = {
+    settings = {
       "github.com" = {
         hostname = "github.com";
         identityFile = "~/.ssh/id_github";
