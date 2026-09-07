@@ -16,10 +16,6 @@ in
     age.keyFile = "${config.xdg.configHome}/sops/age/keys.txt";
     defaultSopsFile = ./secrets/secrets.yml;
     secrets = {
-      "ssh_config" = {
-        path = "${config.home.homeDirectory}/.ssh/config.d/github";
-        mode = "0600";
-      };
       # # "work_git_config" = {
       #   sopsFile = ./secrets/work_git_config.yml;
       # };
@@ -120,5 +116,13 @@ in
       "config.d/*"
       # config.sops.secrets."ssh".path
     ];
+    matchBlocks = {
+      "github.com" = {
+        hostname = "github.com";
+        identityFile = "~/.ssh/id_github";
+        identitiesOnly = true;
+        addKeysToAgent = "yes";
+      };
+    };
   };
 }
