@@ -10,57 +10,92 @@
   # > personal
   # work
   home.file.".local/share/navi/cheats/lab.cheat".text = ''
-    % lab, python, uv
+    % nix, lab, uv, zk
 
-    # Scaffold a new Python lab note via zk and initialize with uv
+    # Create a new lab from a copier template, drop into its activated devShell
     bash -ec '
+        TEMPLATES_DIR="$HOME/copier-templates"
+        TEMPLATE="<template>"
         TITLE="<title>"
-        FILE_PATH=$(zk new --title "$TITLE" --print-path lab)
-        if [ -z "$FILE_PATH" ] || [ ! -f "$FILE_PATH" ]; then
-            echo "Error: zk failed to create note" >&2
+
+        if [ ! -d "$TEMPLATES_DIR/$TEMPLATE" ]; then
+            echo "❌ Template not found: $TEMPLATES_DIR/$TEMPLATE" >&2
             exit 1
         fi
 
-        DIR_PATH=$(dirname "$FILE_PATH")
-        echo "Creating uv project in: $DIR_PATH"
-        uv init --no-readme --vcs none "$DIR_PATH"
-
-        cat > "$DIR_PATH/.gitignore" <<EOF
-    .venv/
-    __pycache__/
-    *.pyc
-    .env
-    .python-version
-    EOF
-
-        echo "Successfully created lab at: $DIR_PATH"
-    '
-
-    % lab, rust, cargo
-
-    # Scaffold a new Rust lab note via zk and initialize with cargo
-    bash -ec '
-        TITLE="<title>"
-        FILE_PATH=$(zk new lab --title "$TITLE" --print-path)
-        if [ -z "$FILE_PATH" ] || [ ! -f "$FILE_PATH" ]; then
-            echo "Error: zk failed to create note" >&2
+        if ! command -v copier >/dev/null 2>&1; then
+            echo "❌ \"copier\" CLI not found on PATH" >&2
             exit 1
         fi
 
-        DIR_PATH=$(dirname "$FILE_PATH")
-        PKG_NAME=$(basename "$DIR_PATH")
+        SLUG=$(echo "$TITLE" | tr "[:upper:]" "[:lower:]" | tr " " "-")
+        DIR="$HOME/notes/lab/$SLUG"
 
-        echo "Initializing Cargo package ($PKG_NAME) in: $DIR_PATH"
-        cargo init --name "$PKG_NAME" --vcs none "$DIR_PATH"
+        echo "▣ Scaffolding \"$TITLE\" from template: $TEMPLATE..."
+        if copier copy --defaults -d project_name="$TITLE" "$TEMPLATES_DIR/$TEMPLATE" "$DIR"; then
+            echo "✅ Lab created at: $DIR"
+        else
+            echo "❌ copier failed." >&2
+            exit 1
+        fi
 
-        cat > "$DIR_PATH/.gitignore" <<EOF
-    /target
-    Cargo.lock
-    .env
-    EOF
-
-        echo "Successfully created Rust lab at: $DIR_PATH"
+        cd "$DIR"
+        direnv allow .
+        echo "⚙️ direnv activated — devShell will load on next prompt."
     '
+
+    $ template: fd --max-depth 1 -t d . "$HOME/copier-templates" --exec basename
+      % lab, python, uv
+
+      # Scaffold a new Python lab note via zk and initialize with uv
+      bash -ec '
+          TITLE="<title>"
+          FILE_PATH=$(zk new --title "$TITLE" --print-path lab)
+          if [ -z "$FILE_PATH" ] || [ ! -f "$FILE_PATH" ]; then
+              echo "Error: zk failed to create note" >&2
+              exit 1
+          fi
+
+          DIR_PATH=$(dirname "$FILE_PATH")
+          echo "Creating uv project in: $DIR_PATH"
+          uv init --no-readme --vcs none "$DIR_PATH"
+
+          cat > "$DIR_PATH/.gitignore" <<EOF
+      .venv/
+      __pycache__/
+      *.pyc
+      .env
+      .python-version
+      EOF
+
+          echo "Successfully created lab at: $DIR_PATH"
+      '
+
+      % lab, rust, cargo
+
+      # Scaffold a new Rust lab note via zk and initialize with cargo
+      bash -ec '
+          TITLE="<title>"
+          FILE_PATH=$(zk new lab --title "$TITLE" --print-path)
+          if [ -z "$FILE_PATH" ] || [ ! -f "$FILE_PATH" ]; then
+              echo "Error: zk failed to create note" >&2
+              exit 1
+          fi
+
+          DIR_PATH=$(dirname "$FILE_PATH")
+          PKG_NAME=$(basename "$DIR_PATH")
+
+          echo "Initializing Cargo package ($PKG_NAME) in: $DIR_PATH"
+          cargo init --name "$PKG_NAME" --vcs none "$DIR_PATH"
+
+          cat > "$DIR_PATH/.gitignore" <<EOF
+      /target
+      Cargo.lock
+      .env
+      EOF
+
+          echo "Successfully created Rust lab at: $DIR_PATH"
+      '
   '';
 
   home.file.".local/share/navi/cheats/system.cheat".text = ''
