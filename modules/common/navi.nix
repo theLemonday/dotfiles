@@ -14,7 +14,7 @@
 
     # Create a new lab from a copier template, drop into its activated devShell
     bash -ec '
-        TEMPLATES_DIR="$HOME/copier-templates"
+        TEMPLATES_DIR="$HOME/Documents/templates"
         TEMPLATE="<template>"
         TITLE="<title>"
 
@@ -44,7 +44,7 @@
         echo "⚙️ direnv activated — devShell will load on next prompt."
     '
 
-    $ template: fd --max-depth 1 -t d . "$HOME/copier-templates" --exec basename
+    $ template: fd --max-depth 1 -t d . "$HOME/Documents/templates" --exec basename
       % lab, python, uv
 
       # Scaffold a new Python lab note via zk and initialize with uv
