@@ -132,44 +132,44 @@
 
     # Commit home-manager changes and switch profile via nh
     bash -ec '
-    HOME_MANAGER_DIR = "$HOME/.config/home-manager"
+      HOME_MANAGER_DIR = "$HOME/.config/home-manager"
       PROFILE="<profile>"
 
-    if [ ! -d "$HOME_MANAGER_DIR/.git" ];
-    then
-    echo "❌ Not a git repo: $HOME_MANAGER_DIR" >&2
-    exit 1
-    fi
-
-    if ! command -v nh >/dev/null 2>&1; then
-    echo "❌ \"nh\" CLI not found on PATH" >&2
-    exit 1
-    fi
-
-    cd "$HOME_MANAGER_DIR"
-
-    if [ -z "$(git status --porcelain)" ]; then
-    HAS_CHANGES = 0
-      echo "✨ No changes to commit."
-      else
-      HAS_CHANGES=1
-      echo "▣ Committing tracked and untracked changes..."
-      git commit -am "Updated $(date)"
+      if [ ! -d "$HOME_MANAGER_DIR/.git" ];
+      then
+      echo "❌ Not a git repo: $HOME_MANAGER_DIR" >&2
+      exit 1
       fi
 
-      echo "⚙️ Running nh home switch for profile: $PROFILE..."
-      if nh home switch "$HOME_MANAGER_DIR" --configuration "$PROFILE";
-    then
-    echo "✅ Switch succeeded."
-    [ "$HAS_CHANGES" -eq 1 ] && echo "   Kept commit."
-    else
-    echo "❌ Switch failed." >&2
-    if [ "$HAS_CHANGES" -eq 1 ]; then
-    echo "   Reverting git commit..." >&2
-    git reset --soft HEAD~1
-    fi
-    exit 1
-    fi
+      if ! command -v nh >/dev/null 2>&1; then
+      echo "❌ \"nh\" CLI not found on PATH" >&2
+      exit 1
+      fi
+
+      cd "$HOME_MANAGER_DIR"
+
+      if [ -z "$(git status --porcelain)" ]; then
+      HAS_CHANGES = 0
+        echo "✨ No changes to commit."
+        else
+        HAS_CHANGES=1
+        echo "▣ Committing tracked and untracked changes..."
+        git commit -am "Updated $(date)"
+        fi
+
+        echo "⚙️ Running nh home switch for profile: $PROFILE..."
+        if nh home switch "$HOME_MANAGER_DIR" --configuration "$PROFILE";
+      then
+      echo "✅ Switch succeeded."
+      [ "$HAS_CHANGES" -eq 1 ] && echo "   Kept commit."
+      else
+      echo "❌ Switch failed." >&2
+      if [ "$HAS_CHANGES" -eq 1 ]; then
+      echo "   Reverting git commit..." >&2
+      git reset --soft HEAD~1
+      fi
+      exit 1
+      fi
     '
 
     $ profile: printf "%s\n" personal work
