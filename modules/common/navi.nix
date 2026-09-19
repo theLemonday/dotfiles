@@ -32,7 +32,7 @@
         DIR="$HOME/notes/lab/$SLUG"
 
         echo "▣ Scaffolding \"$TITLE\" from template: $TEMPLATE..."
-        if copier copy --defaults -d project_name="$TITLE" "$TEMPLATES_DIR/$TEMPLATE" "$DIR"; then
+        if copier copy --defaults -d project_name="$TITLE" --trust "$TEMPLATES_DIR/$TEMPLATE" "$DIR"; then
             echo "✅ Lab created at: $DIR"
         else
             echo "❌ copier failed." >&2
