@@ -15,8 +15,8 @@
     # Create a new lab from a copier template, drop into its activated devShell
     bash -ec '
       TEMPLATES_DIR="$HOME/Documents/notes/templates"
-      TEMPLATE="<template>"
-      TITLE="<title>"
+      TEMPLATE="lab-uv"
+      TITLE="test2"
 
       if [ ! -d "$TEMPLATES_DIR/$TEMPLATE" ]; then
           echo "❌ Template not found: $TEMPLATES_DIR/$TEMPLATE" >&2
@@ -29,7 +29,7 @@
       fi
 
       SLUG=$(echo "$TITLE" | tr "[:upper:]" "[:lower:]" | tr " " "-")
-      DIR="$HOME/notes/lab/$SLUG"
+      DIR="$HOME/Documents/notes/lab/$SLUG"
 
       echo "▣ Scaffolding \"$TITLE\" from template: $TEMPLATE..."
       if copier copy --defaults -d project_name="$TITLE" --trust "$TEMPLATES_DIR/$TEMPLATE" "$DIR"; then
@@ -38,9 +38,7 @@
           echo "❌ copier failed." >&2
           exit 1
       fi
-
-      cd "$DIR"
-    '  && cd "/home/southclementide/notes/lab/$(echo "<title>" | tr "[:upper:]" "[:lower:]" | tr " " "-")" && direnv allow .
+    ' && cd "$HOME/Documents/notes/lab/$(echo "test2" | tr "[:upper:]" "[:lower:]" | tr " " "-")" && direnv allow .
 
     $ template: fd --max-depth 1 -t d . "$HOME/Documents/notes/templates" --exec basename
   '';
