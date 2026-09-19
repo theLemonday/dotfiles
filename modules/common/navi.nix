@@ -40,10 +40,7 @@
       fi
 
       cd "$DIR"
-    '
-
-    direnv allow .
-    echo "⚙️ direnv activated — devShell will load on next prompt."
+    '  && cd "/home/southclementide/notes/lab/$(echo "<title>" | tr "[:upper:]" "[:lower:]" | tr " " "-")" && direnv allow .
 
     $ template: fd --max-depth 1 -t d . "$HOME/Documents/notes/templates" --exec basename
   '';
