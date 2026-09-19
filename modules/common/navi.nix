@@ -10,89 +10,38 @@
   # > personal
   # work
   home.file.".local/share/navi/cheats/lab.cheat".text = ''
-    % nix, lab, zk
+    % nix, lab, uv, go, rust, zk
 
     # Create a new lab from a copier template, drop into its activated devShell
     bash -ec '
-      TEMPLATES_DIR="$HOME/Documents/notes/templates"
-      TEMPLATE="lab-uv"
-      TITLE="test2"
+        TEMPLATES_DIR="$HOME/Documents/notes/templates"
+        TEMPLATE="<template>"
+        TITLE="<title>"
 
-      if [ ! -d "$TEMPLATES_DIR/$TEMPLATE" ]; then
-          echo "❌ Template not found: $TEMPLATES_DIR/$TEMPLATE" >&2
-          exit 1
-      fi
+        if [ ! -d "$TEMPLATES_DIR/$TEMPLATE" ]; then
+            echo "❌ Template not found: $TEMPLATES_DIR/$TEMPLATE" >&2
+            exit 1
+        fi
 
-      if ! command -v copier >/dev/null 2>&1; then
-          echo "❌ \"copier\" CLI not found on PATH" >&2
-          exit 1
-      fi
+        if ! command -v copier >/dev/null 2>&1; then
+            echo "❌ \"copier\" CLI not found on PATH" >&2
+            exit 1
+        fi
 
-      SLUG=$(echo "$TITLE" | tr "[:upper:]" "[:lower:]" | tr " " "-")
-      DIR="$HOME/Documents/notes/lab/$SLUG"
+        SLUG=$(echo "$TITLE" | tr "[:upper:]" "[:lower:]" | tr " " "-")
+        DIR="$HOME/Documents/notes/lab/$SLUG"
 
-      echo "▣ Scaffolding \"$TITLE\" from template: $TEMPLATE..."
-      if copier copy --defaults -d project_name="$TITLE" --trust "$TEMPLATES_DIR/$TEMPLATE" "$DIR"; then
-          echo "✅ Lab created at: $DIR"
-      else
-          echo "❌ copier failed." >&2
-          exit 1
-      fi
-    ' && cd "$HOME/Documents/notes/lab/$(echo "test2" | tr "[:upper:]" "[:lower:]" | tr " " "-")" && direnv allow .
+        echo "▣ Scaffolding \"$TITLE\" from template: $TEMPLATE..."
+        if copier copy --defaults -d project_name="$TITLE" --trust "$TEMPLATES_DIR/$TEMPLATE" "$DIR"; then
+            echo "✅ Lab created at: $DIR"
+        else
+            echo "❌ copier failed." >&2
+            exit 1
+        fi
+    ' && cd "$HOME/Documents/notes/lab/$(echo "<title>" | tr "[:upper:]" "[:lower:]" | tr " " "-")" && direnv allow .
 
     $ template: fd --max-depth 1 -t d . "$HOME/Documents/notes/templates" --exec basename
   '';
-  # % lab, python, uv
-  #
-  # # Scaffold a new Python lab note via zk and initialize with uv
-  # bash -ec '
-  #     TITLE="<title>"
-  #     FILE_PATH=$(zk new --title "$TITLE" --print-path lab)
-  #     if [ -z "$FILE_PATH" ] || [ ! -f "$FILE_PATH" ]; then
-  #         echo "Error: zk failed to create note" >&2
-  #         exit 1
-  #     fi
-  #
-  #     DIR_PATH=$(dirname "$FILE_PATH")
-  #     echo "Creating uv project in: $DIR_PATH"
-  #     uv init --no-readme --vcs none "$DIR_PATH"
-  #
-  #     cat > "$DIR_PATH/.gitignore" <<EOF
-  # .venv/
-  # __pycache__/
-  # *.pyc
-  # .env
-  # .python-version
-  # EOF
-  #
-  #     echo "Successfully created lab at: $DIR_PATH"
-  # '
-  #
-  # % lab, rust, cargo
-  #
-  # # Scaffold a new Rust lab note via zk and initialize with cargo
-  # bash -ec '
-  #     TITLE="<title>"
-  #     FILE_PATH=$(zk new lab --title "$TITLE" --print-path)
-  #     if [ -z "$FILE_PATH" ] || [ ! -f "$FILE_PATH" ]; then
-  #         echo "Error: zk failed to create note" >&2
-  #         exit 1
-  #     fi
-  #
-  #     DIR_PATH=$(dirname "$FILE_PATH")
-  #     PKG_NAME=$(basename "$DIR_PATH")
-  #
-  #     echo "Initializing Cargo package ($PKG_NAME) in: $DIR_PATH"
-  #     cargo init --name "$PKG_NAME" --vcs none "$DIR_PATH"
-  #
-  #     cat > "$DIR_PATH/.gitignore" <<EOF
-  # /target
-  # Cargo.lock
-  # .env
-  # EOF
-  #
-  #     echo "Successfully created Rust lab at: $DIR_PATH"
-  # '
 
   home.file.".local/share/navi/cheats/system.cheat".text = ''
       % system, fonts
