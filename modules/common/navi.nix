@@ -14,35 +14,36 @@
 
     # Create a new lab from a copier template, drop into its activated devShell
     bash -ec '
-        TEMPLATES_DIR="$HOME/Documents/notes/templates"
-        TEMPLATE="<template>"
-        TITLE="<title>"
+      TEMPLATES_DIR="$HOME/Documents/notes/templates"
+      TEMPLATE="<template>"
+      TITLE="<title>"
 
-        if [ ! -d "$TEMPLATES_DIR/$TEMPLATE" ]; then
-            echo "❌ Template not found: $TEMPLATES_DIR/$TEMPLATE" >&2
-            exit 1
-        fi
+      if [ ! -d "$TEMPLATES_DIR/$TEMPLATE" ]; then
+          echo "❌ Template not found: $TEMPLATES_DIR/$TEMPLATE" >&2
+          exit 1
+      fi
 
-        if ! command -v copier >/dev/null 2>&1; then
-            echo "❌ \"copier\" CLI not found on PATH" >&2
-            exit 1
-        fi
+      if ! command -v copier >/dev/null 2>&1; then
+          echo "❌ \"copier\" CLI not found on PATH" >&2
+          exit 1
+      fi
 
-        SLUG=$(echo "$TITLE" | tr "[:upper:]" "[:lower:]" | tr " " "-")
-        DIR="$HOME/notes/lab/$SLUG"
+      SLUG=$(echo "$TITLE" | tr "[:upper:]" "[:lower:]" | tr " " "-")
+      DIR="$HOME/notes/lab/$SLUG"
 
-        echo "▣ Scaffolding \"$TITLE\" from template: $TEMPLATE..."
-        if copier copy --defaults -d project_name="$TITLE" --trust "$TEMPLATES_DIR/$TEMPLATE" "$DIR"; then
-            echo "✅ Lab created at: $DIR"
-        else
-            echo "❌ copier failed." >&2
-            exit 1
-        fi
+      echo "▣ Scaffolding \"$TITLE\" from template: $TEMPLATE..."
+      if copier copy --defaults -d project_name="$TITLE" --trust "$TEMPLATES_DIR/$TEMPLATE" "$DIR"; then
+          echo "✅ Lab created at: $DIR"
+      else
+          echo "❌ copier failed." >&2
+          exit 1
+      fi
 
-        cd "$DIR"
-        direnv allow .
-        echo "⚙️ direnv activated — devShell will load on next prompt."
+      cd "$DIR"
     '
+
+    direnv allow .
+    echo "⚙️ direnv activated — devShell will load on next prompt."
 
     $ template: fd --max-depth 1 -t d . "$HOME/Documents/notes/templates" --exec basename
   '';
