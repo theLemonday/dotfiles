@@ -10,7 +10,7 @@
   # > personal
   # work
   home.file.".local/share/navi/cheats/lab.cheat".text = ''
-    % nix, lab, uv, go, rust, zk
+    % nix, lab, zk
 
     # Create a new lab from a copier template, drop into its activated devShell
     bash -ec '
