@@ -80,7 +80,6 @@ in
     bazel-buildtools
     miller
     taskwarrior3
-    hugo
     copier
   ];
 
