@@ -10,8 +10,6 @@ in
   home.packages = with pkgs; [
     markdownlint-cli
 
-
-    (config.lib.nixGL.wrap obsidian)
     qt6.qttools
   ];
 
