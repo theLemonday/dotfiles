@@ -81,7 +81,7 @@
 
     # Commit home-manager changes and switch profile via nh
     bash -ec '
-      HOME_MANAGER_DIR = "$HOME/.config/home-manager"
+      HOME_MANAGER_DIR="$HOME/.config/home-manager"
       PROFILE="<profile>"
 
       if [ ! -d "$HOME_MANAGER_DIR/.git" ]; then

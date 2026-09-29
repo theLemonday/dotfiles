@@ -129,7 +129,7 @@ in
             run = "piper -- CLICOLOR_FORCE=1 glow -w=$w \"$1\"";
           }
           {
-            url = "*/";
+            name = "*/";
             run = "piper -- eza -TL=3 --group-directories-first --no-quotes \"$1\"";
           }
         ];
