@@ -1,8 +1,12 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 {
   programs.navi = {
     enable = true;
     enableZshIntegration = true; # Binds Ctrl+G in Zsh to open navi
+    settings.cheats.paths = [
+      "${config.xdg.dataHome}/navi/cheats"
+      "${config.home.homeDirectory}/Documents/cheats"
+    ];
   };
 
   # $ profile: printf "%s\n" personal work
