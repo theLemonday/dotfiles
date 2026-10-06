@@ -81,6 +81,8 @@ in
     EDITOR = "vi";
     XMODIFIERS = "@im=fcitx";
     SSL_CERT_FILE = "/etc/ssl/certs/ca-certificates.crt";
+    # enable the podman socket first systemctl enable --now podman.socket
+    CLAB_RUNTIME = "podman";
   };
 
   home.sessionPath = [
