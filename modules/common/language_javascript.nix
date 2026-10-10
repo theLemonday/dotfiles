@@ -5,8 +5,8 @@
     typescript # The tsc compiler
 
     dprint # Faster, Rust-based alternative to Prettier
-    vtsls # A faster LSP for TS than the default tsserver
     vue-language-server
+    typescript-language-server
   ];
 
   # Optional: Environment variables for JS tooling
