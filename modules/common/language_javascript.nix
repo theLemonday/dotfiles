@@ -6,6 +6,7 @@
 
     dprint # Faster, Rust-based alternative to Prettier
     vtsls # A faster LSP for TS than the default tsserver
+    vue-language-server
   ];
 
   # Optional: Environment variables for JS tooling
