@@ -48,36 +48,11 @@
   '';
 
   home.file.".local/share/navi/cheats/system.cheat".text = ''
-      % system, fonts
-
-    # Install fonts (.ttf, .otf, .woff, .woff2) and regenerate font cache
-    FONT_DEST="<font_dest>" && \
-    mkdir -p "$FONT_DEST" && \
-    find "<src_dir>" -type f \( \
-    -iname '*.ttf' -o \
-    -iname '*.otf' -o \
-    -iname '*.woff' -o \
-    -iname '*.woff2' \
-    \) -exec cp -v {} "$FONT_DEST" \;
-    && \
-    fc-cache -f "$FONT_DEST" && \
-    echo "Fonts installed into: $FONT_DEST"
-
-    $ font_dest: echo "$HOME/.local/share/fonts\n$HOME/.fonts"
-    $ src_dir: find . -maxdepth 3 -type d 2>/dev/null
-
     % browser, cleanup
 
     # Remove Brave browser singleton lock
     rm -rf ~/.config/BraveSoftware/Brave-Browser/SingletonLock && \
     echo "Removed Brave SingletonLock"
-
-    % git
-
-    # Generate a .gitignore template using gibo
-    gibo dump <language_or_framework> >> .gitignore
-
-    $ language_or_framework: gibo list | tr ' ' '\n'
   '';
 
   home.file.".local/share/navi/cheats/nix.cheat".text = ''
