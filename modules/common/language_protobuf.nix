@@ -2,10 +2,10 @@
 
 {
   home.packages = with pkgs; [
-    protobuf # protoc
-    buf
+    # protobuf # protoc
+    # buf
     grpcurl
-    protoc-gen-go
+    # protoc-gen-go
   ];
 }
 
