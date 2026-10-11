@@ -101,7 +101,7 @@
       cd "$HOME_MANAGER_DIR"
 
       if [ -z "$(git status --porcelain)" ]; then
-        HAS_CHANGES = 0
+        HAS_CHANGES=0
         echo "✨ No changes to commit."
         else
         HAS_CHANGES=1
