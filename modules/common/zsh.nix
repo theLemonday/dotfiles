@@ -70,8 +70,9 @@ let
 
 in
 {
-  home.packages = [
+  home.packages = with pkgs; [
     taskFzf
+    libnotify
   ];
 
   programs.zsh = {
