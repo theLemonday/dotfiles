@@ -102,9 +102,23 @@ in
         "rust"
         "golang"
         "python"
+
       ];
       theme = "";
     };
+
+    plugins = [
+      {
+        name = "zsh-auto-notify";
+        file = "auto-notify.plugin.zsh"; # see note 1
+        src = pkgs.fetchFromGitHub {
+          owner = "MichaelAquilina";
+          repo = "zsh-auto-notify";
+          rev = "b51c934d88868e56c1d55d0a2a36d559f21cb2ee";
+          hash = "sha256-s3TBAsXOpmiXMAQkbaS5de0t0hNC1EzUUb0ZG+p9keE=";
+        };
+      }
+    ];
 
     shellGlobalAliases = {
       "-h" = "-h 2>&1 | bat --language=help --style=plain";
@@ -204,16 +218,8 @@ in
             tmux new-session -d -s main
           fi
 
-          task-fzf-run() {
-            local cmd
-            cmd=$(task_fzf.py "$HOME/Taskfile.yml")
-            [[ -n "$cmd" ]] && eval "$cmd"
-          }
-          task-fzf() {
-            local cmd
-            cmd=$(task_fzf.py "$HOME/Taskfile.yml")
-            [[ -n "$cmd" ]] && print -z "$cmd"
-          }
+          AUTO_NOTIFY_THRESHOLD=20                    # seconds; default is 10
+          AUTO_NOTIFY_IGNORE+=("k9s" "kubectl logs")  # extend the ignore list
         '';
       in
       lib.mkMerge [
