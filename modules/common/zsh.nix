@@ -61,17 +61,9 @@ let
     bindkey -M vicmd '^E' end-of-line
   '';
 
-  taskFzf = pkgs.writers.writePython3Bin "task_fzf.py"
-    {
-      libraries = [ pkgs.python3Packages.pyyaml ];
-      flakeIgnore = [ "E265" "E501" ];
-    }
-    (builtins.readFile ../../scripts/task_fzf.py);
-
 in
 {
   home.packages = with pkgs; [
-    taskFzf
     libnotify
   ];
 
@@ -126,7 +118,7 @@ in
       "--help" = "--help 2>&1 | bat --language=help --style=plain";
       G = "| grep";
       L = "| less";
-      C = "| xclip -selection clipboard";
+      C = "| xclip wl-copy";
       docker = "podman";
     };
 
