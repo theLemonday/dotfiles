@@ -2,9 +2,7 @@
   description = "Home Manager personal configuration of southclementide";
 
   inputs = {
-    nixpkgs = {
-      url = "github:NixOS/nixpkgs/nixos-unstable";
-    };
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     home-manager = {
       url = "github:nix-community/home-manager/master";
@@ -17,7 +15,6 @@
     };
 
     nixgl.url = "github:nix-community/nixGL";
-
     ngosen.url = "github:ngosen/ngosen";
   };
 
@@ -34,75 +31,51 @@
         inherit system;
         config.allowUnfree = true;
       };
-      lib = pkgs.lib;
+      inherit (pkgs) lib;
       helpers = import ./helpers.nix { inherit pkgs lib; };
+
+      # Base modules shared across all homeConfigurations
+      commonModules = [
+        inputs.sops-nix.homeManagerModules.sops
+        ./home.nix
+        ./modules/common
+        {
+          home = {
+            username = "southclementide";
+            homeDirectory = "/home/southclementide";
+          };
+        }
+      ];
+
+      # Helper function to construct a home-manager configuration
+      mkHomeConfiguration = extraModules: home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        modules = commonModules ++ extraModules;
+        extraSpecialArgs = {
+          inherit inputs helpers;
+        };
+      };
     in
     {
       homeConfigurations = {
-        "personal" = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
+        "personal" = mkHomeConfiguration [
+          ./modules/personal
+          {
+            home.packages = [
+              inputs.ngosen.packages.${system}.default
+            ];
+            targets.genericLinux.nixGL = {
+              packages = nixgl.packages;
+              defaultWrapper = "mesa";
+              installScripts = [ "mesa" ];
+              vulkan.enable = true;
+            };
+          }
+        ];
 
-          # Specify your home configuration modules here, for example,
-          # the path to your home.nix.
-          modules = [
-            {
-              home.packages = [
-                inputs.ngosen.packages.${pkgs.system}.default
-              ];
-            }
-            (
-              let username = "southclementide"; in
-              {
-                home = {
-                  inherit username;
-                  homeDirectory = "/home/${username}";
-                };
-              }
-            )
-            inputs.sops-nix.homeManagerModules.sops
-            {
-              targets.genericLinux.nixGL = {
-                packages = nixgl.packages;
-                defaultWrapper = "mesa";
-                installScripts = [ "mesa" ];
-                vulkan.enable = true;
-              };
-            }
-            ./home.nix
-            ./modules/common
-            ./modules/personal
-          ];
-
-          # Optionally use extraSpecialArgs
-          # to pass through arguments to home.nix
-          extraSpecialArgs = {
-            inherit inputs helpers;
-          };
-        };
-        "work" = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          modules = [
-            (
-              let username = "southclementide"; in
-              {
-                home = {
-                  inherit username;
-                  homeDirectory = "/home/${username}";
-                };
-              }
-            )
-            inputs.sops-nix.homeManagerModules.sops
-            ./home.nix
-            ./modules/common
-            ./modules/work
-          ];
-
-          # Optionally use extraSpecialArgs
-          # to pass through arguments to home.nix
-          extraSpecialArgs = {
-            inherit inputs helpers;
-          };
-        };
+        "work" = mkHomeConfiguration [
+          ./modules/work
+        ];
       };
     };
 }
