@@ -6,7 +6,6 @@
     rustfmt
     clippy
     rustc
-    maturin
   ];
 
   home.sessionPath = [
