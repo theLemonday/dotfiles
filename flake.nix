@@ -18,6 +18,7 @@
 
     nixgl.url = "github:nix-community/nixGL";
 
+    ngosen.url = "github:ngosen/ngosen";
   };
 
   outputs =
@@ -44,6 +45,11 @@
           # Specify your home configuration modules here, for example,
           # the path to your home.nix.
           modules = [
+            {
+              home.packages = [
+                inputs.ngosen.packages.${pkgs.system}.default
+              ];
+            }
             (
               let username = "southclementide"; in
               {
