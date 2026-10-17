@@ -212,7 +212,7 @@ in
           fi
 
           AUTO_NOTIFY_THRESHOLD=20                    # seconds; default is 10
-          AUTO_NOTIFY_IGNORE+=("k9s" "kubectl logs" "lzg")  # extend the ignore list
+          AUTO_NOTIFY_IGNORE+=("k9s" "kubectl logs" "lzg" "vi" "opencode")  # extend the ignore list
         '';
       in
       lib.mkMerge [
