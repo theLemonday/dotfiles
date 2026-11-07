@@ -1,5 +1,6 @@
 { pkgs, ... }: {
   home.packages = with pkgs; [
+    bun
     nodejs_22 # LTS is usually best for system work
     corepack_22 # Manages pnpm/yarn without global installs
     typescript # The tsc compiler
