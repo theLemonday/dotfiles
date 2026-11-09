@@ -4,6 +4,38 @@ let
   deleteOldCloudtts = pkgs.writeShellScript "delete-cloudtts-old-files" ''
     find ~/Downloads/ -name 'cloudtts-com*' -type f -mtime +0 -delete
   '';
+
+  # Auto-push the home-manager config when the current branch has unpushed
+  # commits that are at least 2 days old. Only pushes if the branch already
+  # has a remote + merge target configured (no upstream guessing).
+  autoPushOldCommits = pkgs.writeShellScript "auto-push-old-commits" ''
+    set -euo pipefail
+    repo="$HOME/.config/home-manager"
+
+    head_ref=$(git -C "$repo" rev-parse --abbrev-ref HEAD)
+    # Skip detached HEAD
+    [ "$head_ref" = "HEAD" ] && exit 0
+
+    # Only push if the branch already has a remote and merge target set
+    remote=$(git -C "$repo" config branch."$head_ref".remote || true)
+    merge=$(git -C "$repo" config branch."$head_ref".merge || true)
+    if [ -z "$remote" ] || [ -z "$merge" ]; then
+      exit 0
+    fi
+
+    git -C "$repo" fetch --quiet "$remote"
+
+    if [ "$(git -C "$repo" rev-list --count '@{u}..HEAD')" -eq 0 ]; then
+      exit 0
+    fi
+
+    oldest=$(git -C "$repo" log --reverse --format=%at '@{u}..HEAD' | head -n 1)
+    now=$(date +%s)
+    age=$(( (now - oldest) / 86400 ))
+    if [ "$age" -ge 2 ]; then
+      git -C "$repo" push "$remote" "$head_ref:''${merge#refs/heads/}"
+    fi
+  '';
 in
 {
   systemd.user.services.deleteOldCloudtts = {
@@ -22,6 +54,30 @@ in
   systemd.user.timers.deleteOldCloudtts = {
     Unit = {
       Description = "Run deleteOldCloudtts daily";
+    };
+    Timer = {
+      OnCalendar = "daily";
+      Persistent = true;
+    };
+    Install = {
+      WantedBy = [ "timers.target" ];
+    };
+  };
+
+  systemd.user.services.autoPushOldCommits = {
+    Unit = {
+      Description = "Auto-push home-manager commits older than 2 days";
+    };
+    Service = {
+      Type = "oneshot";
+      WorkingDirectory = "/home/southclementide/.config/home-manager";
+      ExecStart = "${autoPushOldCommits}";
+    };
+  };
+
+  systemd.user.timers.autoPushOldCommits = {
+    Unit = {
+      Description = "Run autoPushOldCommits daily";
     };
     Timer = {
       OnCalendar = "daily";

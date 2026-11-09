@@ -81,6 +81,7 @@ in
     miller
     taskwarrior3
     copier
+    pre-commit
   ];
 
   home.shellAliases = {

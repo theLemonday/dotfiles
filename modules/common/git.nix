@@ -4,7 +4,7 @@
   programs.git = {
     enable = true;
     settings = {
-      pull.rebase = true;
+      pull.rebase = false;
       alias = {
         co = "checkout";
         br = "branch";
@@ -40,21 +40,21 @@
     };
   };
 
-programs.lazygit = {
-  enable = true;
-  settings = {
-    git = {
-      diffRenderers = [{
-        colorArg = "always";
-        command = "delta --paging=never";
-      }];
-    };
-    gui = {
-      theme = {
-        selectedLineBgColor = [ "reverse" ];
-        selectedRangeBgColor = [ "reverse" ];
+  programs.lazygit = {
+    enable = true;
+    settings = {
+      git = {
+        diffRenderers = [{
+          colorArg = "always";
+          command = "delta --paging=never";
+        }];
+      };
+      gui = {
+        theme = {
+          selectedLineBgColor = [ "reverse" ];
+          selectedRangeBgColor = [ "reverse" ];
+        };
       };
     };
   };
-};
 }
