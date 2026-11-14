@@ -44,16 +44,8 @@ in
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
   home.file = {
-    # # Building this configuration will create a copy of 'dotfiles/screenrc' in
-    # # the Nix store. Activating the configuration will then make '~/.screenrc' a
-    # # symlink to the Nix store copy.
-    # ".screenrc".source = dotfiles/screenrc;
-
-    # # You can also set the file content immediately.
-    # ".gradle/gradle.properties".text = ''
-    #   org.gradle.console=verbose
-    #   org.gradle.daemon.idletimeout=3600000
-    # '';
+    ".pnpm-global".source = pkgs.runCommand "pnpm-global" {} "mkdir -p $out";
+    ".config/zsh/conf.d".source = pkgs.runCommand "zsh-conf-d" {} "mkdir -p $out";
   };
 
   # Home Manager can also manage your environment variables through
@@ -78,6 +70,7 @@ in
     SSL_CERT_FILE = "/etc/ssl/certs/ca-certificates.crt";
     # enable the podman socket first systemctl enable --now podman.socket
     CLAB_RUNTIME = "podman";
+    PNPM_HOME = "${config.home.homeDirectory}/.local/share/pnpm";
   };
 
   home.sessionPath = [
