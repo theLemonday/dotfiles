@@ -19,9 +19,7 @@
   };
 
   outputs =
-    { self
-    , nixpkgs
-    , nixgl
+    { nixpkgs
     , home-manager
     , ...
     }@inputs:
@@ -58,20 +56,7 @@
     in
     {
       homeConfigurations = {
-        "personal" = mkHomeConfiguration [
-          ./modules/personal
-          {
-            home.packages = [
-              inputs.ngosen.packages.${system}.default
-            ];
-            targets.genericLinux.nixGL = {
-              packages = nixgl.packages;
-              defaultWrapper = "mesa";
-              installScripts = [ "mesa" ];
-              vulkan.enable = true;
-            };
-          }
-        ];
+        "personal" = mkHomeConfiguration [ ./modules/personal ];
 
         "work" = mkHomeConfiguration [
           ./modules/work

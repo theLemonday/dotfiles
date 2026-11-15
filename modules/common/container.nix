@@ -1,12 +1,10 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
-    kind
     dockerfile-language-server
     dive
     hadolint
     podman-compose
-    oras
   ];
 
   home.sessionVariables = {

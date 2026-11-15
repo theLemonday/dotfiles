@@ -2,6 +2,7 @@
 {
   home.packages = with pkgs; [
     jq
+    dprint
     vscode-langservers-extracted # HTML/CSS/JSON/ESLint language servers
   ];
 

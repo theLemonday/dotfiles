@@ -5,7 +5,6 @@
 }:
 let
   directories = [
-    ".pnpm-global"
     ".config/zsh/conf.d"
   ];
 in
@@ -15,11 +14,6 @@ in
   sops = {
     age.keyFile = "${config.xdg.configHome}/sops/age/keys.txt";
     defaultSopsFile = ./secrets/secrets.yml;
-    secrets = {
-      # # "work_git_config" = {
-      #   sopsFile = ./secrets/work_git_config.yml;
-      # };
-    };
   };
 
   # The home.packages option allows you to install Nix packages into your
@@ -28,7 +22,6 @@ in
     sops
     gnumake
     unzip
-    herdr
   ];
 
   home.activation = {
@@ -44,7 +37,6 @@ in
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
   home.file = {
-    ".pnpm-global".source = pkgs.runCommand "pnpm-global" {} "mkdir -p $out";
     ".config/zsh/conf.d".source = pkgs.runCommand "zsh-conf-d" {} "mkdir -p $out";
   };
 
@@ -70,13 +62,11 @@ in
     SSL_CERT_FILE = "/etc/ssl/certs/ca-certificates.crt";
     # enable the podman socket first systemctl enable --now podman.socket
     CLAB_RUNTIME = "podman";
-    PNPM_HOME = "${config.home.homeDirectory}/.local/share/pnpm";
   };
 
   home.sessionPath = [
     "${config.home.homeDirectory}/.local/bin"
     "${config.home.homeDirectory}/.config/home-manager/scripts"
-    "${config.home.homeDirectory}/.local/share/pnpm/bin"
   ];
 
   home.shellAliases = {
