@@ -83,6 +83,7 @@ in
   home.sessionPath = [
     "${config.home.homeDirectory}/.local/bin"
     "${config.home.homeDirectory}/.config/home-manager/scripts"
+    "${config.home.homeDirectory}/.local/share/pnpm/bin"
   ];
 
   home.shellAliases = {
