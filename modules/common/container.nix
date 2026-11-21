@@ -12,7 +12,7 @@
   };
 
   xdg.configFile."dive/config.yaml".text = ''
-    container-engine: podman
+    source: podman
   '';
 
   systemd.user.sockets.podman = {

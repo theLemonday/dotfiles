@@ -81,6 +81,12 @@ in
     flake = "${config.xdg.configHome}/home-manager/";
   };
 
+  # Determinate Nix installs `nix` in the default profile, which is not on the
+  # systemd user PATH, so the nh-clean timer failed with "No output from nix --version".
+  systemd.user.services.nh-clean.Service.Environment = [
+    "PATH=/nix/var/nix/profiles/default/bin:/usr/bin:/bin"
+  ];
+
   services.ssh-agent = {
     enable = true;
   };

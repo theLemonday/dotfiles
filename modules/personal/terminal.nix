@@ -46,7 +46,7 @@ in
     enable = true;
     package = config.lib.nixGL.wrap pkgs.kitty;
     font = {
-      name = "JetBrainsMono Nerd Font Mono";
+      name = "JetBrainsMono Nerd Font Mono NL";
       size = 11;
     };
     enableGitIntegration = true;
