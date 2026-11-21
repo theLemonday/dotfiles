@@ -1,4 +1,4 @@
-# Lemonday dotfiles
+# Dotfiles by SouthClementide
 
 ```sh
 curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install --determinate --no-confirm # Install determinate nix
@@ -25,4 +25,11 @@ If the switch command failed, to expose the hidden errors
 
 ```sh
 nix build .#homeConfigurations.personal.activationPackage && ./result/activate
+```
+
+Use github credentials for flake fetch and build.
+
+```sh
+export NIX_CONFIG="access-tokens = github.com=$(gh auth token)"
+nix flake lock && nix flake check
 ```

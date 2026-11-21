@@ -120,11 +120,11 @@ in
       plugin = {
         prepend_previewers = [
           {
-            name = "*.md";
+            url = "*.md";
             run = "piper -- CLICOLOR_FORCE=1 glow -w=$w \"$1\"";
           }
           {
-            name = "*/";
+            url = "*/";
             run = "piper -- eza -TL=3 --group-directories-first --no-quotes \"$1\"";
           }
         ];
