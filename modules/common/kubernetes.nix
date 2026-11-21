@@ -1,4 +1,4 @@
-{ lib, pkgs, helpers, ... }:
+{ lib, pkgs, ... }:
 let
   k9sSrc = pkgs.fetchFromGitHub {
     owner = "derailed";
@@ -23,84 +23,6 @@ in
   home.packages = with pkgs; [
     kubectl
     kubectx
-    kustomize
-    kubernetes-helm
-    (helpers.mkPodmanWrapper {
-      name = "cilium";
-      image = "quay.io/cilium/cilium-cli";
-      # Defaulting to latest or you can pin a specific tag like "v0.16.12"
-      volumes = [
-        # The Security Badge
-        "$HOME/.kube:/root/.kube:ro"
-        # Cilium CLI sometimes caches state/configs here
-        "$HOME/.cilium:/root/.cilium"
-      ];
-      extraArgs = [
-        "--net=host"
-      ];
-    })
-
-    (helpers.mkPodmanWrapper {
-      name = "hubble";
-      image = "quay.io/cilium/hubble";
-      volumes = [
-        # Mount the Hubble config/certificates directory if you use TLS for the Relay
-        "$HOME/.hubble:/root/.hubble:ro"
-      ];
-      extraArgs = [
-        "--net=host"
-      ];
-    })
-
-    (helpers.mkPodmanWrapper {
-      name = "kubectl-gadget";
-      image = "ghcr.io/inspektor-gadget/inspektor-gadget";
-      volumes = [
-        "$HOME/.kube:/root/.kube:ro"
-      ];
-      extraArgs = [
-        "--net=host"
-      ];
-    })
-
-    (helpers.mkPodmanWrapper {
-      name = "ping";
-      image = "docker.io/alpine";
-      volumes = [ ];
-      extraArgs = [
-        "--net=host"
-        "--cap-add=NET_RAW" # The VIP pass to send ICMP packets
-        "--entrypoint=ping" # Bypasses 'sh' and forces the ping command
-      ];
-    })
-    # (helpers.mkPodmanWrapper {
-    #   name = "helm";
-    #   image = "docker.io/alpine/helm";
-    #   tag = "sha256:1338539a80db7f323def261f36d4a85ee39ecf5e714e532c7b2f8445404eef52";
-    #   volumes = [
-    #     "$HOME/.kube:/root/.kube:ro"
-    #     "$PWD:/workdir"
-    #   ];
-    #   extraArgs = [
-    #     "--net=host"
-    #     "-w /workdir"
-    #   ];
-    # })
-    (helpers.mkPodmanWrapper {
-      name = "cmctl";
-      image = "quay.io/jetstack/cmctl";
-      tag = "v2.5.0";
-      volumes = [
-        # The Security Badge: Mount kubeconfig so cmctl can access the cluster
-        "$HOME/.kube:/root/.kube:ro"
-        # Mount the current directory so cmctl can read local YAML certificates
-        "$PWD:/workdir"
-      ];
-      extraArgs = [
-        "--net=host"
-        "-w /workdir"
-      ];
-    })
   ];
 
   home.file.".config/k9s/skins" = {
@@ -247,46 +169,6 @@ in
       };
     };
     plugins = {
-      # --- Certificate Management ---
-      cert-status = {
-        shortCut = "Shift-S";
-        confirm = false;
-        description = "Certificate status";
-        scopes = [ "certificates" ];
-        command = "bash";
-        background = false;
-        args = [
-          "-c"
-          "cmctl status certificate --context $CONTEXT -n $NAMESPACE $NAME |& less"
-        ];
-      };
-
-      cert-renew = {
-        shortCut = "Shift-R";
-        confirm = false;
-        description = "Certificate renew";
-        scopes = [ "certificates" ];
-        command = "bash";
-        background = false;
-        args = [
-          "-c"
-          "cmctl renew --context $CONTEXT -n $NAMESPACE $NAME |& less"
-        ];
-      };
-
-      secret-inspect = {
-        shortCut = "Shift-I";
-        confirm = false;
-        description = "Inspect secret";
-        scopes = [ "secrets" ];
-        command = "bash";
-        background = false;
-        args = [
-          "-c"
-          "cmctl inspect secret --context $CONTEXT -n $NAMESPACE $NAME |& less"
-        ];
-      };
-
       # --- Debugging ---
       debug = {
         shortCut = "Shift-D";
@@ -384,71 +266,6 @@ in
             kubectl --kubeconfig $KUBECONFIG -n $NAMESPACE wait --for=condition=Ready pod/pvc-shell > /dev/null 2>&1
             kubectl --kubeconfig $KUBECONFIG -n $NAMESPACE exec -it pvc-shell -- bash
             kubectl --kubeconfig $KUBECONFIG -n $NAMESPACE delete pod pvc-shell --grace-period=0 --force=true > /dev/null 2>&1
-          ''
-        ];
-      };
-
-      trace-dns = {
-        shortCut = "Shift-D";
-        description = "Trace DNS requests";
-        scopes = [
-          "containers"
-          "pods"
-          "nodes"
-        ];
-        command = "bash";
-        confirm = false;
-        background = false;
-        args = [
-          "-c"
-          # Note: We use ''${VAR} to escape bash variables inside Nix strings
-          ''
-            IG_VERSION=v0.34.0
-            IG_IMAGE=ghcr.io/inspektor-gadget/ig:$IG_VERSION
-            IG_FIELD=k8s.podName,src,dst,qr,qtype,name,rcode,latency_ns
-
-            GREEN='\033[0;32m'
-            RED='\033[0;31m'
-            BLUE='\033[0;34m'
-            NC='\033[0m' # No Color
-
-            # Ensure kubectl version is 1.30 or later
-            KUBECTL_VERSION=$(kubectl version --client | awk '/Client Version:/{print $3}')
-            if [[ "$(echo "$KUBECTL_VERSION" | cut -d. -f2)" -lt 30 ]]; then
-              echo -e "''${RED}kubectl version 1.30 or later is required''${NC}"
-              sleep 3
-              exit
-            fi
-
-            clear
-
-            # Handle containers
-            if [[ -n "$POD" ]]; then
-              echo -e "''${GREEN}Tracing DNS requests for container ''${BLUE}''${NAME}''${GREEN} in pod ''${BLUE}''${POD}''${GREEN} in namespace ''${BLUE}''${NAMESPACE}''${NC}"
-              IG_NODE=$(kubectl get pod "$POD" -n "$NAMESPACE" -o jsonpath='{.spec.nodeName}')
-              kubectl debug --kubeconfig=$KUBECONFIG  --context=$CONTEXT -q \
-                --profile=sysadmin "node/$IG_NODE" -it --image="$IG_IMAGE" -- \
-                ig run trace_dns:$IG_VERSION -F "k8s.podName==$POD" -F "k8s.containerName=$NAME" \
-                --fields "$IG_FIELD"
-              exit
-            fi
-
-            # Handle pods
-            if [[ -n "$NAMESPACE" ]]; then
-              echo -e "''${GREEN}Tracing DNS requests for pod ''${BLUE}''${NAME}''${GREEN} in namespace ''${BLUE}''${NAMESPACE}''${NC}"
-              IG_NODE=$(kubectl get pod "$NAME" -n "$NAMESPACE" -o jsonpath='{.spec.nodeName}')
-              kubectl debug --kubeconfig=$KUBECONFIG  --context=$CONTEXT -q \
-                --profile=sysadmin  -it --image="$IG_IMAGE" "node/$IG_NODE" -- \
-                ig run trace_dns:$IG_VERSION -F "k8s.podName==$NAME" \
-                --fields "$IG_FIELD"
-              exit
-            fi
-
-            # Handle nodes
-            echo -e "''${GREEN}Tracing DNS requests for node ''${BLUE}''${NAME}''${NC}"
-            kubectl debug --kubeconfig=$KUBECONFIG  --context=$CONTEXT -q \
-              --profile=sysadmin -it --image="$IG_IMAGE" "node/$NAME" -- \
-              ig run trace_dns:$IG_VERSION --fields "$IG_FIELD"
           ''
         ];
       };

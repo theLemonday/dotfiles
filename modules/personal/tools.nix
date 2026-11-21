@@ -2,8 +2,6 @@
 {
   home.packages = with pkgs; [
     ast-grep
-
-    (config.lib.nixGL.wrap anki)
   ];
 
   programs.ripgrep-all = {

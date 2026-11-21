@@ -72,15 +72,9 @@ let
 in
 {
   home.packages = with pkgs; [
-    wgo
     dust
     trash-cli
     bpftrace
-    bazelisk
-    bazel-buildtools
-    miller
-    taskwarrior3
-    copier
     pre-commit
   ];
 
