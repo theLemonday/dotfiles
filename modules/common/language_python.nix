@@ -1,6 +1,6 @@
 { pkgs, ... }:
 let
-  myPython = pkgs.python312;
+  myPython = pkgs.python313;
 
   # Convert the names to Nix package expressions
   pythonWithPkgs = myPython.withPackages (pythonPkgs: with pythonPkgs; [

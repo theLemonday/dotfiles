@@ -34,12 +34,6 @@ in
     '';
   };
 
-  # Home Manager is pretty good at managing dotfiles. The primary way to manage
-  # plain files is through 'home.file'.
-  home.file = {
-    ".config/zsh/conf.d".source = pkgs.runCommand "zsh-conf-d" {} "mkdir -p $out";
-  };
-
   # Home Manager can also manage your environment variables through
   # 'home.sessionVariables'. These will be explicitly sourced when using a
   # shell provided by Home Manager. If you don't want to manage your shell
