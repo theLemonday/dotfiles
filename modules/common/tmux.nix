@@ -1,43 +1,13 @@
 { pkgs, ... }:
 let
-  darkPalette = {
-    TC = "colour235";
-    G1 = "colour239";
-    G7 = "colour223";
-    G8 = "colour246";
-    blue = "colour109";
-    yellow = "colour214";
-    green = "colour142";
-  };
-  lightPalette = {
-    TC = "colour229";
-    G1 = "colour243";
-    G7 = "colour235";
-    G8 = "colour238";
-    blue = "colour24";
-    yellow = "colour130";
-    green = "colour64";
-  };
+  # Colours use the terminal's own ANSI palette (names, not 256-colour indexes),
+  # so the bar follows whatever theme the terminal applies (darkman light/dark etc).
+  mode = "#{?client_prefix,yellow,#{?pane_in_mode,green,blue}}";
+  tag = fg: text: "#[fg=${fg}]${text}#[fg=default,nobold,nounderscore]";
+  # commas inside a #{?} branch must be written as #,
+  esc = builtins.replaceStrings [ "," ] [ "#," ];
 in
 {
-  home.file.".config/tmux/theme-apply.sh" = {
-    executable = true;
-    text = ''
-      #!/usr/bin/env bash
-      THEME=$(cat ~/.config/tmux/theme 2>/dev/null || echo dark)
-      if [ "$THEME" = "light" ]; then
-        tmux set -g status-left    "#[fg=${lightPalette.yellow},bold] #S #[nobold,fg=${lightPalette.G1}]│ "
-        tmux set -g status-right   "#[fg=${lightPalette.blue}]$USER#[fg=${lightPalette.G8}]@$HOSTNAME "
-        tmux set -g window-status-format         "#[fg=${lightPalette.G1}]#I #[fg=${lightPalette.G8}]#W"
-        tmux set -g window-status-current-format "#[fg=${lightPalette.blue},bold,underscore]#I #W"
-      else
-        tmux set -g status-left    "#[fg=${darkPalette.yellow},bold] #S #[nobold,fg=${darkPalette.G1}]│ "
-        tmux set -g status-right   "#[fg=${darkPalette.blue}]$USER#[fg=${darkPalette.G8}]@$HOSTNAME "
-        tmux set -g window-status-format         "#[fg=${darkPalette.G1}]#I #[fg=${darkPalette.G8}]#W"
-        tmux set -g window-status-current-format "#[fg=${darkPalette.blue},bold,underscore]#I #W"
-      fi
-    '';
-  };
   home.packages = with pkgs;[
     tmux-sessionizer
   ];
@@ -69,56 +39,37 @@ in
     ];
 
     extraConfig =
-      let
-        mkThemeVars = dark: light: key:
-          ''set -g @${key} "#{?#{==:#{E:THEME},light},${light.${key}},${dark.${key}}}"'';
-        themeVars = builtins.concatStringsSep "\n" (
-          map (mkThemeVars darkPalette lightPalette)
-            [ "TC" "G1" "G7" "G8" "blue" "yellow" "green" ]
-        );
-      in
       ''
         set -g allow-passthrough on
 
-        # Dark palette - Gruvbox Hard
-        set -g @dark-TC     '${darkPalette.TC}'
-        set -g @dark-G1     '${darkPalette.G1}'
-        set -g @dark-G7     '${darkPalette.G7}'
-        set -g @dark-G8     '${darkPalette.G8}'
-        set -g @dark-blue   '${darkPalette.blue}'
-        set -g @dark-yellow '${darkPalette.yellow}'
-        set -g @dark-green  '${darkPalette.green}'
-
-        # Light palette - Gruvbox Material Medium (higher contrast)
-        set -g @light-TC     '${lightPalette.TC}'
-        set -g @light-G1     '${lightPalette.G1}'
-        set -g @light-G7     '${lightPalette.G7}'
-        set -g @light-G8     '${lightPalette.G8}'
-        set -g @light-blue   '${lightPalette.blue}'
-        set -g @light-yellow '${lightPalette.yellow}'
-        set -g @light-green  '${lightPalette.green}'
-
-        # Apply theme based on $THEME env var
-        ${themeVars}
-
-        # Status bar
-        set -g status-style "bg=#{@TC},fg=#{@G8}"
+        # Status bar: transparent bar, bold coloured text in terminal ANSI colours, no glyphs, no blocks
+        set -g status on
+        set -g status-position bottom
+        set -g status-interval 5
         set -g status-justify left
+        set -g status-style "bg=default,fg=white"
         set -g status-left-length  100
         set -g status-right-length 150
 
-        # Prefix highlight
-        set -g @prefix_highlight_show_copy_mode on
-        set -g @prefix_highlight_prefix_prompt 'WAIT'
-        set -g @prefix_highlight_copy_prompt   'COPY'
-        set -g @prefix_highlight_output_prefix "#[fg=#{@yellow},bold]"
-        set -g @prefix_highlight_output_suffix "#[nobold] "
-        set -g @prefix_highlight_copy_mode_attr "fg=#{@green},bold"
+        # Session: coloured by mode (blue normal, yellow prefix held, green copy-mode)
+        set -g status-left "${tag mode "#[bold] #S "}#[fg=brightblack]│ "
 
-        # Window status
         set -g window-status-separator "  "
+        set -g window-status-style         "none"
+        set -g window-status-current-style "none"
+        set -g window-status-format         "${tag "brightblack" "#I #W"}"
+        set -g window-status-current-format "${tag "magenta" "#[bold]#I #W#{?window_zoomed_flag, Z,}#{?window_bell_flag, !,}"}"
+        set -g window-status-bell-style "fg=red,bold"
 
-        run-shell "~/.config/tmux/theme-apply.sh"
+        # tmux-sessionizer names sessions after the project dir, so skip the path when it equals #S
+        set -g status-right "#{?#{==:#S,#{b:pane_current_path}},,${esc "${tag "cyan" "#{b:pane_current_path}"} ${tag "brightblack" "│"} "}}${tag "blue" "#[bold]#h"} "
+
+        # Panes, messages, copy-mode selection
+        set -g pane-border-style        "fg=brightblack"
+        set -g pane-active-border-style "fg=blue"
+        set -g message-style            "bg=default,fg=yellow,bold"
+        set -g message-command-style    "bg=default,fg=cyan,bold"
+        set -g mode-style               "bg=blue,fg=black"
 
         bind h select-pane -L
         bind j select-pane -D
